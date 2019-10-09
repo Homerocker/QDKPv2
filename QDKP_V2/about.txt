@@ -1,0 +1,327 @@
+Quick DKP V 2.6.7
+Copyright 2010 Riccardo Belloli (contact@belloli.net) and Airiena
+
+QDKP2 is an Addon for the game World of Warcraft, which purpose is to manage all the
+DKP-related matters, without the need of an external server to keep your data.
+
+I rewrote most of the original Quick DKP mod and added alot of features but some code is still
+by Airiena.
+The basic idea of a DKP mod that stores the data in the officer notes is by Gareth of Dragonmaw
+
+You can find the latest version of this mod, along with the link to the user's manual
+on CurseGaming.com (last working link: http://wow.curse.com/downloads/wow-addons/details/quick-dkp-v2.aspx)
+
+This addon is a rewrite of Quick DKP, a software by Lemon Jello.  (Airiena of Dragonmaw)
+From version 1.6 developed by Riccardo Belloli.  (Ballanzone of Crushridge EU)
+Quick DKP's Logo is a copyright of Rozak of Dragonmaw
+Includes many libraries from the LibAce-3.0 project.
+Includes ChatThrottleLib, a communication library by Mikk
+Includes LibBabble, a localization library by ckknight
+Includes BigNum and Sha1, two cryptographic libraries by Martin Huesser
+
+This addon is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+
+Release Log:
+V2.6.7 (10/3/2010)
+- Added log exporting. Only table output like HTML and plaintext is supported, will add support to webdkp and such in the next release or so.
+- Changed the Deformat lib implementation
+- Added an option to set if you want QDKP to make automatic rolls when receives a bid that need a roll value to be processed but theres none.
+- bid logging now is on by default.
+- Added Toravon the Ice Watcher
+- Fixed a bug that was displaying wrong colors on table export (eg. shaman class color)
+- Added a log entry type for all the bid related entries. 
+
+V2.6.6 (16/02/2010)
+- Fixed the problem with the $mintowin bid parameter, not enabling players to bid all their dkp amount
+- Fixed a minor bug that prevented an alt to be reported as online at session start.
+- Added a control to block alts to be created or cleared while there's an open session.
+- Libraries updates
+
+V2.6.5 (26/01/2010)
+- Fixed (hopefully) the bug that was preventing alts from getting raid awards.
+
+V2.6.4 (22/01/2010)
+- Added an option to set the maximum amount one player can bet.
+- Added "min" and "max" parameters to the bid manager. You can set up limits and/or minimum increase steps to your bids. See the options file for some examples.
+- Added "/roll" special keyword to the bid manager: it triggers a bid when it receive a roll (till now the roll was imported only, no bid was triggered.)
+- Fixed the bug were alt was not getting correct DKP from Raid Awards (always showed 0 dkp).
+- Fixed the bid logging bug where the $BIDTEXT parameter wasn't parsing correctly
+
+V2.6.3 (29/12/09)
+- Fixed the hiding of incoming whispers for the On-demand system and the bid manager.
+- LibBabble-Boss updated
+
+V2.6.2 (10/12/09)
+- Updated TOC number to 30300
+- Updated libraries
+
+V2.6.1 (30/11/09)
+- Bugfix: Fixed a bug that was incorrectly importing external modification on log in, messing up the dkp amounts (often turning negative).
+- Improvement: If a spent DKP log entry has a item link or name as reason, it will be displayed as "xyz purchases [Item] for xx DKP."
+
+V2.6.0 (21/11/09)
+- Feature: Radically changed the session system in QDKP2. The log structure has been redesigned, and all saved data will be wiped on the first launch if you came from a pre 2.6.x version.
+- Feature: Bid Manager nows hould be operative! Please mind that it comes with a good all-round configuration, but you can set it to match almost any bid-like scenario.
+- Fearure: Added two export functions, to export all DKP values as plain text, formatted HTML table or XML data.
+- Feature: You can set QDKP to announce DKP-related evenets to the Raid, guild or officer chat (off by default)
+- Feature: You can set QDKP to send whisper every time a player gains or spend dkp, or when he/she loses an award (off by default)
+- Feature: Added default tables for item pricing based on instance and class of item (EG: Weapons in Nax 25).
+- Feature: You can set the percent of the award you want to give to a player. Right click on the player's entry to set it.
+- Feature: Now when you shift click a log entry, you'll get a short but detailed report of that entry in the chat edit box (if opened)
+- Improvement: The GUI has been revamped. Too many changes to list them all.
+- Imrpovement: Added a partial french localization (thanks Daniel Valero).
+- Improvement: The "FORMAT" section in the options file has been changed: There aren't formats anymore, you will use flags to set what QDKP will output to the guild notes.
+- Improvement: Using LibBabble for Bosses and Classes. It should make all related functions compatible to all localizations (BossAward, Command Line and whisper system).
+- Improvement: Feature: QDKP now supports Drag&Drop and Shift-click for items. Try it with the toolbox and the DKP entry editor.
+- Improvement: All the characters on the same account share the same guilds database. This means that you'll have the same data across multiple characters if they are in the same guild. Type "/qdkp db" to manage the database.
+- Improvement: Now QDKP listens for boss kills from Deadly Boss Mods OR BigWigs. It still uses the normal slain detector for known bosses.
+- Improvement: Added many permissions checking
+- Improvement: Added a system to guess the time zone, to generate timestamp with a common reference time (the server time). Doesn't work if the time difference is >12 hours
+- Improvement: The dialog you get hovering the QDKP minimap icon will report your DKP officer rights.
+- Imrpovement: Removed the brackets in the notes output. Not really needed IMO
+- Improvement: Introduced cripthography service,that i'll use to validate syncronization packets.
+- Bugfix: Now QDKP won't freeze if you set an alt of his main. Instead, it will give out an error that explain the situation.
+- BugFix: Reduced the chance that a DKP modification isn't imported if you did the same modification. Can still happen for modifications made at the very same time.
+- Bugfix: Changed the way I read whispers. Should create less problem with communication addons.
+- BugFix: Minimap button's parent frame changed to "UIParent" (thx Karaii)
+- Bugfix: Fixed a bug in the event manager that was generating an error when someone posted a link that wasn't an item link (spell link, quest link....)
+- Bugfix: Fixed the "You aren't allowed to do that" message in view-only QDKP when you leave a raid
+- Bugfix: "/qdkp clearalt" command was bugged and always reported wrong syntax.
+
+V2.5.8-4 (16/10/2008)
+- Adapted to WoW client V3.0.x
+- Updated chronos to v12
+- Updated ChatThrottleLib to r66041
+- Now QDKP's minimap icon should be correctly gathered by minimap icons managers.
+
+V2.5.8-3 (9/04/2008)
+- Updated TOC to WoW 2.4.1
+- The Bosses' Killing Detection system should work again.
+
+V2.5.8-2 (1/3/2008)
+- Simplified restore backup function. It won't restore the alt's status anymore.
+
+V2.5.8 (14/2/2008)
+- Added a integrity check to log's purge functions, to remove dead links
+- Now if you try to charge a player that can't be charged due to low net DKP amount cap, you'll get an error message rather than a silent null charge.
+- Fixed QDKP2_SENDTRIG_MODIFY option (wasn't working)
+- "?rankdkp" and "?classdkp" are now working correctly.
+- Added a feature to print data to chat editbox. Just SHIFT-click a player in the roster to print its DKP, or SHIFT-click a log to print its description (like object for loots)
+- The sort function won't sort anymore the actual list if the sorting method or the list haven't changed, to preserve CPU time and make roster browsing faster.
+- Now the timer is correctly discarded if you stay offline for more than 30 minutes
+- Fixed (again) STRATA of the minimap button. Now should be right.
+- Reactivated the button "Show Raid's Log" in the guild roster for the view-only mode.
+- Introduced a control to avoid processing an alt and his main at the same time.
+- Now DKP entry with 0 dkp spent and gained can be logged, if a reason is given.
+- Fixed a bug regardin alts that couldn't be parsed due to rank or level limitation
+- Added a check to prevent errors when you leave a guild. Now you see externals even if you aren't in any guild. Can't edit them tho (QDKP is in view-only mode)
+- Removed the "Do you want to start a new session" question when you start the ironman bonus
+- Added Raid updating every time i update the guild.
+- Many minor bug fixed
+
+V2.5.7 (18/01/2008)
+- Fixed a major bug in externals data saving when changes are uploaded
+- Added option QDKP2_MINIMUM_LEVEL to set the minimum level needed by a character to be included in the guild roster (thx Saintuk)
+- If you stay offline for more than 30 minutes, the old timer (if any) won't be resumed.
+- Now QDKP supports BidManiac out of the box.
+
+V2.5.6-2 (16/01/2008)
+- Fixed the bug that was blocking QDKP from parsing correctly the guild notes
+- default value of QDKP2_OfficerOrPublic is now correctly set to 1 (officer notes) instead of 2 (public notes).
+- Changed and added some output styles. Now the default is the 1st
+
+V2.5.6 (12/1/2008)
+- Added Zul'Aman's bosses to the Bosses Table
+- Added OutputStyle 5 (N T)
+- Added QDKP2_Bosses_Offset to the Options.Ini file, to introduce an offset to all DKP awards gived by bosses' killing. (thx Tarolynn)
+- Added QDKP2_REPORT_NEW_GUILDMEMBER to the Options.ini file, to let QDKP2 print the name of the new guild members as he detects them.
+- Added an option in the options file to avoid DKP prompt to enable Auto Winner Detection System on bosses kill.
+- Now you can write more generic stuff in the officer/public note along with DKP data. To do that, you have to include the DKP data in {}. Example: "{Net:45, Tot:56, Hrs3.4} spam" (thx  John Chanak)
+- Changed minimap button's strata from DIALOG to LOW (thx Tarolynn)
+- Changed the sorting algorithms entirely to be much more efficent and fast. (thx  John Chanak)
+- Updated ChatThrottleLib to version 19.20300 (11-15-2007)
+- Fixed a bug in the zerosum system introduced in V2.5.5 (Thx Thekryix)
+
+V2.5.5 (23/10/2007)
+- Changes the data format. Your old QDKP database will be cleared the first time you start WoW (this includes Logs and Backups). External data will be converted and thus kept.
+- Now you can make the guild/raid roster entries colored by class, like raid's window of WoW. To enable, set "QDKP2_USE_CLASS_BASED_COLORS" in the options file to true.
+- Added the table "QDKP2_NotLogLoot". Items which name is in this table won't be logged when looted. The table comes preloaded with the legendary items found in The Eye dungeon (enGB localization)
+- Added a filter to hide the On-Demand related whispers
+- Added buttons to add-remove standby players
+- Imporoved the layout of the buttons in the roster
+- Removed the function that checks the log's net history before modifying a log entry. Could cause problems and wasn't that useful. Now it checks only the current amount.
+- Reverted some minor modifications done to Chronos. Added all his available localizations
+- Changed the command "/qdkp list <flag>" to "/qdkp roster <flag>"
+- Now QDKP will detect and remeber the class of an external after the first time you join a raid with him.
+- Added library ChatThrottleLib by Mikk to manage Addon's comunications.
+- More comments in the options file
+- Started to work on the Sync feature
+- Added a control on the log's type to prevent illegal comparations between nil and number
+- Corrected the name of the boss "The Big Bad Wolf" (was only "Big Bad Wolf")
+- Updated the TOC number to WoW 2.3.0
+- Removed the invisible button that was toggling QDKP GUI.
+- Changed the color of standby members to orange.
+- Changed some labels
+- Fixed a bug where the log wasn't refreshed when toggled on/off on for the same guild member. (Thx Cheaterthemaster)
+- Corruption-Proof Log and data tables (almost)
+- Many little improvements & Bugfixing
+- Various minor bugs fixed
+
+V2.5.4 (7/10/2007)
+- changed the way i check the timer, to make it more stable (random timer bug). This is _not_ a fix, just a workaround. I'm still investigating the real problem.
+- fixed the GetTotal & GetSpent function so they can reset a player's local data if gets corrupted (Thx dobbz)
+- Fixed the way i control if the iron-man bonus is running
+- reverted chronos to the original 2.11 version, and added his localizations files.
+- updated TOC version to WoW 2.2.0
+
+V2.5.3 (20/08/2007)
+- If a player can't edit officer/public note, the mod will only show the roster and the log windows (View-Only Version).
+- Added the command "classdkp <class> <channel>", to send to the given channel a top-ten of players based on the net DKP amount.
+- Added the command "rankdkp <class> <channel>", to send to the given channel a top-ten of players based on the net DKP amount.
+- Added the commands "addexternal <name>" and "remexternal <name>"
+- Added the commands "makealt <alt> <main>" and "clearalt <alt>"
+- Added the commands "addraid <name>" and "remraid <name>", to add/remove standby players to the raid roster.
+- Fixed a bug which was giving an error if you award the raid and someone had an empty log  (thx Ragos)
+- Fixed a bug which was preventing the on-demand keyword "?help" to work.
+- Other minor bugs fixed
+
+V2.5.2 (14/08/2007)
+- GUI design reviewed. Changed the "QDKP" starter button to a nicer Minimap button. Thanks to Rozak for the awesome logo!
+- Added the keywords "?classdkp" and "?rankdkp" to the on-demand system, to query for a list of class or rank based players, sorted by net amount.
+- Changed the files structure. Please delete your old QDKP_V2 directory in the "AddOns" folder before unpack!
+- Fixed a bug where the backup was reading data from officernotes, regardless from the setting in the options file (thx Axet)
+- Some minor bugs fixed
+
+V2.5.1 (31/07/2007)
+- Now you can add players that aren't in your guild to the DKP roster. NOTE: External member's entries are heavy limited vs regular guild members. Please read the manual for a list of the limitations.
+- Implemented a simple on-demand informational system triggered by whispers. Look the manual for more info
+- Added a table in the Options.ini file to automatically create an external and (optionally) make him an alt of a guildmember.
+- Added a minimum Net DKP cap. As the maximum, players won't be able to go under this amount of Net DKP at any time. (thx Adsertor)
+- Now You can write a percentual like "40%" in the toolbox's DKP window. QDKP will calculate it accordingly with the player's net DKP amount.
+- When you sort by rank, the subsort is by net.
+- Fixed an old bug that was preventing QDKP to award hours to offline members, even if it was enabled via Options file (thx Adsertor)
+- Fixed a problem in the timer, which was giving away two hourly bonuses within few minutes between each other (thx shandelzar)
+- Fixed a bug in the check system that could lead to a freeze in the check system.
+- Fixed a problem when you try to award the time tick anyway to a guild member that was offline.
+- Other minor bugs fixed
+- Upgraded license to GNU General Public License Version 3
+
+V2.5.0
+-Alts Support: Just write the name of the main's name in the officier note of a player's alt to link that character to the main. Read the new manual for more info.
+-Zerosum support. Read the new Manual for more info.
+-Bosses Table in Options.ini file comes premade with all raid bosses found in TBC. You NEED to overwrite your Options.ini file with this one.
+-Due to a major change in log system, ALL LOG DATA WILL BE WIPED ON FIRST RUN!
+-Added a table in options.ini (QDKP2_ChargeLoots) which let you auto charge looters of those items.
+-Added QDKP2_HIDE_RANK (In config.ini). The ranks specified in this table are not seen by QDKP at all.
+-Added a new log link class. Many entries in the RAID's log which refere to a player will be clickable to interact with.
+-Added a script to detect the true death of romeo and juliet.
+-Now you can enter a limit for Net amount of DKP
+-You can choose to store DKP data in Officer's or public notes.
+-You can tell QDKP to exlude people in an area different from Raid Leader's one to award DKP.
+-Changed the GUI button, now to drag it you have to shift+left click. (thx Stormm)
+-Added the command "decay <perc%>" and "raidDecay <perc%> to subtract a given % from players' net DKP amount
+-Now the ironman bonus, when you finish it, triggers the upload by default.
+-Fixed the default position of the windows
+-The "Charge looter" function now works.
+-When you define an alt in the officer (or public) note, now you can write stuff after the main's name (thx nevir27)
+-added a system to detect romulo and julianne real death.
+-Many Bugs Fixed and Many other introducted. Cleaned much old code.
+
+V2.4.2
+-Updated TOC number for WoW V.2.1.0
+
+V2.4.1
+-Fixed a bug in the Timer
+-Fixed some typo in the localization file that was displaying the variable name instead of its value
+-Fixed a bug in the charge function that was preventing the auto bid detect to work as expected
+-Some minor bugs fixed.
+
+V2.4.0
+-if a log entry is not yet uploaded, the report will append a (*).
+-Started to switch to localization files
+-Command line system revamped (type "/qdkp help" for more info)
+-Little improve to the Check system
+-"Auto Detect Bids" renamed to "Auto Detect Winners", and now opens the toolbox.
+-Embedded Chronos Library now is renamed to QDKP2_Chron, to avoid conflicts.
+-Now, when purging log, the mod will delete the log of players no more in Guild Aswell.
+-Can enter negative dkp values (lead the amount by a -)
+
+V2.3.6
+Updated TOC version to WoW Patch 2.0.3
+
+V2.3.5
+Fixed a bug on the timer introduced with Chronos library V 2.11 (Thx bio72301)
+
+V2.3.4
+Added sorting by Net DKP
+Chronos lib updated to 2.11
+
+V2.3.3
+Sessions now can have a name and you can change it anytime
+Timer resumes correctly after a DC.
+
+V2.3.2
+Entry box for reason in the toolbox
+
+V2.3.1
+Bugfixing
+
+V2.3.0
+Few Bugfixing (no more beta)
+More keybindings (now is possible to charge the last object seen in chat)
+Bid Detect System
+Flexible Report Function
+Speed/Lagging improvements
+Option File
+Confirm Boxes
+Mouse Wheel support
+Tooltips
+WoW V2 Patch compatible
+
+V2.2
+Keybindings
+DC Detection
+Several bugfixing (BTW still beta)
+Interactive log
+
+V2.1
+Ironman Bonus
+Loot detect & log
+
+V2.0
+New Working Backup functions
+Real time download
+Dinamic Log
+Data saving
+
+v1.6
+Check system
+modified members will now turn light blue in guild/raid roster
+improved stability and reliability
+sorting system now works
+
+v1.4 (Lemon Jello)
+GUI
+detects possible bad data and alerts the user
+DKP per hour
+added in orcish/common check
+moveable frames
+
+v1.0-1.3 (Lemon Jello)
+I got lazy
+
+
+v0.1 -- First Release (Lemon Jello)
+-console like commands
+-raid list
+-download
+-upload
+-random
+-raid dkp
+-give target dkp
+-remove target dkp
+-set dkp

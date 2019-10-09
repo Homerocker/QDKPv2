@@ -1,0 +1,63 @@
+## Interface: 30300
+## Title: Quick DKP V2 - Core
+## Author: rb@belloli.net
+## Version: 2.6.7-Advent2
+## Notes: Complete system for in-game DKP managment
+## OptionalDeps: AtlasLoot, DeadlyBossMods
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: QDKP2_Data, QDKP2_Debug_List
+## SavedVariablesPerCharacter: QDKP2backup
+
+Code\Lib\LibStub.lua
+Code\Lib\AceLibrary.lua
+Code\Lib\CallbackHandler-1.0.lua
+Code\Lib\ChatThrottleLib.lua
+Code\Lib\AceTimer-3.0.lua
+Code\Lib\LibBabble-3.0.lua
+Code\Lib\LibBabble-Boss-3.0.lua
+Code\Lib\LibBabble-Class-3.0.lua
+Code\Lib\LibBabble-Zone-3.0.lua
+Code\Lib\LibBabble-Inventory-3.0.lua
+Code\Lib\AceConsole-3.0.lua
+Code\Lib\Deformat-2.0.lua
+Code\Lib\LibRSA-1.0.lua
+
+Code\DefaultOptions.lua
+Code\Core\Costants.lua
+Code\Core\DKP_Editing.lua
+Code\Core\DKP_Management.lua
+Code\Core\Events.lua
+Code\Core\Sessions.lua
+Code\Core\Guild.lua
+Code\Core\Notes.lua
+Code\Core\Raid.lua
+Code\Core\Loot.lua
+Code\Core\Boss.lua
+Code\Core\Alts.lua
+Code\Core\Externals.lua
+Code\Core\Check.lua
+Code\Core\Backup.lua
+Code\Core\Misc.lua
+Code\Core\Bidman.lua
+Code\Core\Crypto.lua
+
+Local\enGB.lua
+Local\frFR.lua
+
+Code\Logging\Costants.lua
+Code\Logging\LogEntry.lua
+Code\Logging\DB.lua
+Code\Logging\Logging.lua
+Code\Logging\Reporting.lua
+Code\Logging\Sessions.lua
+
+Code\Interfaces\CLI.lua
+Code\Interfaces\Bindings.lua
+Code\Interfaces\OnDemand.lua
+Code\Interfaces\Graphical.lua
+Code\Interfaces\Exporter.lua
+
+Code\Core\Initialization.lua
+
+QDKP_V2.xml

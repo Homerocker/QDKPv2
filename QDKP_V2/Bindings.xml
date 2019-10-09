@@ -1,0 +1,30 @@
+<!--  Copyright 2010 Riccardo Belloli (belloli@email.it)
+     This file is a part of QDKP_V2 (see about.txt in the Addon's root folder)
+     
+           ## BINDINGS DECLARATIONS ##
+-->
+
+
+<Bindings>
+  <Binding name="CHARGELASTLOOT" header="QDKP2">
+    QDKP2_BIND_ChargeLastLoot()
+  </Binding>
+  <Binding name="CHARGELASTSEEN" header="QDKP2">
+    QDKP2_BIND_ChargeLastSeen()
+  </Binding>
+  <Binding name="SENDCHANGES" header="QDKP2">
+    QDKP2_BIND_SendChanges()
+  </Binding>  
+  <Binding name="TOGGLEMAIN" header="QDKP2">
+    QDKP2_BIND_ToggleMain()
+  </Binding>
+  <Binding name="TOGGLELIST" header="QDKP2">
+    QDKP2_BIND_ToggleList()
+  </Binding>
+  <Binding name="TOGGLELOG" header="QDKP2">
+    QDKP2_BIND_ToggleLog()
+  </Binding>
+  <Binding name="TOGGLETOOLBOX" header="QDKP2">
+    QDKP2_BIND_ToggleToolbox()
+  </Binding>
+</Bindings>

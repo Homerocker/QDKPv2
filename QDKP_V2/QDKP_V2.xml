@@ -1,0 +1,528 @@
+<!--  Copyright 2010 Riccardo Belloli (belloli@email.it)
+     This file is a part of QDKP_V2 (see about.txt in the Addon's root folder)
+
+           ## QUICK DKP V2 ##
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+  <Script file="Options.ini"/>
+
+  <Frame name="QDKP2">
+    <Scripts>
+      <OnLoad>
+        QDKP2_Init();
+      </OnLoad>
+    </Scripts>
+  </Frame>
+
+  <Frame name="QDKP2PopUp" hidden="true" virtual="true" toplevel="true" enableMouse="true" movable="true" frameStrata="TOOLTIP" parent="UIParent">
+    <Backdrop name="QDKP2Back" bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+      <BackgroundInsets>
+        <AbsInset left="4" right="4" top="4" bottom="4"/>
+      </BackgroundInsets>
+      <TileSize>
+        <AbsValue val="16"/>
+      </TileSize>
+      <EdgeSize>
+        <AbsValue val="16"/>
+      </EdgeSize>
+    </Backdrop>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture name="$parent_Background" setAllPoints="true" >
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="4" y="-4"/>
+              </Offset>
+            </Anchor>
+            <Anchor point="BOTTOMRIGHT">
+              <Offset>
+                <AbsDimension x="-4" y="4"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <Color r="0" g="0" b="0.0" a="0.8" />
+        </Texture>
+      </Layer>
+      <Layer level="BORDER">
+        <Texture name="$parent_TitleBG" setAllPoints="true" >
+          <Size>
+            <AbsDimension y="26"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="4" y="-4"/>
+              </Offset>
+            </Anchor>
+            <Anchor point="TOPRIGHT">
+              <Offset>
+                <AbsDimension x="-4"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <Color r="1.0" g="1.0" b="0.0" a="0.6" />
+          <Gradient orientation="VERTICAL">
+            <MaxColor r="1.0" g="0.7" b="0.0" a="1" />
+            <MinColor r="1.0" g="0.5" b="0.0" a="0" />
+          </Gradient>
+        </Texture>
+      </Layer>
+      <Layer level="ARTWORK">
+        <FontString name="$parent_titlet" font="Fonts\MORPHEUS.ttf" justifyH="CENTER" justifyV="TOP" text="Quick DKP V2">
+          <Color r="1" g="1" b="1" a="1"/>
+          <FontHeight>
+            <AbsValue val="15"/>
+          </FontHeight>
+          <Anchors>
+            <Anchor relativePoint="TOP" point="TOP" >
+              <Offset>
+                <AbsDimension x="0" y="-5"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <Shadow>
+            <offset>
+              <AbsDimension x="2" y="-2"/>
+            </offset>
+            <color r="0" g="0" b="0"/>
+          </Shadow>
+        </FontString>
+        <FontString name="$parent_text" inherits="Tooltip_Med" justifyH="LEFT" text="Input Box">
+          <Anchors>
+            <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
+              <Offset>
+                <AbsDimension x="10" y="-32"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Button name="$parent_ButtonClose" inherits="UIPanelCloseButton">
+        <Anchors>
+          <Anchor point="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="2" y="2"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            (this:GetParent()):Hide()
+          </OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnLoad>
+        this:RegisterForDrag("LeftButton");
+      </OnLoad>
+      <OnDragStart>
+        this:StartMoving()
+      </OnDragStart>
+      <OnDragStop>
+        this:StopMovingOrSizing();
+      </OnDragStop>
+      <OnEnterPressed>
+        this:Hide()
+      </OnEnterPressed>
+      <OnEscapePressed>
+        this:Hide()
+      </OnEscapePressed>
+    </Scripts>
+  </Frame>
+
+
+  <Frame name="QDKP2_InputBox" inherits="QDKP2PopUp">
+    <Size>
+      <AbsDimension x="280" y="300"/>
+    </Size>
+    <Anchors>
+      <Anchor relativePoint="CENTER" point="CENTER" >
+        <offset>
+          <AbsDimension x="0" y="30" />
+        </offset>
+      </Anchor>
+    </Anchors>
+    <Frames>
+      <EditBox name="$parent_Data" inherits="InputBoxTemplate" id="15">
+        <Size>
+          <AbsDimension x="190" y="25"/>
+        </Size>
+        <Anchors>
+          <Anchor relativePoint="BOTTOM" point="BOTTOM">
+            <Offset>
+              <AbsDimension x="0" y="36"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnEnterPressed>
+            QDKP2_InputBox_OnEnter()
+          </OnEnterPressed>
+          <OnEscapePressed>
+            QDKP2_InputBox:Hide()
+          </OnEscapePressed>
+        </Scripts>
+      </EditBox>
+      <Button name="$parent_Cancel" inherits="UIPanelButtonTemplate" text="Cancel" id="12">
+        <Size>
+          <AbsDimension x="75" y="25"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOM" relativePoint="BOTTOM">
+            <Offset>
+              <AbsDimension x="-50" y="6"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            QDKP2_InputBox:Hide()
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Button name="$parent_OK" inherits="UIPanelButtonTemplate" text="Apply" id="12">
+        <Size>
+          <AbsDimension x="75" y="25"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOM" relativePoint="BOTTOM">
+            <Offset>
+              <AbsDimension x="50" y="6"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            QDKP2_InputBox_OnEnter()
+          </OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+  </Frame>
+
+  <Frame name="QDKP2_NotifyBox" inherits="QDKP2PopUp">
+    <Size>
+      <AbsDimension x="280" y="120"/>
+    </Size>
+    <Anchors>
+      <Anchor relativePoint="CENTER" point="CENTER" >
+        <offset>
+          <AbsDimension x="0" y="30" />
+        </offset>
+      </Anchor>
+    </Anchors>
+    <Frames>
+      <Button name="$parent_OK" inherits="UIPanelButtonTemplate" text="OK" id="12">
+        <Size>
+          <AbsDimension x="75" y="25"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOM" relativePoint="BOTTOM">
+            <Offset>
+              <AbsDimension x="0" y="6"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            QDKP2_NotifyBox:Hide()
+          </OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnEnterPressed>
+        QDKP2_NotifyBox:Hide()
+      </OnEnterPressed>
+      <OnEscapePressed>
+        QDKP2_NotifyBox:Hide()
+      </OnEscapePressed>
+    </Scripts>
+  </Frame>
+
+
+  <Frame name="QDKP2_QuestionBox" inherits="QDKP2PopUp">
+    <Size>
+      <AbsDimension x="280" y="130"/>
+    </Size>
+    <Anchors>
+      <Anchor relativePoint="CENTER" point="CENTER" >
+        <offset>
+          <AbsDimension x="0" y="30" />
+        </offset>
+      </Anchor>
+    </Anchors>
+    <Frames>
+      <Button name="$parent_Cancel" inherits="UIPanelButtonTemplate" text="No" id="12">
+        <Size>
+          <AbsDimension x="75" y="25"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOM" relativePoint="BOTTOM">
+            <Offset>
+              <AbsDimension x="-50" y="6"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            QDKP2_AskUser_OnEnter(false)
+          </OnClick>
+        </Scripts>
+      </Button>
+      <Button name="$parent_OK" inherits="UIPanelButtonTemplate" text="Yes" id="12">
+        <Size>
+          <AbsDimension x="75" y="25"/>
+        </Size>
+        <Anchors>
+          <Anchor point="BOTTOM" relativePoint="BOTTOM">
+            <Offset>
+              <AbsDimension x="50" y="6"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+            QDKP2_AskUser_OnEnter(true)
+          </OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnEnterPressed>
+        QDKP2_AskUser_OnEnter(true)
+      </OnEnterPressed>
+      <OnEscapePressed>
+        QDKP2_AskUser_OnEnter(false)
+      </OnEscapePressed>
+    </Scripts>
+  </Frame>
+
+  <Frame name="QDKP2_CopyWindow" inherits="QDKP2PopUp">
+    <Size>
+      <AbsDimension x="750" y="530"/>
+    </Size>
+    <Anchors>
+      <Anchor relativePoint="CENTER" point="CENTER" >
+        <offset>
+          <AbsDimension x="0" y="30" />
+        </offset>
+      </Anchor>
+    </Anchors>
+    <Frames>
+      <Frame name="$parent_Cornice">
+        <Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+          <TileSize>
+            <AbsValue val="16"/>
+          </TileSize>
+          <EdgeSize>
+            <AbsValue val="16"/>
+          </EdgeSize>
+        </Backdrop>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="20" y="-50"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="-30" y="30"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+      <ScrollFrame  name="QDKP2_CopyWindow_ScrollFrame"  inherits="FauxScrollFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="QDKP2_CopyWindow_Cornice">
+            <Offset>
+              <AbsDimension x="5" y="-5"/>
+            </Offset>
+          </Anchor>
+          <Anchor point="BOTTOMRIGHT" relativeTo="QDKP2_CopyWindow_Cornice">
+            <Offset>
+              <AbsDimension x="-5" y="5"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts><!--
+          <OnVerticalScroll>
+            FauxScrollFrame_OnVerticalScroll(self, offset, 16)
+          </OnVerticalScroll>-->
+          <OnShow>
+            FauxScrollFrame_Update(self,QDKP2_CopyWindow_LinesNum,0,10);
+          </OnShow>
+        </Scripts>
+      </ScrollFrame>
+        <EditBox name="QDKP2_CopyWindow_Data" parent="QDKP2_CopyWindow_ScrollFrame" ignoreArrows="true">
+          <Size>
+            <AbsDimension x="690" y="54"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="QDKP2_CopyWindow_ScrollFrame">
+              <Offset>
+                <AbsDimension x="50" y="50"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+          <FontString name="$parent_titlet" font="Interface\AddOns\QDKP_V2\Misc\Elronmonospace.ttf" justifyH="LEFT" justifyV="TOP" text="Quick DKP V2">
+            <Color r="1" g="1" b="1" a="1"/>
+            <FontHeight>
+              <AbsValue val="10"/>
+            </FontHeight>
+          </FontString>
+          <Scripts>
+            <OnLoad>
+              QDKP2_CopyWindow_ScrollFrame:SetScrollChild(this)
+              this:SetMultiLine(true)
+              this:EnableMouse(false)
+            </OnLoad>
+            <OnTextChanged>
+              if this:GetText() ~= QDKP2_CopyWindow_TextBuff then
+                this:SetText(QDKP2_CopyWindow_TextBuff)
+                this:HighlightText()
+                this:SetFocus()
+              end
+            </OnTextChanged>
+            <OnEnterPressed>
+              QDKP2_CopyWindow:Hide()
+            </OnEnterPressed>
+            <OnEscapePressed>
+              QDKP2_CopyWindow:Hide()
+            </OnEscapePressed>
+          </Scripts>
+        </EditBox>
+
+      <CheckButton name="QDKP2_CopyWindow_Format1" inherits="UICheckButtonTemplate" text="">
+      <Size>
+        <AbsDimension x="20" y="20"/>
+      </Size>
+      <Anchors>
+        <Anchor point="BOTTOMRIGHT" >
+          <Offset>
+            <AbsDimension x="-40" y="5"/>
+          </Offset>
+        </Anchor>
+      </Anchors>
+      <Scripts>
+        <OnClick>
+          if this:GetChecked() then
+            QDKP2_CopyWindow_FormatManager(1)
+          else
+            this:SetChecked(true)
+          end
+        </OnClick>
+      </Scripts>
+      </CheckButton>
+
+      <CheckButton name="QDKP2_CopyWindow_Format2" inherits="UICheckButtonTemplate" text="">
+      <Size>
+        <AbsDimension x="20" y="20"/>
+      </Size>
+      <Anchors>
+        <Anchor relativePoint="LEFT" relativeTo="QDKP2_CopyWindow_Format1" point="RIGHT" >
+          <Offset>
+            <AbsDimension x="-40" y="0"/>
+          </Offset>
+        </Anchor>
+      </Anchors>
+      <Scripts>
+        <OnClick>
+          if this:GetChecked() then
+            QDKP2_CopyWindow_FormatManager(2)
+          else
+            this:SetChecked(true)
+          end
+        </OnClick>
+      </Scripts>
+      </CheckButton>
+
+      <CheckButton name="QDKP2_CopyWindow_Format3" inherits="UICheckButtonTemplate" text="">
+      <Size>
+        <AbsDimension x="20" y="20"/>
+      </Size>
+      <Anchors>
+        <Anchor relativePoint="LEFT" relativeTo="QDKP2_CopyWindow_Format2" point="RIGHT" >
+          <Offset>
+            <AbsDimension x="-40" y="0"/>
+          </Offset>
+        </Anchor>
+      </Anchors>
+      <Scripts>
+        <OnClick>
+          if this:GetChecked() then
+            QDKP2_CopyWindow_FormatManager(3)
+          else
+            this:SetChecked(true)
+          end
+        </OnClick>
+      </Scripts>
+      </CheckButton>
+
+		<CheckButton name="QDKP2_CopyWindow_Format4" inherits="UICheckButtonTemplate" text="">
+      <Size>
+        <AbsDimension x="20" y="20"/>
+      </Size>
+      <Anchors>
+        <Anchor relativePoint="LEFT" relativeTo="QDKP2_CopyWindow_Format3" point="RIGHT" >
+          <Offset>
+            <AbsDimension x="-40" y="0"/>
+          </Offset>
+        </Anchor>
+      </Anchors>
+      <Scripts>
+        <OnClick>
+          if this:GetChecked() then
+            QDKP2_CopyWindow_FormatManager(4)
+          else
+            this:SetChecked(true)
+          end
+        </OnClick>
+      </Scripts>
+      </CheckButton>
+			
+    </Frames>
+    <Scripts>
+      <OnEscapePressed>
+        QDKP2_AskUser_OnEnter(false)
+      </OnEscapePressed>
+    </Scripts>
+  </Frame>
+
+
+<!--
+  <Frame name="QDKP2_GuildSettings_DKPRights" parent="GuildControlPopupFrame">
+    <Anchors>
+    <Anchor relativePoint="TOPLEFT" point="TOPLEFT"></Anchor>
+    <Anchor relativePoint="BOTTOMRIGHT" point="BOTTOMRIGHT"></Anchor>
+    </Anchors>
+    <Frames>
+      <CheckButton name="$parent_CheckBox" inherits="UICheckButtonTemplate" id="101">
+        <Size>
+          <AbsDimension x="20" y="20"/>
+        </Size>
+        <Anchors>
+          <Anchor relativePoint="BOTTOM" point="TOP" relativeTo="GuildControlPopupFrameCheckbox17">
+            <Offset>
+              <AbsDimension x="0" y="2"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnLoad>
+            getglobal(this:GetName().."Text"):SetText(" Edit DKP Amounts");
+          </OnLoad>
+          <OnClick>
+            QDKP2_ChangeReportType("All");
+          </OnClick>
+        </Scripts>
+      </CheckButton>
+    </Frames>
+  </Frame> -->
+</Ui>
