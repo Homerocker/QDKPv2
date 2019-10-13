@@ -1,7 +1,4 @@
-# QDKPv2
-Modified QDKPv2 2.6.7 for 3.3.5a
-
-- "Options.ini" IS NOT compatible with original QDKP2 addon
+- "Options.ini" IS NOT compatible with official QDKP2 addon
 - implemented heroic bosses detection (DKP_10N/DKP_10H/DKP_25N/DKP_25H)
 - auto distribute loot when charging raid member for an item (loot window must be open)
 - fixed "The Ruby Sanctum" zone name (fixed boss-award not working in RS)
@@ -12,4 +9,4 @@ Modified QDKPv2 2.6.7 for 3.3.5a
 - possible fix for incorrect alt links if bugged character with empty name is in guild
 - auto distribute loot when raid member wins no-DKP roll (loot window must be open)
 - accept bids in format "5k" (latin)
-- fixed incorrect (often negative) DKP for characters who left and rejoined guild
+- Code/Core/Guild.lua:150 fixed incorrect (often negative) DKP for characters who left and rejoined guild
