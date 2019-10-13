@@ -12,4 +12,4 @@ Modified QDKPv2 2.6.7 for 3.3.5a
 - possible fix for incorrect alt links if bugged character with empty name is in guild
 - auto distribute loot when raid member wins no-DKP roll (loot window must be open)
 - accept bids in format "5k" (latin)
-- Code/Core/Guild.lua:150 fixed incorrect (often negative) DKP for characters who left and rejoined guild
+- fixed incorrect (often negative) DKP for characters who left and rejoined guild
