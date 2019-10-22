@@ -103,7 +103,6 @@ function QDKP2_RaidAward(amount,reason,giverName) --if giverName != nil, this wi
       local net=QDKP2_GetNet(name)
       local MinRank=QDKP2_minRank(name)
       local InZone = zone == QDKP2_RaidLeaderZone or zone=="Offline"
-      if (zone == QDKP2_RaidLeaderZone) or zone=="Offline" then InZone=true; end
       -- Checks if <name> is able to get the award.
       local Cond_Online, Cond_MinRank, Cond_Zone, Cond_Maximum
       --the following is the only difference in the conditions for ZS and RaidAward.
