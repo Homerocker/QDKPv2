@@ -291,12 +291,6 @@ QDKP2_BidM_ChannelCanc = "GROUP"
 QDKP2_BidM_ChannelWin = "GROUP"
 QDKP2_BidM_ChannelCount = "GROUP"
 
---these strings are used as bidding announcement.
-QDKP2_BidM_StartString="Bidding for $ITEM started. Please place your bets."
-QDKP2_BidM_CancelString="Biding for $ITEM has been cancelled."
-QDKP2_BidM_WinnerString="$NAME won $ITEM with $AMOUNT DKP."
-QDKP2_BidM_WinnerStringNoDKP="$NAME won $ITEM." 		--used when the bid manager doesn't know the DKP amount to charge the player for.
-
 ------------------------- MISC --------------------------
 
 -- maximum amount of net DKP a player can reach. Any further gain will be discarded.

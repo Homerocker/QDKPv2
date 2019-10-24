@@ -37,7 +37,7 @@ function QDKP2_BidM_StartBid(item)
   QDKP2_BidM.BIDDING = true
   QDKP2_BidM.ACCEPT_BID = true
   if QDKP2_BidM_AnnounceStart and item and #item>0 then
-    local mess=QDKP2_BidM_StartString
+    local mess=QDKP2_LOC_BidMStartString
     mess=string.gsub(mess,"$ITEM",tostring(QDKP2_BidM.ITEM or '-'))
     QDKP2_BidM_SendMessage(nil,"MANAGER","bid_start",mess)
   end
@@ -74,7 +74,7 @@ function QDKP2_BidM_CancelBid()
   QDKP2_BidM_AckRejBids=tempSetting
 
   if QDKP2_BidM_AnnounceCancel and QDKP2_BidM.ITEM and #QDKP2_BidM.ITEM>0 then
-    local mess=QDKP2_BidM_CancelString
+    local mess=QDKP2_LOC_BidMCancelString
     mess=string.gsub(mess,"$ITEM",tostring(QDKP2_BidM.ITEM or '-'))
     QDKP2_BidM_SendMessage(nil,"MANAGER","bid_cancel",mess)
   end
@@ -124,10 +124,10 @@ local function notify_winner(winner)
   end
   if QDKP2_BidM_AnnounceWinner and QDKP2_BidM.ITEM and #QDKP2_BidM.ITEM>0 then
     if dkp and dkp ~= 0 then
-      msg=QDKP2_BidM_WinnerString
+      msg=QDKP2_LOC_BidMWinnerString
       msg=msg:gsub("$AMOUNT",tostring(dkp))
     else
-      msg=QDKP2_BidM_WinnerStringNoDKP
+      msg=QDKP2_LOC_BidMWinnerStringNoDKP
       local lootmethod, masterlooterPartyID, masterlooterRaidID = GetLootMethod()
       if lootmethod == "master" and masterlooterPartyID == 0 and GetNumLootItems() ~= 0 then
         for ci = 1, 40 do
