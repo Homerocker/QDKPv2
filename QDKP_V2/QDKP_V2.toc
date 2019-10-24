@@ -44,6 +44,7 @@ Code\Core\Crypto.lua
 
 Local\enGB.lua
 Local\frFR.lua
+Local\ruRU.lua
 
 Code\Logging\Costants.lua
 Code\Logging\LogEntry.lua

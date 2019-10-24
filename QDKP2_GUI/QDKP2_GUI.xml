@@ -346,7 +346,7 @@
             </Anchor>
           </Anchors>
         </FontString>
-        <FontString name="QDKP2frame1_RAIDmgmt_txt" inherits="GameFontHighlight" text="Raid Management">
+        <FontString name="QDKP2frame1_RAIDmgmt_txt" inherits="GameFontHighlight" text="QDKP2_LOC_GUIRAIDMANAGEMENT">
           <Anchors>
             <Anchor relativePoint="TOP" point="TOP" >
               <Offset>
@@ -364,7 +364,7 @@
             </Anchor>
           </Anchors>
         </FontString>
-        <FontString name="QDKP2frame1_CurrentSession" inherits="GameFontNormalSmall" text="No ongoing session">
+        <FontString name="QDKP2frame1_CurrentSession" inherits="GameFontNormalSmall" text="QDKP2_LOC_GUINOONGOINGSESS">
 	<Size>
 		<AbsDimension x="240" y="13"/>
 	</Size>
@@ -395,7 +395,7 @@
         </Scripts>
       </Button>
 
-      <Button name="QDKP2frame1_list" inherits="UIPanelButtonTemplate" text="Roster" id="12">
+      <Button name="QDKP2frame1_list" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIROSTER" id="12">
          <Size>
           <AbsDimension x="75" y="25"/>
         </Size>
@@ -413,9 +413,9 @@
         </Scripts>
       </Button>
 
-      <Button name="QDKP2frame1_log" inherits="UIPanelButtonTemplate" text="Raid Log" id="12">
+      <Button name="QDKP2frame1_log" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIRAIDLOG" id="12">
          <Size>
-          <AbsDimension x="75" y="25"/>
+          <AbsDimension x="100" y="25"/>
         </Size>
         <Anchors>
           <Anchor relativePoint="TOP" point="CENTER" >
@@ -438,7 +438,7 @@
 
     <!--Sessions Buttons-->
 
-    <Button name="QDKP2frame1_newSession" inherits="UIPanelButtonTemplate" text="Start Session" id="12">
+    <Button name="QDKP2frame1_newSession" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUISTARTSESS" id="12">
        <Size>
         <AbsDimension x="120" y="20"/>
       </Size>
@@ -455,7 +455,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Starts a new session, enabling all\nraid management section.\nTo start a new session you have\nto be in a party or in a raid.");
+         GameTooltip:SetText(QDKP2_LOC_GUISTARTSESSDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -463,7 +463,7 @@
       </Scripts>
     </Button>
 
-    <Button name="QDKP2frame1_closeSession" inherits="UIPanelButtonTemplate" text="Close Session" id="12">
+    <Button name="QDKP2frame1_closeSession" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUICLOSESESS" id="12">
       <Size>
         <AbsDimension x="120" y="20"/>
       </Size>
@@ -480,7 +480,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Close an active session, finalizing the log\nand stopping the raid management.");
+         GameTooltip:SetText(QDKP2_LOC_GUICLOSESESSDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -498,7 +498,7 @@
         </Anchors>
 	<Scripts>
 	  <OnLoad>
-	    QDKP2_Frame1_raid_text:SetText("Raid\nawards")
+	    QDKP2_Frame1_raid_text:SetText(QDKP2_LOC_GUIRAIDAWARDS)
 	  </OnLoad>
 	</Scripts>
         <Layers>
@@ -526,11 +526,11 @@
         end
       </OnMouseWheel>
       <OnClick>
-        QDKP2_OpenInputBox("Enter the new DKP amount.",function(arg) QDKP2GUI_Main:dkpAwardRaidSet(arg); end)
+        QDKP2_OpenInputBox(QDKP2_LOC_GUIENTERNEWDKP,function(arg) QDKP2GUI_Main:dkpAwardRaidSet(arg); end)
       </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Amount of DKP you want to award the raid\nwhen clicking on the 'Award' button.\nClick it, the arrows or scroll with your mouse\nwheel to adjust the amount.");
+         GameTooltip:SetText(QDKP2_LOC_GUIENTERNEWDKPDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -588,7 +588,7 @@
         </Layers>
       </Button>
 
-    <Button name="QDKP2frame1_award" inherits="UIPanelButtonTemplate" text="Award" id="12">
+    <Button name="QDKP2frame1_award" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIAWARD" id="12">
        <Size>
         <AbsDimension x="80" y="25"/>
       </Size>
@@ -605,7 +605,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Gives to all eligible guild members in raid\nthe amount of DKP specified.");
+         GameTooltip:SetText(QDKP2_LOC_GUIAWARDDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -623,7 +623,7 @@
         </Anchors>
 	<Scripts>
 	  <OnLoad>
-	    QDKP2_Frame1_timer_text:SetText("Hourly\nbonus")
+	    QDKP2_Frame1_timer_text:SetText(QDKP2_LOC_GUIHOURLYBONUS)
 	  </OnLoad>
 	</Scripts>
         <Layers>
@@ -651,11 +651,11 @@
         end
       </OnMouseWheel>
       <OnClick>
-	QDKP2_OpenInputBox("Enter the new DKP amount.",function(arg) QDKP2GUI_Main:dkpPerHourSet(arg); end)
+	QDKP2_OpenInputBox(QDKP2_LOC_GUIENTERNEWDKP,function(arg) QDKP2GUI_Main:dkpPerHourSet(arg); end)
       </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Amount of DKP awarded hourly\nto each raiding player.\nClick it, the arrows or scroll with your mouse\nwheel to adjust the amount.");
+         GameTooltip:SetText(QDKP2_LOC_GUIHOURLYBONUSDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -703,7 +703,7 @@
         </Anchors>
 	<Scripts>
 	  <OnLoad>
-	    QDKP2_Frame1_timerDKP_text:SetText("DKP/h")
+	    QDKP2_Frame1_timerDKP_text:SetText(QDKP2_LOC_GUIDKPPERHOUR)
 	  </OnLoad>
 	</Scripts>
         <Layers>
@@ -730,7 +730,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Starts/Stop the raid timer that will\ngive the specified amount of DKP\nevery hour. Control+click to pause it.");
+         GameTooltip:SetText(QDKP2_LOC_GUIHOURLYBONUSTOGGLEDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -765,7 +765,7 @@
         </Anchors>
 	<Scripts>
 	  <OnLoad>
-	    QDKP2frame1_IM_text:SetText("IronMan\nbonus")
+	    QDKP2frame1_IM_text:SetText(QDKP2_LOC_GUIIRONMANBONUS)
 	  </OnLoad>
 	</Scripts>
         <Layers>
@@ -793,11 +793,11 @@
         end
       </OnMouseWheel>
       <OnClick>
-	QDKP2_OpenInputBox("Enter the new DKP amount.",function(arg) QDKP2GUI_Main:dkpIMSet(arg); end)
+	QDKP2_OpenInputBox(QDKP2_LOC_GUIENTERNEWDKP,function(arg) QDKP2GUI_Main:dkpIMSet(arg); end)
       </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Amount of DKP awarded when\nfor the IronMan bonus.\nClick it, the arrows or scroll with your mouse\nwheel to adjust the amount.");
+         GameTooltip:SetText(QDKP2_LOC_GUIIRONMANBONUSDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -877,7 +877,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Starts/Finalizes the ironman bonus, used\nto award the raid members which attended\nthe whole raid.\nControl+click to wipe the data.");
+         GameTooltip:SetText(QDKP2_LOC_GUIIRONMANBONUSTOGGLEDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -901,14 +901,14 @@
       </Anchors>
       <Scripts>
         <OnLoad>
-          getglobal(this:GetName().."Text"):SetText("   Give DKP at Bosses' death");
+          getglobal(this:GetName().."Text"):SetText("   "..QDKP2_LOC_GUIBOSSAWARD);
         </OnLoad>
         <OnClick>
           QDKP2_BossBonusSet("toggle")
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText('If this is checked, when a boss dies, the raid gets\nthe amount of DKP specified in the options file.');
+         GameTooltip:SetText(QDKP2_LOC_GUIBOSSAWARDDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -916,7 +916,7 @@
       </Scripts>
     </CheckButton>
 
-    <CheckButton name="QDKP2frame1_DetectBids" inherits="UICheckButtonTemplate" id="16" text="Auto Detect Winners">
+    <CheckButton name="QDKP2frame1_DetectBids" inherits="UICheckButtonTemplate" id="16" text="QDKP2_LOC_GUIWINNERDETECT">
       <Size>
         <AbsDimension x="20" y="20"/>
       </Size>
@@ -929,14 +929,14 @@
       </Anchors>
       <Scripts>
         <OnLoad>
-          getglobal(this:GetName().."Text"):SetText("   Auto Detect Winners");
+          getglobal(this:GetName().."Text"):SetText("   "..QDKP2_LOC_GUIWINNERDETECT);
         </OnLoad>
         <OnClick>
           QDKP2_DetectBidSet("toggle")
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("If this is checked, when someone says\nin raid or raid warning a phrase like\n'xyz won with 54' or similar, a dialog\nwill ask if you want to charge him\nfor that amount to pay the last object\nseen in chat.");
+         GameTooltip:SetText(QDKP2_LOC_GUIWINNERDETECTDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -944,7 +944,7 @@
       </Scripts>
     </CheckButton>
 
-    <CheckButton name="QDKP2frame1_FixedPrice" inherits="UICheckButtonTemplate" id="16" text="Use fixed prices table">
+    <CheckButton name="QDKP2frame1_FixedPrice" inherits="UICheckButtonTemplate" id="16" text="QDKP2_LOC_GUIUSEFIXEDPRICES">
       <Size>
         <AbsDimension x="20" y="20"/>
       </Size>
@@ -964,7 +964,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("If this is checked, when a player loots an\nitem wich falls in one of the cases specified\nin the options file, the charge window will\npopup.");
+         GameTooltip:SetText(QDKP2_LOC_GUIUSEFIXEDPRICESDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -975,7 +975,7 @@
       <!-- DATA -->
 
 
-    <Button name="QDKP2frame1_upload" inherits="UIPanelButtonTemplate" text="Send changes" id="12">
+    <Button name="QDKP2frame1_upload" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIUPLOAD" id="12">
       <Size>
         <AbsDimension x="180" y="22"/>
       </Size>
@@ -992,7 +992,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Upload all the changes done to the Officer/Public notes");
+         GameTooltip:SetText(QDKP2_LOC_GUIUPLOADDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -1000,9 +1000,9 @@
       </Scripts>
     </Button>
 
-    <Button name="QDKP2frame1_revert" inherits="UIPanelButtonTemplate" text="Revert" id="12">
+    <Button name="QDKP2frame1_revert" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIREVERT" id="12">
       <Size>
-        <AbsDimension x="60" y="22"/>
+        <AbsDimension x="65" y="22"/>
       </Size>
       <Anchors>
         <Anchor Point="LEFT" relativePoint="RIGHT" relativeTo="QDKP2frame1_upload">
@@ -1017,7 +1017,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Drop all unuploaded changes.");
+         GameTooltip:SetText(QDKP2_LOC_GUIREVERTDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -1037,7 +1037,7 @@
       </Layers>
     </Button>
 
-    <Button name="QDKP2frame1_backup" inherits="UIPanelButtonTemplate" text="Backup" id="12">
+    <Button name="QDKP2frame1_backup" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIBACKUPCREATE" id="12">
        <Size>
         <AbsDimension x="90" y="20"/>
       </Size>
@@ -1054,7 +1054,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Backup all the officernotes on this computer.");
+         GameTooltip:SetText(QDKP2_LOC_GUIBACKUPCREATEDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -1062,7 +1062,7 @@
       </Scripts>
     </Button>
 
-    <Button name="QDKP2frame1_restore" inherits="UIPanelButtonTemplate" text="Restore" id="12">
+    <Button name="QDKP2frame1_restore" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIBACKUPRESTORE" id="12">
        <Size>
         <AbsDimension x="90" y="20"/>
       </Size>
@@ -1079,7 +1079,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Restore the data from a previous backup");
+         GameTooltip:SetText(QDKP2_LOC_GUIBACKUPRESTOREDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -1087,7 +1087,7 @@
       </Scripts>
     </Button>
 
-    <Button name="QDKP2frame1_exportTXT" inherits="UIPanelButtonTemplate" text="Export">
+    <Button name="QDKP2frame1_exportTXT" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIEXPORT">
        <Size>
         <AbsDimension x="55" y="20"/>
       </Size>
@@ -1104,7 +1104,7 @@
         </OnClick>
        <OnEnter>
           GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-         GameTooltip:SetText("Export all guildmembers' DKP amounts\nas plain text, html or xml.");
+         GameTooltip:SetText(QDKP2_LOC_GUIEXPORTDESC);
        </OnEnter>
        <OnLeave>
          GameTooltip:Hide();
@@ -1373,13 +1373,13 @@
       <Anchors>
         <Anchor relativePoint="BOTTOMLEFT" point="BOTTOMLEFT" >
           <Offset>
-            <AbsDimension x="20" y="16"/>
+            <AbsDimension x="15" y="16"/>
           </Offset>
         </Anchor>
       </Anchors>
       <Scripts>
         <OnLoad>
-          QDKP2frame2_selectList_guildText:SetText("Guild");
+          QDKP2frame2_selectList_guildText:SetText(QDKP2_LOC_GUIGUILD);
         </OnLoad>
         <OnClick>
           QDKP2GUI_Roster:ChangeList("guild");
@@ -1394,13 +1394,13 @@
       <Anchors>
         <Anchor relativePoint="RIGHT" point="LEFT" relativeTo="QDKP2frame2_selectList_guild">
           <Offset>
-            <AbsDimension x="40" y="0"/>
+            <AbsDimension x="45" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>
       <Scripts>
         <OnLoad>
-          QDKP2frame2_selectList_guildOnlineText:SetText("Guild (Online)");
+          QDKP2frame2_selectList_guildOnlineText:SetText(QDKP2_LOC_GUIGUILDONLINE);
         </OnLoad>
         <OnClick>
           QDKP2GUI_Roster:ChangeList("guildonline");
@@ -1415,13 +1415,13 @@
       <Anchors>
         <Anchor relativePoint="RIGHT" point="LEFT" relativeTo="QDKP2frame2_selectList_guildOnline">
           <Offset>
-            <AbsDimension x="82" y="0"/>
+            <AbsDimension x="100" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>
       <Scripts>
         <OnLoad>
-          QDKP2frame2_selectList_RaidText:SetText("Raid");
+          QDKP2frame2_selectList_RaidText:SetText(QDKP2_LOC_GUIRAID);
         </OnLoad>
         <OnClick>
           QDKP2GUI_Roster:ChangeList("raid");
@@ -1442,14 +1442,14 @@
       </Anchors>
       <Scripts>
         <OnLoad>
-          QDKP2frame2_selectList_BidText:SetText("Bid manager");
+          QDKP2frame2_selectList_BidText:SetText(QDKP2_LOC_GUIBIDMANAGER);
         </OnLoad>
         <OnClick>
           QDKP2GUI_Roster:ChangeList("bid");
         </OnClick>
       </Scripts>
     </CheckButton>
-<!--
+	<!--
     <CheckButton name="QDKP2frame2_selectList_Session" inherits="UICheckButtonTemplate" id="20" text="">
       <Size>
         <AbsDimension x="20" y="20"/>
@@ -1494,7 +1494,7 @@
           </OnEnterPressed>
           <OnEnter>
             GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-            GameTooltip:SetText("Drag and drop here or shift+click the item\n you wish to bid for. You can also enter\na custom text instead of the item.");
+            GameTooltip:SetText(QDKP2_LOC_GUIBIDITEMDESC);
           </OnEnter>
           <OnLeave>
             GameTooltip:Hide();
@@ -1518,7 +1518,7 @@
       </EditBox>
 
 
-      <Button name="QDKP2_Frame2_Bid_Button" inherits="UIPanelButtonTemplate" text="Start Bid">
+      <Button name="QDKP2_Frame2_Bid_Button" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUISTARTBID">
         <Size>
           <AbsDimension x="80" y="20"/>
         </Size>
@@ -1536,7 +1536,7 @@
         </Scripts>
       </Button>
 
-      <Button name="QDKP2_Frame2_Bid_ButtonWin" inherits="UIPanelButtonTemplate" text="Set Winner">
+      <Button name="QDKP2_Frame2_Bid_ButtonWin" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUISETWINNER">
         <Size>
           <AbsDimension x="80" y="20"/>
         </Size>
@@ -1550,7 +1550,7 @@
         <Scripts>
           <OnEnter>
             GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-            GameTooltip:SetText("Push this button to close the bid and\nset the selected player as winner.");
+            GameTooltip:SetText(QDKP2_LOC_GUISETWINNERDESC);
           </OnEnter>
           <OnLeave>
             GameTooltip:Hide();
@@ -1707,7 +1707,7 @@
 
 
     <!-- Title buttons-->
-    <Button name="$parent_SortBtn_name" inherits="UIPanelButtonTemplate" text="Name">
+    <Button name="$parent_SortBtn_name" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIPLAYERNAME">
        <Size><AbsDimension x="99" y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_name"/>
@@ -1715,7 +1715,7 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("Alpha")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_roll" inherits="UIPanelButtonTemplate" text="Roll">
+    <Button name="$parent_SortBtn_roll" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIPLAYERROLL">
        <Size><AbsDimension y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_roll"/>
@@ -1723,7 +1723,7 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("BidRoll")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_bid" inherits="UIPanelButtonTemplate" text="Bid">
+    <Button name="$parent_SortBtn_bid" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIPLAYERBID">
        <Size><AbsDimension y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_bid"/>
@@ -1731,7 +1731,7 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("BidText")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_value" inherits="UIPanelButtonTemplate" text="Value">
+    <Button name="$parent_SortBtn_value" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIPLAYERBIDVALUE">
        <Size><AbsDimension y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_value"/>
@@ -1739,7 +1739,7 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("BidValue")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_rank" inherits="UIPanelButtonTemplate" text="Rank">
+    <Button name="$parent_SortBtn_rank" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIPLAYERRANK">
        <Size><AbsDimension x="75" y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_rank"/>
@@ -1747,15 +1747,15 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("Rank")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_class" inherits="UIPanelButtonTemplate" text="Class">
+    <Button name="$parent_SortBtn_class" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIPLAYERCLASS">
        <Size><AbsDimension x="45" y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_class"/>
       <Anchor relativePoint="RIGHT" point="RIGHT" relativeTo="QDKP2_frame2_title_class"/>
       </Anchors>
-      <Scripts><OnClick>QDKP2GUI_Roster:SortBy("Class")</OnClick></Scripts>
+      <Scripts><OnClick>QDKP2GUI_Roster:SortBy(QDKP2_LOC_GUICLASS)</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_net" inherits="UIPanelButtonTemplate" text="Net">
+    <Button name="$parent_SortBtn_net" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_Net">
        <Size><AbsDimension x="53" y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_net"/>
@@ -1763,7 +1763,7 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("Net")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_total" inherits="UIPanelButtonTemplate" text="Total">
+    <Button name="$parent_SortBtn_total" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_Total">
        <Size><AbsDimension x="55" y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_total"/>
@@ -1771,7 +1771,7 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("Total")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_spent" inherits="UIPanelButtonTemplate" text="Spent">
+    <Button name="$parent_SortBtn_spent" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_Spent">
        <Size><AbsDimension x="55" y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_spent"/>
@@ -1779,7 +1779,7 @@
       </Anchors>
       <Scripts><OnClick>QDKP2GUI_Roster:SortBy("Spent")</OnClick></Scripts>
     </Button>
-    <Button name="$parent_SortBtn_hours" inherits="UIPanelButtonTemplate" text="Hours">
+    <Button name="$parent_SortBtn_hours" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_Hours">
        <Size><AbsDimension x="44" y="25"/></Size>
       <Anchors>
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_hours"/>
@@ -1805,9 +1805,9 @@
     </Button>
 
 
-    <Button name="QDKP2_frame2_showRaid" inherits="UIPanelButtonTemplate" text="RAID log">
+    <Button name="QDKP2_frame2_showRaid" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIRAIDLOG">
       <Size>
-        <AbsDimension x="70" y="20"/>
+        <AbsDimension x="100" y="20"/>
       </Size>
       <Anchors>
         <Anchor relativePoint="BOTTOMRIGHT" point="BOTTOMRIGHT">
@@ -1902,7 +1902,7 @@
           </Anchor>
         </Anchors>
       </FontString>
-      <FontString name="QDKP2frame3_For" inherits="GameFontNormal" text="For:">
+      <FontString name="QDKP2frame3_For" inherits="GameFontNormal" text="QDKP2_LOC_GUITOOLBOXREASON">
         <Anchors>
           <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
             <Offset>
@@ -1951,7 +1951,7 @@
         </Anchors>
       </FontString>-->
 
-    <Button name="QDKP2frame3_award" inherits="UIPanelButtonTemplate" text="Award +" id="12">
+    <Button name="QDKP2frame3_award" inherits="UIPanelButtonTemplate" text="+" id="12">
        <Size>
         <AbsDimension x="80" y="25"/>
       </Size>
@@ -1969,7 +1969,7 @@
       </Scripts>
     </Button>
 
-    <Button name="QDKP2frame3_spend" inherits="UIPanelButtonTemplate" text="Spend -" id="12">
+    <Button name="QDKP2frame3_spend" inherits="UIPanelButtonTemplate" text="-" id="12">
        <Size>
         <AbsDimension x="80" y="25"/>
       </Size>
@@ -1987,7 +1987,7 @@
       </Scripts>
     </Button>
 
-    <Button name="QDKP2frame3_zsBtn" inherits="UIPanelButtonTemplate" text="ZeroSum" id="12">
+    <Button name="QDKP2frame3_zsBtn" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIZS" id="12">
        <Size>
         <AbsDimension x="80" y="25"/>
       </Size>
@@ -2039,7 +2039,7 @@
       </Scripts>
     </EditBox>
 
-    <Button name="QDKP2frame3_PopupLog" inherits="UIPanelButtonTemplate" text="Show Log" id="12">
+    <Button name="QDKP2frame3_PopupLog" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUISHOWLOG" id="12">
        <Size>
         <AbsDimension x="120" y="25"/>
       </Size>
@@ -2058,7 +2058,7 @@
     </Button>
 
     <!-- Last Line -->
-    <Button name="QDKP2frame3_changePlayerInfo" inherits="UIPanelButtonTemplate" text="Change data" id="12">
+    <Button name="QDKP2frame3_changePlayerInfo" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUICHANGEDATA" id="12">
        <Size>
         <AbsDimension x="120" y="25"/>
       </Size>
@@ -2122,7 +2122,7 @@
   <Layers>
      <Layer level="ARTWORK">
 
-      <FontString name="QDKP2frame4_net" inherits="GameFontNormal" text="Net:">
+      <FontString name="QDKP2frame4_net" inherits="GameFontNormal" text="QDKP2_LOC_Net:">
       <Anchors>
         <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
           <Offset>
@@ -2132,7 +2132,7 @@
       </Anchors>
       </FontString>
 
-      <FontString name="QDKP2frame4_total" inherits="GameFontNormal" text="Total:">
+      <FontString name="QDKP2frame4_total" inherits="GameFontNormal" text="QDKP2_LOC_Total:">
       <Anchors>
         <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
           <Offset>
@@ -2142,7 +2142,7 @@
       </Anchors>
       </FontString>
 
-      <FontString name="QDKP2frame4_hours" inherits="GameFontNormal" text="Hours:">
+      <FontString name="QDKP2frame4_hours" inherits="GameFontNormal" text="QDKP2_LOC_Hours:">
       <Anchors>
         <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
           <Offset>
@@ -2228,7 +2228,7 @@
         </Scripts>
       </EditBox>
 
-      <Button name="QDKP2Frame4_Set" inherits="UIPanelButtonTemplate" text="Set Player Info" id="12">
+      <Button name="QDKP2Frame4_Set" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUISETPLAYERINFO" id="12">
        <Size>
         <AbsDimension x="120" y="25"/>
       </Size>
@@ -2326,22 +2326,22 @@
           </Gradient>
         </Texture>
 
-        <FontString name="$parent_date" inherits="GameFontHighlightSmall" wraponspaces="false" justifyH="CENTER" text="Date/Time">
+        <FontString name="$parent_date" inherits="GameFontHighlightSmall" wraponspaces="false" justifyH="CENTER" text="QDKP2_LOC_GUIDATETIME">
           <Size><AbsDimension x="90" y="14"/></Size>
           <Anchors><Anchor relativePoint="LEFT" point="LEFT"/></Anchors>
         </FontString>
 
-        <FontString name="$parent_net" inherits="GameFontHighlightSmall" justifyH="CENTER" text="Net">
+        <FontString name="$parent_net" inherits="GameFontHighlightSmall" justifyH="CENTER" text="QDKP2_LOC_Net">
           <Size><AbsDimension x="30" y="14"/></Size>
           <Anchors><Anchor point="TOPLEFT" relativeTo="$parent_date" relativePoint="TOPRIGHT"/></Anchors>
         </FontString>
 
-        <FontString name="$parent_mod" inherits="GameFontHighlightSmall" justifyH="CENTER" text="Delta">
+        <FontString name="$parent_mod" inherits="GameFontHighlightSmall" justifyH="CENTER" text="QDKP2_LOC_GUIDELTA">
           <Size><AbsDimension x="30" y="14"/></Size>
           <Anchors><Anchor point="TOPLEFT" relativeTo="$parent_net" relativePoint="TOPRIGHT"/></Anchors>
         </FontString>
 
-        <FontString name="$parent_action" inherits="GameFontHighlightSmall" justifyH="LEFT" text="    Description">
+        <FontString name="$parent_action" inherits="GameFontHighlightSmall" justifyH="LEFT" text="    QDKP2_LOC_GUIDESCRIPTION">
           <Size><AbsDimension x="336" y="14"/></Size>
           <Anchors>
             <Anchor point="TOPLEFT" relativeTo="$parent_mod" relativePoint="TOPRIGHT">
@@ -2655,7 +2655,7 @@
     </Anchors>
       <Layers>
         <Layer level="ARTWORK">
-          <FontString name="$parent_gained" inherits="GameFontNormal" text="Gain:">
+          <FontString name="$parent_gained" inherits="GameFontNormal" text="QDKP2_LOC_GUIGAIN">
             <Anchors>
               <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
                 <Offset>
@@ -2664,7 +2664,7 @@
               </Anchor>
             </Anchors>
             </FontString>
-          <FontString name="$parent_spent" inherits="GameFontNormal" text="Spend:">
+          <FontString name="$parent_spent" inherits="GameFontNormal" text="QDKP2_LOC_GUISPEND">
             <Anchors>
               <Anchor relativePoint="TOPRIGHT" point="TOPRIGHT" >
                 <Offset>
@@ -2673,7 +2673,7 @@
               </Anchor>
             </Anchors>
           </FontString>
-          <FontString name="$parent_for" inherits="GameFontNormal" text="Reason:">
+          <FontString name="$parent_for" inherits="GameFontNormal" text="QDKP2_LOC_GUIREASON">
             <Anchors>
               <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
                 <Offset>
@@ -2682,7 +2682,7 @@
               </Anchor>
             </Anchors>
           </FontString>
-          <FontString name="$parent_linkText1" inherits="GameFontNormalSmall" text="This is a linked entry.">
+          <FontString name="$parent_linkText1" inherits="GameFontNormalSmall" text="QDKP2_LOC_GUILINKEDENTRY">
             <Anchors>
               <Anchor relativePoint="BOTTOM" point="BOTTOM" >
                 <Offset>
@@ -2691,7 +2691,7 @@
               </Anchor>
             </Anchors>
           </FontString>
-          <FontString name="$parent_linkText2" inherits="GameFontNormalSmall" text="You are modifying $X entries.">
+          <FontString name="$parent_linkText2" inherits="GameFontNormalSmall" text="QDKP2_LOC_GUIMODXENTRIES">
             <Anchors>
               <Anchor relativePoint="BOTTOM" point="BOTTOM" >
                 <Offset>
@@ -2783,7 +2783,7 @@
           </OnEnterPressed>
         </Scripts>
       </EditBox>
-      <Button name="$parent_Apply" inherits="UIPanelButtonTemplate" text="Apply">
+      <Button name="$parent_Apply" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIAPPLY">
         <Size>
           <AbsDimension x="80" y="20"/>
         </Size>
@@ -2801,7 +2801,7 @@
           </OnClick>
         </Scripts>
       </Button>
-      <Button name="$parent_Cancel" inherits="UIPanelButtonTemplate" text="Cancel">
+      <Button name="$parent_Cancel" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUI_CANCEL">
         <Size>
           <AbsDimension x="80" y="20"/>
         </Size>
