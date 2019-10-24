@@ -280,7 +280,7 @@ function QDKP2_ReverPlayer(name)
   QDKP2log_ConfirmEntries(name,false)
   QDKP2note[name]=QDKP2_CopyTable(QDKP2stored[name])
   if QDKP2_AnnounceWhisper and QDKP2online[name] then
-    local mess=QDKP2_AnnounceWhisperRev
+    local mess=QDKP2_LOC_AnnounceWhisperRev
     mess=mess:gsub("$AMOUNT",QDKP2_GetNet(name))
     QDKP2_SendHiddenWhisper(mess,name)
   end

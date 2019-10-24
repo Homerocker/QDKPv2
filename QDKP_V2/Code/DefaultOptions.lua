@@ -406,13 +406,7 @@ $SESSGAINED: Amount of DKP gained by the member in the current session
 $SESSSPENT: amount of DKP spent by the member in the current session
 $SESSTIME: raiding time of the current session
 $SESSNAME: Name of the current session
-
-The first one is the string sent to a player when you push the "notify" button,
-the second one is the string sent to a player who asked you for someone else's DKP with via "?dkp" whisper.
 ]]--
-
-QDKP2_LOC_NotifyString="You have $NET DKP ($SESSGAINED gained and $SESSSPENT spent in this session)."
-QDKP2_LOC_NotifyString_u3p="$NAME has $NET DKP ($SESSGAINED gained and $SESSSPENT spent in this session)."
 
 ------------------------ ON-DEMAND INFORMATIONS -----------------------------
 -- The on-demand system is a simple data bot triggered by whispers, used to give informations
@@ -477,11 +471,7 @@ QDKP2_AnnounceTimertick	= false	-- This will announce the timer ticks to the rai
 -- You can also set the message that will be sent to your guild member.
 -- Watch out: This feature will create a message EVERY TIME you change a player's DKP. This includes modification of existing
 --            log entries. For your sanity, QDKP will hide all these whispers from your chat window.
-
 QDKP2_AnnounceWhisper	 = false
-QDKP2_AnnounceWhisperTxt = '$AWARDSPENDTXT. Your new net DKP amount is $NET'
-QDKP2_AnnounceWhisperRes = '$AWARDSPENDTXT for $REASON. Your new net DKP amount is $NET'
-QDKP2_AnnounceWhisperRev = 'Your unuploaded changes have been cancelled. Your net DKP amount is $AMOUNT'
 
 
 -- The following is used to inform players when they failed to get an award, whispering them why they lost it.

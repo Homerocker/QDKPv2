@@ -289,7 +289,7 @@ function QDKP2_AddTotals(name, award, spent, hours, reason, noMsgIt, timestamp, 
   if QDKP2_AnnounceWhisper and Gained ~= 0 and QDKP2online[OriginalName] then
     local msg
     if reason then
-      msg=QDKP2_AnnounceWhisperRes
+      msg=QDKP2_LOC_AnnounceWhisperRes
       msg=string.gsub(msg,'$REASON',reason)
 	  
 	  local lootmethod, masterlooterPartyID, masterlooterRaidID = GetLootMethod()
@@ -307,7 +307,7 @@ function QDKP2_AddTotals(name, award, spent, hours, reason, noMsgIt, timestamp, 
 	    end
 	  end
 	
-    else msg = QDKP2_AnnounceWhisperTxt
+    else msg = QDKP2_LOC_AnnounceWhisperTxt
     end
     if award==0 then award=nil; end
     if spent==0 then spent=nil; end

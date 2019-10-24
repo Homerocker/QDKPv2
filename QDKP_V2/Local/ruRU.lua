@@ -2,7 +2,7 @@
 -- This file is a part of QDKP_V2 (see about.txt in the Addon's root folder)
 
 --        ## RUSSIAN (ruRU) LOCALIZATION ##
-if true then
+if false then
   --General
   QDKP2_LOC_Net="Текущ."
   QDKP2_LOC_Spent="Потрач."
@@ -27,7 +27,7 @@ if true then
   QDKP2_LOC_Loaded=QDKP2_COLOR_RED.."$VERSION $BETA"..QDKP2_COLOR_WHITE.." Загружен"
   QDKP2_LOC_NoRights=QDKP2_COLOR_RED.."Вы не можете сделать этого."
   QDKP2_LOC_EqToLowCap="Невозможно снять DKP с $NAME. Текущее количество DKP равняется минимальному капу."
-  QDKP2_LOC_NearToLowCap="У $NAME недостаточно DKP. Максимальное количество, которое можно снять – $MAXCHARGE."
+  QDKP2_LOC_NearToLowCap="У $NAME недостаточно DKP. Максимальное количество, которое можно снять - $MAXCHARGE."
   QDKP2_LOC_CloseSessionWithRaid="Вы хотиле завершить текущую сессию?\nЕсли Вы не закроете ее сейчас, она будет\nавтоматически закрыта через 5 минут."
   QDKP2_LOC_NameNotInGuild="$NAME не в гильдии. Попробуйте через несколько секунд."
   QDKP2_LOC_WinDetect_Q="Вы хотите включить систему Winner Detect?"
@@ -59,25 +59,25 @@ if true then
   QDKP2_LOC_NumAwarded="$NUMBER игроков получило $DKP DKP как бонус IronMan"
 
   --DKP Modify
-  QDKP2_LOC_Gains="Получает $GAIN DKP"
-  QDKP2_LOC_GainsSpends="Получает $GAIN и Тратит $SPEND DKP"
-  QDKP2_LOC_GainsEarns="Получает $GAIN DKP и зарабатывает $HOUR часов"
-  QDKP2_LOC_GainsSpendsEarns="Получает $GAIN и Тратит $SPEND DKP, Зарабатывает $HOUR часов"
-  QDKP2_LOC_Spends="Тратит $SPEND DKP"
-  QDKP2_LOC_SpendsEarns="Тратит $SPEND DKP и Зарабатывает $HOUR часов"
-  QDKP2_LOC_Earns="Зарабатывает $HOUR часов"
-  QDKP2_LOC_ReceivedReas="Онлайн участники рейда получили $AMOUNT DKP за $REASON"
-  QDKP2_LOC_Received="Участники рейда получают $AMOUNT DKP"
+  QDKP2_LOC_Gains="Получено $GAIN DKP"
+  QDKP2_LOC_GainsSpends="Получено $GAIN и потрачено $SPEND DKP"
+  QDKP2_LOC_GainsEarns="Получено $GAIN DKP и заработано $HOUR часов"
+  QDKP2_LOC_GainsSpendsEarns="Получено $GAIN и потрачено $SPEND DKP, зарабатано $HOUR часов"
+  QDKP2_LOC_Spends="Потрачено $SPEND DKP"
+  QDKP2_LOC_SpendsEarns="Потрачено $SPEND DKP и заработано $HOUR часов"
+  QDKP2_LOC_Earns="Заработано $HOUR часов"
+  QDKP2_LOC_ReceivedReas="Участники рейда получили $AMOUNT DKP за $REASON"
+  QDKP2_LOC_Received="Участники рейда получили $AMOUNT DKP"
   QDKP2_LOC_ZSRecReas="$NAME отдает $AMOUNT DKP рейду за $REASON"
   QDKP2_LOC_ZSRec="$NAME отдает $AMOUNT DKP рейду"
   QDKP2_LOC_RaidAw="[Raid Award] $AWARDSPENDTEXT"
   QDKP2_LOC_RaidAwReas="[Raid Award] $AWARDSPENDTEXT за $REASON"
-  QDKP2_LOC_RaidAwMain="RAID $AWARDSPENDTEXT"
-  QDKP2_LOC_RaidAwMainReas="RAID $AWARDSPENDTEXT за $REASON"
-  QDKP2_LOC_ZeroSumSp="Отдает $SPENT DKP рейду"
-  QDKP2_LOC_ZeroSumSpReas="Отдает $SPENT DKP рейду за $REASON"
-  QDKP2_LOC_ZeroSumAw="Получает $AMOUNT DKP от $GIVER"
-  QDKP2_LOC_ZeroSumAwReas="Получает $AMOUNT DKP от $GIVER за $REASON"
+  QDKP2_LOC_RaidAwMain="Рейд: $AWARDSPENDTEXT"
+  QDKP2_LOC_RaidAwMainReas="Рейд: $AWARDSPENDTEXT за $REASON"
+  QDKP2_LOC_ZeroSumSp="Отдано $SPENT DKP рейду"
+  QDKP2_LOC_ZeroSumSpReas="Отдано $SPENT DKP рейду за $REASON"
+  QDKP2_LOC_ZeroSumAw="Получено $AMOUNT DKP от $GIVER"
+  QDKP2_LOC_ZeroSumAwReas="Получено $AMOUNT DKP от $GIVER за $REASON"
   QDKP2_LOC_ExtMod="$AWARDSPENDTEXT за внешнее изменение"
   QDKP2_LOC_Generic="$AWARDSPENDTEXT" --these are used in the general case. (eg. manual editing to DKP)
   QDKP2_LOC_GenericReas="$AWARDSPENDTEXT за $REASON"
@@ -115,21 +115,21 @@ if true then
   QDKP2_LOC_GUItimer="%M:%S до тика таймера"
 
   --upload
-  QDKP2_LOC_NoMod="Не было сделано изменений DKP с момента последней синхронизации"
+  QDKP2_LOC_NoMod="Не было сделано изменений DKP с момента последней синхронизации."
   QDKP2_LOC_SucLocal="Отчет о загрузке: $UPLOADED внешних записей сохранено в оперативной памяти."
   QDKP2_LOC_Successful="Отчет о загрузке: $UPLOADED заметок отправлено. Подождите проверки..."
-  QDKP2_LOC_Failed="Отчет о загрузке: $FAILED не было удачно загружено. Попробуйте снова через несколько секунд"
-  QDKP2_LOC_IndexNoFound="Индекс $NAME не найден в гильдии, пропущен. Повторная попытка через минуту"
-  QDKP2_LOC_IndexNoFoundLog="Неверный индекс кэша гильдии (Загрузка не удалась)"
+  QDKP2_LOC_Failed="Отчет о загрузке: $FAILED не было удачно загружено. Попробуйте снова через несколько секунд."
+  QDKP2_LOC_IndexNoFound="Индекс $NAME не найден в гильдии, пропущен. Повторная попытка через минуту."
+  QDKP2_LOC_IndexNoFoundLog="Неверный индекс кэша гильдии (Загрузка не удалась)."
   QDKP2_LOC_CheckOK="ПРОВЕРКА: DKP синхронизовано."
-  QDKP2_LOC_CheckAborted="Проверка загруженных данных отменена из-за внесенных изменений"
+  QDKP2_LOC_CheckAborted="Проверка загруженных данных отменена из-за внесенных изменений."
 
   --Externals
   QDKP2_LOC_CantAddExternalInGuild="Невозможно добавить $NAME как внешнего персонажа: уже в гильдии."
   QDKP2_LOC_CantDeleteUnexistingExternals="Невозможно удалить $NAME: не является внешним персонажем."
   QDKP2_LOC_InvalidExternalName="Неверное имя для внешнего персонажа."
   QDKP2_LOC_ExternalRemoved="Внешний персонаж $NAME удален из списка гильдии."
-  QDKP2_LOC_ExtPost="<QDKP2> Количество DKP внешнего персонажа"
+  QDKP2_LOC_ExtPost="<QDKP2> Количество DKP внешнего персонажа."
   QDKP2_LOC_ExtLine="$NAME: Текущее=$NET, Всего=$TOTAL, Часы=$HOURS"
 
   --Bid manager
@@ -137,7 +137,7 @@ if true then
   QDKP2_LOC_CantRebid = "Вы уже сделали ставку."
   QDKP2_LOC_BidEqual = "Ваша ставка такая же, как предыдущая."
   QDKP2_LOC_BidLess = "Ваша ставка меньше предыдущей."
-  QDKP2_LOC_BidGreater = "Вы не можете ставить больше DKP, чем у Вас есть. Максимальная ставка, которую Вы можете сделать – $NET."
+  QDKP2_LOC_BidGreater = "Вы не можете ставить больше DKP, чем у Вас есть. Максимальная ставка, которую Вы можете сделать - $NET."
   QDKP2_LOC_BidnoDKP = "Вам нужно хотя бы $MINBID DKP, чтобы сделать ставку. У Вас есть $NET."
   QDKP2_LOC_BidNoGuild = "Только члены гильдии могут делать ставки."
   QDKP2_LOC_BidLessMinimum = "Минимальная ставка $MINBID"
@@ -152,7 +152,7 @@ if true then
   QDKP2_LOC_BidRemovedLog = "Последняя ставка отменена."
   QDKP2_LOC_BidRollsLog = "Ролит $ROLL на $ITEM"
   QDKP2_LOC_BidStartLog = "Начаты ставки на $ITEM."
-  QDKP2_LOC_BidWinLog = "Выигрывает ставки на $ITEM."
+  QDKP2_LOC_BidWinLog = "выигрывает ставки на $ITEM."
   QDKP2_LOC_BidCancelLog = "Ставки на $ITEM отменены."
   QDKP2_LOC_NoEligible = "Вы не можете использовать это ключевое слово."
 
@@ -187,6 +187,13 @@ if true then
   QDKP2_LOC_BidMCancelString="Ставки на $ITEM отменены."
   QDKP2_LOC_BidMWinnerString="$NAME выйграл $ITEM за $AMOUNT DKP. ГЦ $NAME."
   QDKP2_LOC_BidMWinnerStringNoDKP="$NAME выйграл $ITEM."
+  
+  --whisper
+  QDKP2_LOC_AnnounceWhisperTxt = "$AWARDSPENDTXT. Ваше новое текущее DKP - $NET."
+  QDKP2_LOC_AnnounceWhisperRes = "$AWARDSPENDTXT за $REASON. Ваше новое текущее DKP - $NET."
+  QDKP2_LOC_AnnounceWhisperRev = "Ваши незагруженные изменения были отменены. Ваше текущее DKP - $AMOUNT."
+  QDKP2_LOC_NotifyString="У Вас $NET DKP ($SESSGAINED получено и $SESSSPENT потрачено за текущую сессию)."
+  QDKP2_LOC_NotifyString_u3p="У $NAME $NET DKP ($SESSGAINED получено и $SESSSPENT потрачено за текущую сессию)."
  
   --GUI
   QDKP2_LOC_GUIRAIDMANAGEMENT = "Управление рейдом"

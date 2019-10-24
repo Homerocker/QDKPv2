@@ -1953,12 +1953,12 @@
 
     <Button name="QDKP2frame3_award" inherits="UIPanelButtonTemplate" text="+" id="12">
        <Size>
-        <AbsDimension x="80" y="25"/>
+        <AbsDimension x="60" y="25"/>
       </Size>
       <Anchors>
         <Anchor relativePoint="RIGHT" point="LEFT" relativeTo="QDKP2frame3_dkp">
           <Offset>
-            <AbsDimension x="65" y="0"/>
+            <AbsDimension x="75" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>
@@ -1971,7 +1971,7 @@
 
     <Button name="QDKP2frame3_spend" inherits="UIPanelButtonTemplate" text="-" id="12">
        <Size>
-        <AbsDimension x="80" y="25"/>
+        <AbsDimension x="60" y="25"/>
       </Size>
       <Anchors>
         <Anchor relativePoint="BOTTOM" point="TOP" relativeTo="QDKP2frame3_award">
@@ -1989,12 +1989,12 @@
 
     <Button name="QDKP2frame3_zsBtn" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIZS" id="12">
        <Size>
-        <AbsDimension x="80" y="25"/>
+        <AbsDimension x="100" y="25"/>
       </Size>
       <Anchors>
         <Anchor relativePoint="LEFT" point="RIGHT" relativeTo="QDKP2frame3_spend">
           <Offset>
-            <AbsDimension x="-10" y="0"/>
+            <AbsDimension x="-5" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>

@@ -188,6 +188,13 @@ QDKP2_LOC_BidMCancelString="Biding for $ITEM has been cancelled."
 QDKP2_LOC_BidMWinnerString="$NAME won $ITEM with $AMOUNT DKP. Gratz $NAME."
 QDKP2_LOC_BidMWinnerStringNoDKP="$NAME won $ITEM."
 
+--whisper
+QDKP2_LOC_AnnounceWhisperTxt = "$AWARDSPENDTXT. Your new net DKP amount is $NET"
+QDKP2_LOC_AnnounceWhisperRes = "$AWARDSPENDTXT for $REASON. Your new net DKP amount is $NET"
+QDKP2_LOC_AnnounceWhisperRev = "Your unuploaded changes have been cancelled. Your net DKP amount is $AMOUNT"
+QDKP2_LOC_NotifyString="You have $NET DKP ($SESSGAINED gained and $SESSSPENT spent in this session)."
+QDKP2_LOC_NotifyString_u3p="$NAME has $NET DKP ($SESSGAINED gained and $SESSSPENT spent in this session)."
+
 --GUI
 QDKP2_LOC_GUIRAIDMANAGEMENT = "Raid Management"
 QDKP2_LOC_GUINOONGOINGSESS = "No ongoing session"
