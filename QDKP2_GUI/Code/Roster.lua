@@ -536,20 +536,20 @@ func=function()
   QDKP2GUI_CloseMenus()
   QDKP2_RefreshAll()
 end},
-{template="Subtract $AMOUNT DKP",
+{template=QDKP2_LOC_GUISUBTRACTDKPAMOUNT,
 func=function()
   QDKP2_PlayerSpends(myClass.SelectedPlayers,QDKP2GUI_Vars.DKP_QuickModify)
   QDKP2GUI_CloseMenus()
   QDKP2_RefreshAll()
 end},
-{text="Subtract 50% DKP",
+{text=string.format(QDKP2_LOC_GUISUBTRACTDKPPERC, "50%"),
 func=function()
   QDKP2_PlayerSpends(myClass.SelectedPlayers,"50%")
   QDKP2GUI_CloseMenus()
   QDKP2_RefreshAll()
 end
 },
-{text="Subtract 100% DKP",
+{text=string.format(QDKP2_LOC_GUISUBTRACTDKPPERC, "100%"),
 func=function()
   QDKP2_PlayerSpends(myClass.SelectedPlayers,"100%")
   QDKP2GUI_CloseMenus()
@@ -609,66 +609,66 @@ func=function()
 
 local LogVoices={
 -- Dictionary with all the log voices.
-OpenLog={text="Open Log",
+OpenLog={text=QDKP2_LOC_GUISHOWLOG,
 func=function()
   QDKP2GUI_Log:ShowPlayer(myClass.SelectedPlayers[1])
 end,
 },
-OpenToolbox={text="Open Toolbox",
+OpenToolbox={text=QDKP2_LOC_GUIOPENTOOLBOX,
 func=function()
   QDKP2GUI_Toolbox:Popup(myClass.SelectedPlayers)
 end
 },
-OpenAmounts={text="Edit DKP amounts",
+OpenAmounts={text=QDKP2_LOC_GUIEDITDKP,
 func=function()
   QDKP2GUI_SetAmounts:Popup(myClass.SelectedPlayers)
 end
 },
-QuickMod={text="Quick Modify",
+QuickMod={text=QDKP2_LOC_GUIQUICKMOD,
 hasArrow=true,
 menuList=QuickModifyVoices,
 },
-Notify={text="Notify DKP",
+Notify={text=QDKP2_LOC_GUINOTIFYDKP,
 func=function()
   for i,name in pairs(myClass.SelectedPlayers) do
     if QDKP2online[name] then QDKP2_Notify(name); end
   end
 end
 },
-AltClear={text="Clear Alt Status",
+AltClear={text=QDKP2_LOC_GUIUNLINKALT,
 func=function()
   if #myClass.SelectedPlayers>1 then return; end
   QDKP2_ClearAlt(myClass.SelectedPlayers[1])
 end
 },
-AltMake={text="Make alt",func=function()
+AltMake={text=QDKP2_LOC_GUILINKALT,func=function()
   if #myClass.SelectedPlayers == 2 then
     local alt=myClass.SelectedPlayers[2]
     local main=myClass.SelectedPlayers[1]
     QDKP2_MakeAlt(alt,main)
   else
-    QDKP2_NotifyUser('To define an alt you must select 2\ncharacters, first the alt and then his main.\nPress "Control" to perform a multiple\nselection.')
+    QDKP2_NotifyUser(QDKP2_LOC_GUILINKALTDESC)
   end
 end
 },
-ExternalAdd={text="Add External",
+ExternalAdd={text=QDKP2_LOC_GUIADDEXTERNAL,
 func=function()
   QDKP2_NewExternal()
 end
 },
-ExternalRem={text="Remove External",
+ExternalRem={text=QDKP2_LOC_GUIREMEXTERNAL,
 func=function()
   if #myClass.SelectedPlayers>1 then return; end
   QDKP2_DelExternal(myClass.SelectedPlayers[1])
 end
 },
-AddAsExternal={text="Add player as exernal",
+AddAsExternal={text=QDKP2_LOC_GUIADDEXTERNAL,
 func=function()
   QDKP2_NewExternal(myClass.SelectedPlayers[1])
   myClass:Refresh()
 end,
 },
-StandbyAdd={text="Add to raid as standby",
+StandbyAdd={text=QDKP2_LOC_GUIADDSTANDBY,
 checked=function() return QDKP2_IsStandby(myClass.SelectedPlayers[1]); end,
 func=function()
   local name=myClass.SelectedPlayers[1]
@@ -681,14 +681,14 @@ func=function()
   QDKP2GUI_Log:Refresh()
 end
 },
-AllStandbyAdd={text="Add all to raid as standby",
+AllStandbyAdd={text=QDKP2_LOC_GUIADDSTANDBYALL,
 func=function()
   for i,name in pairs(myClass.SelectedPlayers) do
 	  if not QDKP2_IsInRaid(name) then QDKP2_AddStandby(name); end
 	end
 end,
 },
-ExcludeRaid={text="Exclude from Raid",
+ExcludeRaid={text=QDKP2_LOC_GUIRAIDEXCLUDE,
 checked=function() return QDKP2_IsRemoved(myClass.SelectedPlayers[1]); end,
 func=function()
   local name=myClass.SelectedPlayers[1]
@@ -697,7 +697,7 @@ func=function()
   end
 end,
 },
-ShowOutGuild={text="Show players not in guild",
+ShowOutGuild={text=QDKP2_LOC_GUISHOWPLAYERSNOTINGUILD,
 checked=function() return QDKP2GUI_Vars.ShowOutGuild; end,
 func=function()
   if QDKP2GUI_Vars.ShowOutGuild then
@@ -708,41 +708,41 @@ func=function()
   myClass:ChangeList(myClass.Sel)
 end,
 },
-SetWinner={text="Set bid winner",
+SetWinner={text=QDKP2_LOC_GUISETWINNER,
 func=function()
   QDKP2_BidM_Winner(myClass.SelectedPlayers[1])
 end
 },
-CancelBid={text="Cancel bet",
+CancelBid={text=QDKP2_LOC_GUICANCELBET,
 func=function()
   for i,name in pairs(myClass.SelectedPlayers) do
     QDKP2_BidM_CancelPlayer(name)
   end
 end
 },
-ClearBid={text="Clear bid list",
+ClearBid={text=QDKP2_LOC_GUICLEARBIDLIST,
 func=function()
   QDKP2_BidM_Reset()
 end
 },
-CountDown={text="Trigger countdown",
+CountDown={text=QDKP2_LOC_GUITRIGGERCNT,
 func=function()
   QDKP2_BidM_Countdown()
 end
 },
-AcceptBids={text="Accept Bets",
+AcceptBids={text=QDKP2_LOC_GUIACCEPTBETS,
 checked=function() return QDKP2_BidM.ACCEPT_BID; end,
 func=function()
   if not QDKP2_BidM.ACCEPT_BID then
     QDKP2_BidM.ACCEPT_BID = true
-    QDKP2_Msg("Bet detection has been "..QDKP2_COLOR_GREEN.."enabled")
+    QDKP2_Msg(QDKP2_LOC_GUIBETDETECTIONENABLED)
   else
     QDKP2_BidM.ACCEPT_BID = false
-    QDKP2_Msg("Bet detection has been "..QDKP2_COLOR_RED.."disabled")
+    QDKP2_Msg(QDKP2_LOC_GUIBETDETECTIONDISABLED)
   end
 end
 },
-PubblishBids={text="Pubblish Bids to Raid",
+PubblishBids={text=QDKP2_LOC_GUIPUBLISHBIDSTORAID,
 func=function()
   if not QDKP2_BidM.LIST then return; end
   local text
@@ -758,7 +758,7 @@ func=function()
   end
 end
 },
-Revert={text="Revert changes",
+Revert={text=QDKP2_LOC_GUIREVERTCHANGES,
 func=function()
   for i,name in pairs(myClass.SelectedPlayers) do
     if QDKP2_IsInGuild(name) then QDKP2_ReverPlayer(name); end
@@ -766,12 +766,12 @@ func=function()
   QDKP2_RefreshAll()
 end,
 },
-SelectAll={text="Select All", func=myClass.SelectAll},
-SelectNone={text="Select None",func=myClass.SelectNone},
-SelectInvert={text="Invert Selection",func=myClass.SelectInvert},
-ExternalPost={text="Post External amounts", func=function() QDKP2_PostExternals("GUILD"); end},
-RosterUpdate={text="Update Roster", func=myClass.Update},
-MenuClose={text="Close menu", func=QDKP2GUI_CloseMenus},
+SelectAll={text=QDKP2_LOC_GUISELECTALL, func=myClass.SelectAll},
+SelectNone={text=QDKP2_LOC_GUISELECTNONE,func=myClass.SelectNone},
+SelectInvert={text=QDKP2_LOC_GUISELECTINVERT,func=myClass.SelectInvert},
+ExternalPost={text=QDKP2_LOC_GUIPOSTEXTERNALAMOUNTS, func=function() QDKP2_PostExternals("GUILD"); end},
+RosterUpdate={text=QDKP2_LOC_GUIUPDATEROSTER, func=myClass.Update},
+MenuClose={text=QDKP2_LOC_GUICLOSEMENU, func=QDKP2GUI_CloseMenus},
 spacer={text="", notClickable=true},
 }
 
@@ -782,7 +782,7 @@ function myClass.PlayerMenu(self,List)
   local menu
   if #sel==1 and not QDKP2_IsInGuild(sel[1]) then
     menu={}
-    table.insert(menu,{text=sel[1].."'s menu",isTitle=true})
+    table.insert(menu,{text=sel[1],isTitle=true})
     if self.Sel=="bid" then
       table.insert(menu,LogVoices.SetWinner)
       table.insert(menu,LogVoices.CancelBid)
@@ -791,7 +791,7 @@ function myClass.PlayerMenu(self,List)
   elseif #sel==1 then
     local name=self.SelectedPlayers[1]
     menu={}
-    table.insert(menu,{text=name.."'s menu",isTitle=true})
+    table.insert(menu,{text=name,isTitle=true})
     if self.Sel=="bid" then
       table.insert(menu,LogVoices.SetWinner)
       table.insert(menu,LogVoices.CancelBid)
@@ -846,18 +846,18 @@ function myClass.RosterMenu(self)
   table.insert(menu,LogVoices.SelectNone)
   table.insert(menu,LogVoices.SelectInvert)
   if self.Sel=="guild" or self.Sel=="guildonline" then
-    menu[1].text="GUILD ROSTER MENU"
+    menu[1].text=QDKP2_LOC_GUIGUILDROSTERMENU
     if QDKP2_OfficerMode() then
       table.insert(menu,2,LogVoices.spacer)
       table.insert(menu,2,LogVoices.ExternalAdd)
       table.insert(menu,2,LogVoices.ExternalPost)
     end
   elseif self.Sel=="raid" then
-    menu[1].text="RAID ROSTER MENU"
+    menu[1].text=QDKP2_LOC_GUIRAIDROSTERMENU
     table.insert(menu,2,LogVoices.spacer)
     table.insert(menu,2,LogVoices.ShowOutGuild)
   elseif self.Sel=="bid" then
-    menu[1].text="BID MANAGER MENU"
+    menu[1].text=QDKP2_LOC_GUIBIDMANAGERMENU
     table.insert(menu,2,LogVoices.spacer)
     table.insert(menu,2,LogVoices.PubblishBids)
     table.insert(menu,2,LogVoices.ClearBid)

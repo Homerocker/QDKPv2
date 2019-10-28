@@ -2122,7 +2122,7 @@
   <Layers>
      <Layer level="ARTWORK">
 
-      <FontString name="QDKP2frame4_net" inherits="GameFontNormal" text="QDKP2_LOC_Net:">
+      <FontString name="QDKP2frame4_net" inherits="GameFontNormal" text="QDKP2_LOC_Net">
       <Anchors>
         <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
           <Offset>
@@ -2132,7 +2132,7 @@
       </Anchors>
       </FontString>
 
-      <FontString name="QDKP2frame4_total" inherits="GameFontNormal" text="QDKP2_LOC_Total:">
+      <FontString name="QDKP2frame4_total" inherits="GameFontNormal" text="QDKP2_LOC_Total">
       <Anchors>
         <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
           <Offset>
@@ -2142,7 +2142,7 @@
       </Anchors>
       </FontString>
 
-      <FontString name="QDKP2frame4_hours" inherits="GameFontNormal" text="QDKP2_LOC_Hours:">
+      <FontString name="QDKP2frame4_hours" inherits="GameFontNormal" text="QDKP2_LOC_Hours">
       <Anchors>
         <Anchor relativePoint="TOPLEFT" point="TOPLEFT" >
           <Offset>
@@ -2332,17 +2332,17 @@
         </FontString>
 
         <FontString name="$parent_net" inherits="GameFontHighlightSmall" justifyH="CENTER" text="QDKP2_LOC_Net">
-          <Size><AbsDimension x="30" y="14"/></Size>
+          <Size><AbsDimension x="40" y="14"/></Size>
           <Anchors><Anchor point="TOPLEFT" relativeTo="$parent_date" relativePoint="TOPRIGHT"/></Anchors>
         </FontString>
 
         <FontString name="$parent_mod" inherits="GameFontHighlightSmall" justifyH="CENTER" text="QDKP2_LOC_GUIDELTA">
-          <Size><AbsDimension x="30" y="14"/></Size>
+          <Size><AbsDimension x="50" y="14"/></Size>
           <Anchors><Anchor point="TOPLEFT" relativeTo="$parent_net" relativePoint="TOPRIGHT"/></Anchors>
         </FontString>
 
-        <FontString name="$parent_action" inherits="GameFontHighlightSmall" justifyH="LEFT" text="    QDKP2_LOC_GUIDESCRIPTION">
-          <Size><AbsDimension x="336" y="14"/></Size>
+        <FontString name="$parent_action" inherits="GameFontHighlightSmall" justifyH="LEFT" text="QDKP2_LOC_GUIDESCRIPTION">
+          <Size><AbsDimension x="306" y="14"/></Size>
           <Anchors>
             <Anchor point="TOPLEFT" relativeTo="$parent_mod" relativePoint="TOPRIGHT">
             <Offset><AbsDimension x="16" y="0"/></Offset>
