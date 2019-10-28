@@ -133,9 +133,9 @@ function myClass.Refresh(self)
     -- update the backup's date
     local TimeString
     if QDKP2backup.DATE then
-      TimeString = "Last backup: "..QDKP2_GetDateTextFromTS(QDKP2backup.DATE)
+      TimeString = string.format(QDKP2_LOC_GUILASTBACKUP, QDKP2_GetDateTextFromTS(QDKP2backup.DATE))
     else
-      TimeString = "No backup found"
+      TimeString = QDKP2_LOC_GUINOBACKUP
     end
     QDKP2frame1_dkpBox:SetText(QDKP2GUI_Vars.DKP_RaidBonus)
     QDKP2frame1_dkpBox_perhr:SetText(QDKP2GUI_Vars.DKP_Timer)

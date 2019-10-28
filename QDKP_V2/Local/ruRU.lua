@@ -2,7 +2,7 @@
 -- This file is a part of QDKP_V2 (see about.txt in the Addon's root folder)
 
 --        ## RUSSIAN (ruRU) LOCALIZATION ##
-if false then
+if GetLocale()=='ruRU' then
   --General
   QDKP2_LOC_Net="Текущ."
   QDKP2_LOC_Spent="Потрач."
@@ -197,6 +197,7 @@ if false then
  
   --GUI
   QDKP2_LOC_GUIRAIDMANAGEMENT = "Управление рейдом"
+  QDKP2_LOC_GUIDATA = "Данные"
   QDKP2_LOC_GUINOONGOINGSESS = "Нет активной сессии"
   QDKP2_LOC_GUIROSTER = "Персонажи"
   QDKP2_LOC_GUIRAIDLOG = "Журнал рейда"
@@ -232,18 +233,21 @@ if false then
   QDKP2_LOC_GUIBACKUPRESTOREDESC = "Восстанавливает данные из предыдущей резервной копии."
   QDKP2_LOC_GUIEXPORT = "Экспорт"
   QDKP2_LOC_GUIEXPORTDESC = "Экспортировать DKP всех членов гильдии\nв виде текста, html или xml."
+  QDKP2_LOC_GUIBIDDINGZONE = "Ставки"
+  QDKP2_LOC_GUISESSION = "Сессия"
   QDKP2_LOC_GUIGUILD = "Гильдия"
   QDKP2_LOC_GUIGUILDONLINE = "Гильдия (Онлайн)"
   QDKP2_LOC_GUIRAID = "Рейд"
   QDKP2_LOC_GUIBIDMANAGER = "Ставки"
   QDKP2_LOC_GUIBIDITEMDESC = "Перетащите сюда или SHIFT+Клик на предмет,\nна который Вы хотите объявить начало ставок. Вы также можете ввести\nлюбой текст вместо ссылки на предмет."
-  QDKP2_LOC_GUISTARTBID = "Начать ставки"
+  QDKP2_LOC_GUISTARTBID = "Начать"
+  QDKP2_LOC_CANCELBID = "Отменить"
   QDKP2_LOC_GUISETWINNER = "Победитель"
   QDKP2_LOC_GUISETWINNERDESC = "Нажмите на эту кнопку, чтобы завершить ставки и\nобъявить выбранного игрока победителем."
   QDKP2_LOC_GUIPLAYERNAME = "Имя"
   QDKP2_LOC_GUIPLAYERROLL = "Рол"
-  QDKP2_LOC_GUIPLAYERBID = "Ставка"
-  QDKP2_LOC_GUIPLAYERBIDVALUE = "Величина"
+  QDKP2_LOC_GUIPLAYERBID = "Текст"
+  QDKP2_LOC_GUIPLAYERBIDVALUE = "Ставка"
   QDKP2_LOC_GUIPLAYERRANK = "Звание"
   QDKP2_LOC_GUIPLAYERCLASS = "Класс"
   QDKP2_LOC_GUITOOLBOXREASON = "За:"
@@ -267,7 +271,7 @@ if false then
   QDKP2_LOC_GUINOTIFYDKP = "Уведомить о DKP"
   QDKP2_LOC_GUIUNLINKALT = "Отвязать альта"
   QDKP2_LOC_GUILINKALT = "Привязать альта"
-  QDKP2_LOC_GUILINKALTDESC = "Чтобы привязать альта, выберите 2 персонажа,\nсначала альта, а потом мейна.\nУдерживайте CTRL для выбора нескольких персонажей."
+  QDKP2_LOC_GUILINKALTDESC = "Чтобы привязать альта, выберите\n2 персонажа, сначала альта,\nа потом мейна. Удерживайте CTRL\nдля выбора нескольких персонажей."
   QDKP2_LOC_GUIADDEXTERNAL = "Привязать к гильдии"
   QDKP2_LOC_GUIREMEXTERNAL = "Отвязать от гильдии"
   QDKP2_LOC_GUIADDSTANDBY = "Добавить в рейд на замену"
@@ -291,4 +295,13 @@ if false then
   QDKP2_LOC_GUIGUILDROSTERMENU = "МЕНЮ ГИЛЬДИИ"
   QDKP2_LOC_GUIRAIDROSTERMENU = "МЕНЮ РЕЙДА"
   QDKP2_LOC_GUIBIDMANAGERMENU = "МЕНЮ УПРАВЛЕНИЯ СТАВКАМИ"
+  QDKP2_LOC_GUIADDDKPAMOUNT = "Добавить $AMOUNT DKP"
+  QDKP2_LOC_GUISUBTRACTDKPAMOUNT = "Снять $AMOUNT DKP"
+  QDKP2_LOC_GUINOBACKUP = "Резервная копия не найдена"
+  QDKP2_LOC_GUILASTBACKUP = "Последняя копия: %s"
+  QDKP2_LOC_GUIADDONEHOUR = "Добавить 1 час"
+  QDKP2_LOC_GUIRESETRAIDINGTIME = "Сбросить рейдовое время"
+  QDKP2_LOC_GUIRESETDKP = "Сбросить DKP"
+  QDKP2_LOC_GUISETQMODAMOUNT = "Установить DKP для быстрого редактирования..."
+  QDKP2_LOC_GUISETQMODAMOUNTDESC = "Введите кол-во DKP, используемое\nв меню быстрого редактирования."
 end

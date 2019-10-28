@@ -337,7 +337,7 @@
             <color r="0" g="0" b="0"/>
           </Shadow>
         </FontString>
-        <FontString name="QDKP2frame1_Session_txt" inherits="GameFontHighlight" text="Session">
+        <FontString name="QDKP2frame1_Session_txt" inherits="GameFontHighlight" text="QDKP2_LOC_GUISESSION">
           <Anchors>
             <Anchor relativePoint="TOP" point="TOP" >
               <Offset>
@@ -355,7 +355,7 @@
             </Anchor>
           </Anchors>
         </FontString>
-        <FontString name="QDKP2frame1_Data_txt" inherits="GameFontHighlight" text="Data">
+        <FontString name="QDKP2frame1_Data_txt" inherits="GameFontHighlight" text="QDKP2_LOC_GUIDATA">
           <Anchors>
             <Anchor relativePoint="TOP" point="TOP" >
               <Offset>
@@ -742,7 +742,7 @@
         <Size><AbsDimension x="60" y="30"/></Size>
 	<Anchors>
           <Anchor relativePoint="BOTTOMRIGHT" relativeTo="QDKP2frame1_onOff" point="TOPRIGHT">
-              <Offset><AbsDimension x="-20" y="9"/></Offset></Anchor>
+              <Offset><AbsDimension x="-20" y="5"/></Offset></Anchor>
         </Anchors>
 	<Scripts>
 	  <OnLoad>
@@ -888,7 +888,7 @@
 
 <!-- FEATURES -->
 
-    <CheckButton name="QDKP2frame1_UseBossMod" inherits="UICheckButtonTemplate" id="16" text="Give DKP at Boss death">
+    <CheckButton name="QDKP2frame1_UseBossMod" inherits="UICheckButtonTemplate" id="16" text="QDKP2_LOC_GUIBOSSAWARD">
       <Size>
         <AbsDimension x="20" y="20"/>
       </Size>
@@ -901,7 +901,7 @@
       </Anchors>
       <Scripts>
         <OnLoad>
-          getglobal(this:GetName().."Text"):SetText("   "..QDKP2_LOC_GUIBOSSAWARD);
+          getglobal(this:GetName().."Text"):SetText(QDKP2_LOC_GUIBOSSAWARD);
         </OnLoad>
         <OnClick>
           QDKP2_BossBonusSet("toggle")
@@ -929,7 +929,7 @@
       </Anchors>
       <Scripts>
         <OnLoad>
-          getglobal(this:GetName().."Text"):SetText("   "..QDKP2_LOC_GUIWINNERDETECT);
+          getglobal(this:GetName().."Text"):SetText(QDKP2_LOC_GUIWINNERDETECT);
         </OnLoad>
         <OnClick>
           QDKP2_DetectBidSet("toggle")
@@ -957,7 +957,7 @@
       </Anchors>
       <Scripts>
         <OnLoad>
-          getglobal(this:GetName().."Text"):SetText("   Look for priced loots");
+          getglobal(this:GetName().."Text"):SetText(QDKP2_LOC_GUIUSEFIXEDPRICES);
         </OnLoad>
         <OnClick>
           QDKP2_FixedPricesSet("toggle")
@@ -1002,12 +1002,12 @@
 
     <Button name="QDKP2frame1_revert" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIREVERT" id="12">
       <Size>
-        <AbsDimension x="65" y="22"/>
+        <AbsDimension x="70" y="22"/>
       </Size>
       <Anchors>
         <Anchor Point="LEFT" relativePoint="RIGHT" relativeTo="QDKP2frame1_upload">
           <Offset>
-            <AbsDimension x="5" y="0"/>
+            <AbsDimension x="0" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>
@@ -1064,7 +1064,7 @@
 
     <Button name="QDKP2frame1_restore" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIBACKUPRESTORE" id="12">
        <Size>
-        <AbsDimension x="90" y="20"/>
+        <AbsDimension x="95" y="20"/>
       </Size>
       <Anchors>
         <Anchor relativePoint="TOP" relativeTo="QDKP2_frame1_BackupDate_Parent" point="LEFT" >
@@ -1089,12 +1089,12 @@
 
     <Button name="QDKP2frame1_exportTXT" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIEXPORT">
        <Size>
-        <AbsDimension x="55" y="20"/>
+        <AbsDimension x="60" y="20"/>
       </Size>
       <Anchors>
         <Anchor relativePoint="RIGHT" point="LEFT" relativeTo="QDKP2frame1_restore">
           <Offset>
-            <AbsDimension x="10" y="0"/>
+            <AbsDimension x="5" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>
@@ -1318,7 +1318,7 @@
      </Layer>
      <Layer level="ARTWORK">
 
-        <FontString name="$parent_sesscount" inherits="GameFontHighlightSmall" justifyH="CENTER" text="Session">
+        <FontString name="$parent_sesscount" inherits="GameFontHighlightSmall" justifyH="CENTER" text="QDKP2_LOC_GUISESSION">
           <Anchors>
             <Anchor point="TOPLEFT" relativeTo="QDKP2_Frame2_SessionZone">
               <Offset><AbsDimension y="-3"/></Offset>
@@ -1327,7 +1327,7 @@
           </Anchors>
         </FontString>
 
-        <FontString name="$parent_bidcount" inherits="GameFontHighlightSmall" justifyH="CENTER" text="Bidding">
+        <FontString name="$parent_bidcount" inherits="GameFontHighlightSmall" justifyH="CENTER" text="QDKP2_LOC_GUIBIDDINGZONE">
           <Anchors>
             <Anchor point="TOPLEFT" relativeTo="QDKP2_Frame2_BiddingZone">
               <Offset><AbsDimension y="-3"/></Offset>
@@ -1394,7 +1394,7 @@
       <Anchors>
         <Anchor relativePoint="RIGHT" point="LEFT" relativeTo="QDKP2frame2_selectList_guild">
           <Offset>
-            <AbsDimension x="45" y="0"/>
+            <AbsDimension x="40" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>
@@ -1415,7 +1415,7 @@
       <Anchors>
         <Anchor relativePoint="RIGHT" point="LEFT" relativeTo="QDKP2frame2_selectList_guildOnline">
           <Offset>
-            <AbsDimension x="100" y="0"/>
+            <AbsDimension x="90" y="0"/>
           </Offset>
         </Anchor>
       </Anchors>

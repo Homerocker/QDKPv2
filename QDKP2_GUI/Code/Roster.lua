@@ -131,9 +131,9 @@ function myClass.Refresh(self, forceResort)
       QDKP2_Frame2_Bid_Button:Show()
       QDKP2_Frame2_Bid_ButtonWin:Show()
       if QDKP2_BidM_isBidding() then
-        QDKP2_Frame2_Bid_Button:SetText("Cancel Bid")
+        QDKP2_Frame2_Bid_Button:SetText(QDKP2_LOC_GUICANCELBID)
       else
-        QDKP2_Frame2_Bid_Button:SetText("Start Bid")
+        QDKP2_Frame2_Bid_Button:SetText(QDKP2_LOC_GUISTARTBID)
       end
       if QDKP2_BidM_isBidding() and myClass.SelectedPlayers and #myClass.SelectedPlayers==1 and QDKP2_BidM.LIST[myClass.SelectedPlayers[1]] then
         QDKP2_Frame2_Bid_ButtonWin:Enable()
@@ -530,7 +530,7 @@ local function NYIfunc()
 end
 
 local QuickModifyVoices={
-{template="Add $AMOUNT DKP",
+{template=QDKP2_LOC_GUIADDDKPAMOUNT,
 func=function()
   QDKP2_PlayerGains(myClass.SelectedPlayers,QDKP2GUI_Vars.DKP_QuickModify)
   QDKP2GUI_CloseMenus()
@@ -542,28 +542,28 @@ func=function()
   QDKP2GUI_CloseMenus()
   QDKP2_RefreshAll()
 end},
-{text=string.format(QDKP2_LOC_GUISUBTRACTDKPPERC, "50%"),
+{text=string.gsub(QDKP2_LOC_GUISUBTRACTDKPAMOUNT, "$AMOUNT", tostring(QDKP2GUI_Default_QuickPerc1.."%%")),
 func=function()
-  QDKP2_PlayerSpends(myClass.SelectedPlayers,"50%")
+  QDKP2_PlayerSpends(myClass.SelectedPlayers,QDKP2GUI_Default_QuickPerc1.."%")
   QDKP2GUI_CloseMenus()
   QDKP2_RefreshAll()
 end
 },
-{text=string.format(QDKP2_LOC_GUISUBTRACTDKPPERC, "100%"),
+{text=string.gsub(QDKP2_LOC_GUISUBTRACTDKPAMOUNT, "$AMOUNT", tostring(QDKP2GUI_Default_QuickPerc2).."%%"),
 func=function()
-  QDKP2_PlayerSpends(myClass.SelectedPlayers,"100%")
+  QDKP2_PlayerSpends(myClass.SelectedPlayers,QDKP2GUI_Default_QuickPerc2.."%%")
   QDKP2GUI_CloseMenus()
   QDKP2_RefreshAll()
 end
 },
-{text="Add 1 hour",
+{text=QDKP2_LOC_GUIADDONEHOUR,
 func=function()
   QDKP2_PlayerIncTime(myClass.SelectedPlayers,1)
   QDKP2GUI_CloseMenus()
   QDKP2_RefreshAll()
 end
 },
-{text="Reset Raiding time",
+{text=QDKP2_LOC_GUIRESETRAIDINGTIME,
 func=function()
   local Selection=myClass.SelectedPlayers
   if type(Selection)=="string" then Selection={Selection}; end
@@ -578,7 +578,7 @@ func=function()
   QDKP2_RefreshAll()
 end
 },
-{text="Reset DKP amounts",
+{text=QDKP2_LOC_GUIRESETDKP,
 func=function()
   local Selection=myClass.SelectedPlayers
   if type(Selection)=="string" then Selection={Selection}; end
@@ -594,10 +594,10 @@ func=function()
   QDKP2_RefreshAll()
 end
 },
-{text="Set quick modify amount...",
+{text=QDKP2_LOC_GUISETQMODAMOUNT,
 func=function()
   QDKP2GUI_CloseMenus()
-  QDKP2_OpenInputBox("Enter the amount of DKP to be used in the\nquick modify log menu.",
+  QDKP2_OpenInputBox(QDKP2_LOC_GUISETQMODAMOUNTDESC,
     function(amount)
       amount=tonumber(amount)
       if amount then QDKP2GUI_Vars.DKP_QuickModify=amount; end
