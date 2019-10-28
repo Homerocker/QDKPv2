@@ -241,7 +241,7 @@ if GetLocale()=='ruRU' then
   QDKP2_LOC_GUIBIDMANAGER = "Ставки"
   QDKP2_LOC_GUIBIDITEMDESC = "Перетащите сюда или SHIFT+Клик на предмет,\nна который Вы хотите объявить начало ставок. Вы также можете ввести\nлюбой текст вместо ссылки на предмет."
   QDKP2_LOC_GUISTARTBID = "Начать"
-  QDKP2_LOC_CANCELBID = "Отменить"
+  QDKP2_LOC_GUICANCELBID = "Отменить"
   QDKP2_LOC_GUISETWINNER = "Победитель"
   QDKP2_LOC_GUISETWINNERDESC = "Нажмите на эту кнопку, чтобы завершить ставки и\nобъявить выбранного игрока победителем."
   QDKP2_LOC_GUIPLAYERNAME = "Имя"
