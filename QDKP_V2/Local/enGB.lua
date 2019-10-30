@@ -192,6 +192,29 @@ QDKP2_LOC_BidMWinnerStringNoDKP="$NAME won $ITEM."
 QDKP2_LOC_AnnounceWhisperTxt = "$AWARDSPENDTXT. Your new net DKP amount is $NET"
 QDKP2_LOC_AnnounceWhisperRes = "$AWARDSPENDTXT for $REASON. Your new net DKP amount is $NET"
 QDKP2_LOC_AnnounceWhisperRev = "Your unuploaded changes have been cancelled. Your net DKP amount is $AMOUNT"
+
+--notify
+--[[
+NOTIFY
+this is the template used by the notify function. You can change it as you wish,
+including the following variables.
+Available Variables:
+$NAME: Name of the member
+$GUILDNAME: Name of your guild
+$RANK: Rank of the member
+$CLASS: Class of the member
+$NET: Net amount of DKP of the member
+$TOTAL: Total amount of DKP of the member
+$SPENT: Total amount of DKP spent by the member
+$TIME: Total amount of raiding time of the member
+$SESSGAINED: Amount of DKP gained by the member in the current session
+$SESSSPENT: amount of DKP spent by the member in the current session
+$SESSTIME: raiding time of the current session
+$SESSNAME: Name of the current session
+
+The first one is the string sent to a player when you push the "notify" button,
+the second one is the string sent to a player who asked you for someone else's DKP with via "?dkp" whisper.
+]]--
 QDKP2_LOC_NotifyString="You have $NET DKP ($SESSGAINED gained and $SESSSPENT spent in this session)."
 QDKP2_LOC_NotifyString_u3p="$NAME has $NET DKP ($SESSGAINED gained and $SESSSPENT spent in this session)."
 
