@@ -11,8 +11,8 @@ Modified QDKPv2 2.6.7 for 3.3.5a
 - fixed Russian localization of Halion the Twilight Destroyer
 - possible fix for incorrect alt links if bugged character with empty name is in guild
 - auto distribute loot when raid member wins no-DKP roll (loot window must be open)
-- accept bids in format "5k"
-- fixed incorrect (often negative) DKP for characters who left and rejoined guild
+- accept bids in "5k" format
+- fixed incorrect (often negative) DKP for characters who left and rejoined guild (database will be reset when upgrading from other version of QDKPv2 - all unuploaded changes, external characters, logs, etc. will be purged)
 - better localization support
 - Russian localization added
 - quick modify DKP amount can be correctly set via Options.ini
