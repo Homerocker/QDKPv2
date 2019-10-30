@@ -247,6 +247,13 @@ function QDKP2_BidM_BidWatcher(txt,player,channel)
 
           --updates the value and dkp variables. if returns nil, has encountered an error.
           if not QDKP2_UpdateBid(player,newBet) then return; end
+          
+          print("oldDkp="..(oldDkp or "nil"))
+          print("oldValue="..(oldValue or "nil"))
+          print("oldBid="..(oldBet.bid or "nil"))
+          print("newDkp="..(newBet.dkp or "nil"))
+          print("newValue="..(newBet.value or "nil"))
+          print("newBid="..(newBet.bid or "nil"))
 
           --controls
           --all controls must be made at bid time. Can't say at the end of the bid that the winner's bet is invalid.
