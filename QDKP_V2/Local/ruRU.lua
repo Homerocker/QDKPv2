@@ -1,4 +1,4 @@
--- Copyright 2010 Riccardo Belloli (belloli@email.it)
+-- Copyright 2019 Homerocker (molodoy3561@gmail.com)
 -- This file is a part of QDKP_V2 (see about.txt in the Addon's root folder)
 
 --        ## RUSSIAN (ruRU) LOCALIZATION ##
@@ -59,28 +59,32 @@ if GetLocale()=='ruRU' then
   QDKP2_LOC_NumAwarded="$NUMBER игроков получило $DKP DKP как бонус IronMan"
 
   --DKP Modify
-  QDKP2_LOC_Gains="Получает $GAIN DKP"
-  QDKP2_LOC_GainsSpends="Получает $GAIN и Тратит $SPEND DKP"
-  QDKP2_LOC_GainsEarns="Получает $GAIN DKP и Зарабатывает $HOUR часов"
-  QDKP2_LOC_GainsSpendsEarns="Получает $GAIN и Тратит $SPEND DKP, Зарабатывает $HOUR часов"
-  QDKP2_LOC_Spends="Тратит $SPEND DKP"
-  QDKP2_LOC_SpendsEarns="Тратит $SPEND DKP и Зарабатывает $HOUR часов"
-  QDKP2_LOC_Earns="Зарабатывает $HOUR часов"
-  QDKP2_LOC_ReceivedReas="Участники рейда получили $AMOUNT DKP за $REASON"
-  QDKP2_LOC_Received="Участники рейда получили $AMOUNT DKP"
-  QDKP2_LOC_ZSRecReas="$NAME отдает $AMOUNT DKP рейду за $REASON"
-  QDKP2_LOC_ZSRec="$NAME отдает $AMOUNT DKP рейду"
+  if QDKP2_LOCALIZE_MESSAGES then
+    QDKP2_LOC_Gains="Получает $GAIN DKP"
+    QDKP2_LOC_GainsSpends="Получает $GAIN и Тратит $SPEND DKP"
+    QDKP2_LOC_GainsEarns="Получает $GAIN DKP и Зарабатывает $HOUR часов"
+    QDKP2_LOC_GainsSpendsEarns="Получает $GAIN и Тратит $SPEND DKP, Зарабатывает $HOUR часов"
+    QDKP2_LOC_Spends="Тратит $SPEND DKP"
+    QDKP2_LOC_SpendsEarns="Тратит $SPEND DKP и Зарабатывает $HOUR часов"
+    QDKP2_LOC_Earns="Зарабатывает $HOUR часов"
+    QDKP2_LOC_ReceivedReas="Участники рейда получили $AMOUNT DKP за $REASON"
+    QDKP2_LOC_Received="Участники рейда получили $AMOUNT DKP"
+    QDKP2_LOC_ZSRecReas="$NAME отдает $AMOUNT DKP рейду за $REASON"
+    QDKP2_LOC_ZSRec="$NAME отдает $AMOUNT DKP рейду"
+  end
   QDKP2_LOC_RaidAw="[Raid Award] $AWARDSPENDTEXT"
   QDKP2_LOC_RaidAwReas="[Raid Award] $AWARDSPENDTEXT за $REASON"
   QDKP2_LOC_RaidAwMain="Рейд: $AWARDSPENDTEXT"
   QDKP2_LOC_RaidAwMainReas="Рейд: $AWARDSPENDTEXT за $REASON"
-  QDKP2_LOC_ZeroSumSp="Отдано $SPENT DKP рейду"
-  QDKP2_LOC_ZeroSumSpReas="Отдано $SPENT DKP рейду за $REASON"
-  QDKP2_LOC_ZeroSumAw="Получает $AMOUNT DKP от $GIVER"
-  QDKP2_LOC_ZeroSumAwReas="Получает $AMOUNT DKP от $GIVER за $REASON"
-  QDKP2_LOC_ExtMod="$AWARDSPENDTEXT за внешнее изменение"
-  QDKP2_LOC_Generic="$AWARDSPENDTEXT" --these are used in the general case. (eg. manual editing to DKP)
-  QDKP2_LOC_GenericReas="$AWARDSPENDTEXT за $REASON"
+  if QDKP2_LOCALIZE_MESSAGES then
+    QDKP2_LOC_ZeroSumSp="Отдает $SPENT DKP рейду"
+    QDKP2_LOC_ZeroSumSpReas="Отдает $SPENT DKP рейду за $REASON"
+    QDKP2_LOC_ZeroSumAw="Получает $AMOUNT DKP от $GIVER"
+    QDKP2_LOC_ZeroSumAwReas="Получает $AMOUNT DKP от $GIVER за $REASON"
+    QDKP2_LOC_ExtMod="$AWARDSPENDTEXT за внешнее изменение"
+    QDKP2_LOC_Generic="$AWARDSPENDTEXT" --these are used in the general case. (eg. manual editing to DKP)
+    QDKP2_LOC_GenericReas="$AWARDSPENDTEXT за $REASON"
+  end
   QDKP2_LOC_DKPPurchase="Покупает $ITEM за $AMOUNT DKP"
   QDKP2_LOC_NoPlayerInChance="Вы пытаетесь внести изменения игроку, которого нет в локальном кэше"
   QDKP2_LOC_MaxNetLimit="$NAME получает ограниченное DKP, т. к. текущее DKP достигло максимума ($MAXIMUMNET)"
@@ -133,20 +137,22 @@ if GetLocale()=='ruRU' then
   QDKP2_LOC_ExtLine="$NAME: Текущее=$NET, Всего=$TOTAL, Часы=$HOURS"
 
   --Bid manager
-  QDKP2_LOC_BidAck = "Ставка принята."
-  QDKP2_LOC_CantRebid = "Вы уже сделали ставку."
-  QDKP2_LOC_BidEqual = "Ваша ставка такая же, как предыдущая."
-  QDKP2_LOC_BidLess = "Ваша ставка меньше предыдущей."
-  QDKP2_LOC_BidGreater = "Вы не можете ставить больше DKP, чем у Вас есть. Максимальная ставка, которую Вы можете сделать - $NET."
-  QDKP2_LOC_BidnoDKP = "Вам нужно хотя бы $MINBID DKP, чтобы сделать ставку. У Вас есть $NET."
-  QDKP2_LOC_BidNoGuild = "Только члены гильдии могут делать ставки."
-  QDKP2_LOC_BidLessMinimum = "Минимальная ставка $MINBID"
-  QDKP2_LOC_BidMoreMaximum = "Максимальная ставка $MAXBID"
-  QDKP2_LOC_BidRollWrong = "Это не был стандартный ролл 1-100."
-  QDKP2_LOC_BidRollMulti = "Вы не можете ролить дважды."
-  QDKP2_LOC_BidRollFirstv = "Вы должны сделать /roll перед тем как сделать ставку."
-  QDKP2_LOC_BidRollAck = "Ролл принят."
-  QDKP2_LOC_BidRemove = "Ваша ставка отменена."
+  if QDKP2_LOCALIZE_MESSAGES then
+    QDKP2_LOC_BidAck = "Ставка принята."
+    QDKP2_LOC_CantRebid = "Вы уже сделали ставку."
+    QDKP2_LOC_BidEqual = "Ваша ставка такая же, как предыдущая."
+    QDKP2_LOC_BidLess = "Ваша ставка меньше предыдущей."
+    QDKP2_LOC_BidGreater = "Вы не можете ставить больше DKP, чем у Вас есть. Максимальная ставка, которую Вы можете сделать - $NET."
+    QDKP2_LOC_BidnoDKP = "Вам нужно хотя бы $MINBID DKP, чтобы сделать ставку. У Вас есть $NET."
+    QDKP2_LOC_BidNoGuild = "Только члены гильдии могут делать ставки."
+    QDKP2_LOC_BidLessMinimum = "Минимальная ставка $MINBID"
+    QDKP2_LOC_BidMoreMaximum = "Максимальная ставка $MAXBID"
+    QDKP2_LOC_BidRollWrong = "Это не был стандартный ролл 1-100."
+    QDKP2_LOC_BidRollMulti = "Вы не можете ролить дважды."
+    QDKP2_LOC_BidRollFirstv = "Вы должны сделать /roll перед тем как сделать ставку."
+    QDKP2_LOC_BidRollAck = "Ролл принят."
+    QDKP2_LOC_BidRemove = "Ваша ставка отменена."
+  end
   QDKP2_LOC_BidPlaceLog = 'Ставит на $ITEM: "$BIDTEXT"'
   QDKP2_LOC_BidPlaceLogVal = "($VALUE)"
   QDKP2_LOC_BidRemovedLog = "Последняя ставка отменена."
@@ -183,17 +189,21 @@ if GetLocale()=='ruRU' then
   QDKP2_LOC_CloseIMSessWarn="Бонус IronMan не закрыт.\nЕсли Вы закроете сессию,\nбонус IronMan будет отменем.\nВы все еще хотите закрыть сессию?"
   
   --bid announcements
-  QDKP2_LOC_BidMStartString="Начался прием ставок на $ITEM. Пожалуйста, не тупите."
-  QDKP2_LOC_BidMCancelString="Ставки на $ITEM отменены."
-  QDKP2_LOC_BidMWinnerString="$NAME выйграл $ITEM за $AMOUNT DKP. ГЦ $NAME."
-  QDKP2_LOC_BidMWinnerStringNoDKP="$NAME выйграл $ITEM."
+  if QDKP2_LOCALIZE_MESSAGES then
+    QDKP2_LOC_BidMStartString="Начался прием ставок на $ITEM. Пожалуйста, не тупите."
+    QDKP2_LOC_BidMCancelString="Ставки на $ITEM отменены."
+    QDKP2_LOC_BidMWinnerString="$NAME выйграл $ITEM за $AMOUNT DKP. ГЦ $NAME."
+    QDKP2_LOC_BidMWinnerStringNoDKP="$NAME выйграл $ITEM."
+  end
   
   --whisper
-  QDKP2_LOC_AnnounceWhisperTxt = "$AWARDSPENDTXT. Ваше новое текущее DKP - $NET."
-  QDKP2_LOC_AnnounceWhisperRes = "$AWARDSPENDTXT за $REASON. Ваше новое текущее DKP - $NET."
-  QDKP2_LOC_AnnounceWhisperRev = "Ваши незагруженные изменения были отменены. Ваше текущее DKP - $AMOUNT."
-  QDKP2_LOC_NotifyString="У Вас $NET DKP ($SESSGAINED получено и $SESSSPENT потрачено за текущую сессию)."
-  QDKP2_LOC_NotifyString_u3p="У $NAME $NET DKP ($SESSGAINED получено и $SESSSPENT потрачено за текущую сессию)."
+  if QDKP2_LOCALIZE_MESSAGES then
+    QDKP2_LOC_AnnounceWhisperTxt = "$AWARDSPENDTXT. Ваше новое текущее DKP - $NET."
+    QDKP2_LOC_AnnounceWhisperRes = "$AWARDSPENDTXT за $REASON. Ваше новое текущее DKP - $NET."
+    QDKP2_LOC_AnnounceWhisperRev = "Ваши незагруженные изменения были отменены. Ваше текущее DKP - $AMOUNT."
+    QDKP2_LOC_NotifyString="У Вас $NET DKP ($SESSGAINED получено и $SESSSPENT потрачено за текущую сессию)."
+    QDKP2_LOC_NotifyString_u3p="У $NAME $NET DKP ($SESSGAINED получено и $SESSSPENT потрачено за текущую сессию)."
+  end
  
   --GUI
   QDKP2_LOC_GUIRAIDMANAGEMENT = "Управление рейдом"
