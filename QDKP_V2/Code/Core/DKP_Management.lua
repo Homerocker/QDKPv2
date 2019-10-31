@@ -85,14 +85,16 @@ function QDKP2_RaidAward(amount,reason,giverName) --if giverName != nil, this wi
   QDKP2_DoubleCheckInit()
 
     --this forks the values basing on the type of the award
-  local Flags
+  local Flags, AwardType
   local ReasonField=reason
   if giverName then
+    AwardType = "zerosum"
     QDKP2_ProcessedMain(giverName) --to prevent the giver or one of his alts to get part in the share.
     Flags=QDKP2log_PacketFlags(nil,true)
     QDKP2log_Entry(giverName, reason, QDKP2LOG_MODIFY,  {nil, 0, nil}, timeStamp,Flags+4)
     ReasonField=QDKP2log_Link("RAID", giverName, timeStamp)
   else
+    AwardType = "raidaward"
     Flags=QDKP2log_PacketFlags(true)
     QDKP2log_Entry("RAID",reason,QDKP2LOG_MODIFY, {0,nil,nil},timeStamp,Flags+4)
   end
@@ -100,42 +102,23 @@ function QDKP2_RaidAward(amount,reason,giverName) --if giverName != nil, this wi
   for i=1, QDKP2_GetNumRaidMembers() do
     local name, rank, subgroup, level, class, fileName, zone, online, inguild, standby, removed=QDKP2_GetRaidRosterInfo(i);
     if inguild and not removed and not QDKP2_IsMainAlreadyProcessed(name) then
-      local net=QDKP2_GetNet(name)
-      local MinRank=QDKP2_minRank(name)
       local InZone = zone == QDKP2_RaidLeaderZone or zone=="Offline"
       -- Checks if <name> is able to get the award.
-      local Cond_Online, Cond_MinRank, Cond_Zone, Cond_Maximum
-      --the following is the only difference in the conditions for ZS and RaidAward.
-      if giverName then
-        --if this is a ZeroSum
-        Cond_MinRank=MinRank or QDKP2_UNDKPABLE_ZEROSUSM
-      else
-        --if this is a regular Raid Award
-        Cond_MinRank=MinRank or QDKP2_UNDKPABLE_RAIDBOSS
-      end
-      Cond_Online=online or QDKP2_GIVEOFFLINE
-      Cond_Maximum=(net<QDKP2_MAXIMUM_NET or amount<=0) and (net>QDKP2_MINIMUM_NET or amount>=0)
-      Cond_Zone=InZone or QDKP2_GIVEOUTZONE
+      local eligible,percentage,NoReason=QDKP2_GetEligibility(name,AwardType,amount,online,inzone)
 
-      if Cond_Online and Cond_MinRank and Cond_Zone and Cond_Maximum then
+      if eligible then
         --Crea l'entry per dare l'award.
-        QDKP2log_Entry(name,ReasonField,QDKP2LOG_MODIFY, {0, nil, nil}, timeStamp , Flags)
+        QDKP2log_Entry(name,ReasonField,QDKP2LOG_MODIFY, {0, nil, nil, percentage}, timeStamp , Flags)
         QDKP2_ProcessedMain(name)
       elseif not QDKP2_AltsStillToCome(name, nameBase, i) then
-        local NoReason
-        if not Cond_Online then NoReason=QDKP2LOG_NODKP_OFFLINE
-        elseif not Cond_MinRank then NoReason=QDKP2LOG_NODKP_RANK
-        elseif not Cond_Zone then NoReason=QDKP2LOG_NODKP_ZONE
-        elseif not Cond_Maximum then NoReason=QDKP2LOG_NODKP_LIMIT
-        else
-          QDKP2_Debug(1,"RaidAward","Select case of why RaidAward/ZS has failed has failed. Player "..name)
-        end
         if NoReason then
           QDKP2log_Entry(name, ReasonField, QDKP2LOG_NODKP, {0, nil, nil}, timeStamp,Flags+QDKP2log_PacketFlags(nil,nil,nil,nil,NoReason))
           if QDKP2_AnnounceFailAw and QDKP2online[name] then
             local msg=QDKP2log_GetLastLogText(name)
             QDKP2_SendHiddenWhisper(msg,name)
           end
+        else
+          QDKP2_Debug(1,"RaidAward","Select case of why RaidAward/ZS has failed has failed. Player "..name)
         end
       end
     end
@@ -209,8 +192,7 @@ local function HoursTick()
   for i=1, QDKP2_GetNumRaidMembers() do
     local name, rank, subgroup, level, class, fileName, zone, online, inguild, standby, removed=QDKP2_GetRaidRosterInfo(i);
     QDKP2_Debug(3,"Timer","Doing "..name)
-    local InZone
-    if (zone == QDKP2_RaidLeaderZone) or (zone=="Offline") then InZone=true; end
+    local InZone = zone == QDKP2_RaidLeaderZone or zone=="Offline"
 
     if inguild and not removed and not QDKP2_IsMainAlreadyProcessed(name) then
       if (online or QDKP2_GIVEOFFLINE) and (InZone or QDKP2_GIVEOUTZONE) then
@@ -625,4 +607,77 @@ function QDKP2_Decay(TypeOrList,Perc)
     end
     QDKP2_Msg("Send changes to store them in the guild notes.")
     QDKP2_Events:Fire("DATA_UPDATED","all")
+end
+
+local function WorseThan(percentage,awardtype,guilt)
+	local perc=getglobal("QDKP2_AWARD_"..guilt.."_"..string.upper(awardtype))
+	if type(perc) == "string" then
+		perc = string.gsub(perc,'%%','')
+		perc = tonumber(perc)
+	elseif type(perc) == "number" then
+    perc = tonumber(perc)
+  else
+    return
+	end
+	if perc < percentage then
+    return perc
+  end
+end
+
+function QDKP2_GetEligibility(name,awardtype,award,online,inzone)
+  --returns eligible,percentage,reason
+	--eligible is true if should get the award
+	--percentage is to be passed to the AddTotals function
+	--reason is the NODKP subtype to be used in the log entry.
+	local percentage=100
+	local reason, eligible
+	local net=QDKP2_GetNet(name)
+	if not online then
+    local perc
+    if not QDKP2_GIVEOFFLINE then
+      perc = 0
+    else
+      perc=WorseThan(percentage,awardtype,'OFFLINE')
+    end
+		if perc then percentage = perc; reason = QDKP2LOG_NODKP_OFFLINE; end
+	end
+	if not inzone then
+    local perc
+    if not QDKP2_GIVEOUTZONE then
+      perc = 0
+    else
+      perc=WorseThan(percentage,awardtype,'ZONE')
+    end
+		if perc then percentage=perc; reason=QDKP2LOG_NODKP_ZONE; end
+	end
+	if not QDKP2_minRank(name) then
+    local perc
+    if awardtype == "zerosum" and not QDKP2_UNDKPABLE_ZEROSUM then
+	    perc = 0
+    elseif awardtype == "raidaward" and not QDKP2_UNDKPABLE_RAIDBOSS then
+      perc = 0
+    else
+      perc=WorseThan(percentage,awardtype,'RANK')
+    end
+    if perc then percentage=perc; reason=QDKP2LOG_NODKP_RANK; end
+	end
+	--if QDKP2_IsAlt(name) then
+	--	local perc=WorseThan(percentage,awardtype,'ALT')
+	--  if perc then percentage=perc; reason=QDKP2LOG_NODKP_ALT; end
+	--end
+    if QDKP2_IsStandby(name) then
+	  local perc=WorseThan(percentage,awardtype,'STANDBY')
+	  if perc then percentage=perc; reason=QDKP2LOG_NODKP_STANDBY; end
+  end
+  --if QDKP2_IsExternal(name) then
+	--	perc=WorseThan(percentage,awardtype,'EXTERNAL')
+	--  if perc then percentage=perc; reason=QDKP2LOG_NODKP_EXTERNAL; end
+  --end
+	if (net>=QDKP2_MAXIMUM_NET and award>0) or (net<=QDKP2_MINIMUM_NET and award<0) then
+		reason=QDKP2LOG_NODKP_LIMIT
+		percentage=0
+	end
+	if percentage~=0 then eligible=true; end
+	if percentage == 100 then percentage=nil; end
+	return eligible,percentage,reason
 end
