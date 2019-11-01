@@ -602,7 +602,9 @@ end
 
 local function WorseThan(percentage,awardtype,guilt)
   local perc = _G["QDKP2_AWARD_"..guilt.."_"..string.upper(awardtype)]
-  if type(perc) == "string" then
+  if perc == false then
+    perc = 0
+  elseif type(perc) == "string" then
     perc = string.gsub(perc, '%%', '')
     perc = tonumber(perc)
   elseif type(perc) == "number" then
@@ -653,18 +655,18 @@ function QDKP2_GetEligibility(name,awardtype,award,online,inzone)
     end
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_RANK; end
   end
-  --if QDKP2_IsAlt(name) then
-  --	local perc=WorseThan(percentage,awardtype,'ALT')
-  --  if perc then percentage=perc; reason=QDKP2LOG_NODKP_ALT; end
-  --end
+  if QDKP2_IsAlt(name) then
+  	local perc = WorseThan(percentage,awardtype,'ALT')
+    if perc then percentage=perc; reason=QDKP2LOG_NODKP_ALT; end
+  end
   if QDKP2_IsStandby(name) then
-    local perc=WorseThan(percentage,awardtype,'STANDBY')
+    local perc = WorseThan(percentage,awardtype,'STANDBY')
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_STANDBY; end
   end
-  --if QDKP2_IsExternal(name) then
-    --	perc=WorseThan(percentage,awardtype,'EXTERNAL')
-    --  if perc then percentage=perc; reason=QDKP2LOG_NODKP_EXTERNAL; end
-  --end
+  if QDKP2_IsExternal(name) then
+    perc = WorseThan(percentage,awardtype,'EXTERNAL')
+    if perc then percentage=perc; reason=QDKP2LOG_NODKP_EXTERNAL; end
+  end
   if (net>=QDKP2_MAXIMUM_NET and award>0) or (net<=QDKP2_MINIMUM_NET and award<0) then
       reason=QDKP2LOG_NODKP_LIMIT
       percentage=0
