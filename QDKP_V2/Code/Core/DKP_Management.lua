@@ -203,33 +203,30 @@ local function HoursTick()
 
         QDKP2_AddTotals(name, nil, nil, toAdd, QDKP2_LOC_TimerTick, nil, nil, true)
         QDKP2_ProcessedMain(name)
-        --local eligible,percentage,NoReason=QDKP2_GetEligibility(name,AwardType,amount,online,inzone)
         QDKP2timerBase[name]=CurRaidTime + toAdd
         local NowHours = math.floor(QDKP2timerBase[name]+0.01)
         if NowHours ~= OrigHours then  --use this to detect if i've hit an integer (eg 2.9 + 0.2 = 3.1)
           QDKP2_Debug(3,"Timer","It's the hour for "..tostring(name))
-          if (QDKP2_minRank(name) or QDKP2_UNDKPABLE_TIME) and (QDKP2_GetNet(name)<QDKP2_MAXIMUM_NET  or QDKP2timerBase.BONUS<0) then
-            QDKP2_AddTotals(name, QDKP2timerBase.BONUS, nil, nil, QDKP2_LOC_IntegerTime)
+
+          local eligible,percentage,reasonNo=QDKP2_GetEligibility(name, "timer", QDKP2timerBase.BONUS, online, inzone)
+          if eligible then
+            --QDKP2_AddTotals(name, QDKP2timerBase.BONUS, nil, nil, QDKP2_LOC_IntegerTime)
+            QDKP2log_Entry(name, QDKP2_LOC_IntegerTime, QDKP2LOG_MODIFY,  {0, nil, nil,percentage})
+            local Log=QDKP2log_GetLastLog(QDKP2_GetMain(name))
+            --name, Log,SID,newGained,newSpent,newHours,newCoeff,newReason,Activate, NoIncreaseVersion
+            QDKP2log_SetEntry(QDKP2_GetMain(name),Log,SID, QDKP2timerBase.BONUS, nil,        nil,          nil,                nil,             nil,               true)
             SomeoneAwarded = true
-          else
-            local reasonNo
-            if not (QDKP2_minRank(name) or QDKP2_UNDKPABLE_TIME) then
-              reasonNo=QDKP2LOG_NODKP_RANK
-            elseif not (QDKP2_GetNet(name)<QDKP2_MAXIMUM_NET   or QDKP2timerBase.BONUS<0) then
-              reasonNo=QDKP2LOG_NODKP_LIMIT
-            end
-            if reasonNo then
-              QDKP2log_Entry(name, QDKP2_LOC_IntegerTime, QDKP2LOG_NODKP,  {QDKP2timerBase.BONUS, nil, nil},nil,QDKP2log_PacketFlags(nil,nil,nil,nil,reasonNo))
-            end
+          elseif reasonNo then
+            QDKP2log_Entry(name, QDKP2_LOC_IntegerTime, QDKP2LOG_NODKP,  {QDKP2timerBase.BONUS, nil, nil},nil,QDKP2log_PacketFlags(nil,nil,nil,nil,reasonNo))
           end
         end
       elseif QDKP2_IsMainAlreadyProcessed(name) then
         local a=1  --passa al prossimo
-      else
+      elseif not QDKP2_AltsStillToCome(name, nameBase, i) then
         local reasonNo
-        if not (online or QDKP2_GIVEOFFLINE)   and not QDKP2_AltsStillToCome(name, nameBase, i)  then
+        if not (online or QDKP2_GIVEOFFLINE) then
           reasonNo=QDKP2LOG_NODKP_OFFLINE
-        elseif not (InZone or QDKP2_GIVEOUTZONE)   and not QDKP2_AltsStillToCome(name, nameBase, i) then
+        elseif not (InZone or QDKP2_GIVEOUTZONE) then
           reasonNo=QDKP2LOG_NODKP_ZONE
         end
         if reasonNo then
@@ -426,11 +423,10 @@ function QDKP2_InronManFinish(BonusDKP) --calculates who award the ironman bonus
     local name = playerList[i]
     QDKP2_Debug(3,"Core","Calculating "..name)
     local AltsStillToCome=QDKP2_AltsStillToCome(name,playerList,i)
-    local hasRank=(QDKP2_UNDKPABLE_IRONMAN or QDKP2_minRank(name))
-    local hasDKP=(QDKP2_GetNet(name)<QDKP2_MAXIMUM_NET  or BonusDKP<0)
     local isIn=(not QDKP2_IRONMAN_INWHENENDS or QDKP2_IsInRaid(name))
     local wasIn=(not QDKP2_IRONMAN_INWHENSTARTS or QDKP2ironMan.PLAYERS[QDKP2_GetMain(name)])
-    if hasRank and hasDKP and isIn and wasIn then
+    local eligible,percentage,noreason=QDKP2_GetEligibility(name,'ironman',BonusDKP,true,true)
+    if eligible and isIn and wasIn then
 
       QDKP2_Debug(3,"Core","Eligible for calculation!")
 
@@ -465,7 +461,7 @@ function QDKP2_InronManFinish(BonusDKP) --calculates who award the ironman bonus
         if Presence >= QDKP2_IRONMAN_PER_REQ then
           QDKP2_Debug(2,"IronMan",name.." GAINS IronMan ("..PresenceSTR..")")
           QDKP2_AddTotals(name,BonusDKP,nil,nil,nil,nil,nil,true)
-          QDKP2log_Entry(name,"Iron Man Bonus",QDKP2LOG_MODIFY, {BonusDKP, nil, nil}, timeStamp ,1)
+          QDKP2log_Entry(name,"Iron Man Bonus",QDKP2LOG_MODIFY, {BonusDKP, nil, nil, percentage}, timeStamp ,1)
           awarded=awarded+1
         else
           QDKP2_Debug(2,"IronMan",name.." LOSES IronMan ("..PresenceSTR..")")
@@ -484,20 +480,15 @@ function QDKP2_InronManFinish(BonusDKP) --calculates who award the ironman bonus
     elseif QDKP2_AltsStillToCome(name,playerList,i) then
 
     else
-      local SubType
-      if not hasRank then
-        SubType=QDKP2LOG_NODKP_RANK
-      elseif not hasDKP then
-        SubType=QDKP2LOG_NODKP_LIMIT
-      elseif not isIn then
-        SubType=QDKP2LOG_NODKP_IMSTOP
+      if not isIn then
+        noreason=QDKP2LOG_NODKP_IMSTOP
       elseif not wasIn then
-        SubType=QDKP2LOG_NODKP_IMSTART
+        noreason=QDKP2LOG_NODKP_IMSTART
       end
-            QDKP2_Debug(2,"Core",name.." loses Iron Man bonus, SubType reason="..tostring(SubType))
-      if SubType then
+            QDKP2_Debug(2,"Core",name.." loses Iron Man bonus, SubType reason="..tostring(noreason))
+      if noreason then
         QDKP2log_Entry(name, "Iron Man Bonus", QDKP2LOG_NODKP, {BonusDKP, nil, nil},
-          timeStamp,QDKP2log_PacketFlags(true,nil,nil,nil,SubType)
+          timeStamp,QDKP2log_PacketFlags(true,nil,nil,nil,noreason)
         )
         if QDKP2_AnnounceFailIM and QDKP2online[name] then
           local msg=QDKP2log_GetLastLogText(name)
@@ -610,74 +601,75 @@ function QDKP2_Decay(TypeOrList,Perc)
 end
 
 local function WorseThan(percentage,awardtype,guilt)
-    local perc=getglobal("QDKP2_AWARD_"..guilt.."_"..string.upper(awardtype))
-    if type(perc) == "string" then
-        perc = string.gsub(perc,'%%','')
-        perc = tonumber(perc)
-    elseif type(perc) == "number" then
+  local perc = _G["QDKP2_AWARD_"..guilt.."_"..string.upper(awardtype)]
+  if type(perc) == "string" then
+    perc = string.gsub(perc, '%%', '')
+    perc = tonumber(perc)
+  elseif type(perc) == "number" then
     perc = tonumber(perc)
   else
     return
-    end
-    if perc < percentage then
+  end
+  if perc < percentage then
     return perc
   end
 end
 
 function QDKP2_GetEligibility(name,awardtype,award,online,inzone)
   --returns eligible,percentage,reason
-    --eligible is true if should get the award
-    --percentage is to be passed to the AddTotals function
-    --reason is the NODKP subtype to be used in the log entry.
-    local percentage=100
-    local reason, eligible
-    local net=QDKP2_GetNet(name)
-    if not online then
+  --eligible is true if should get the award
+  --percentage is to be passed to the AddTotals function
+  --reason is the NODKP subtype to be used in the log entry.
+  local percentage=100
+  local reason, eligible
+  local net=QDKP2_GetNet(name)
+  if not online then
     local perc
     if not QDKP2_GIVEOFFLINE then
       perc = 0
     else
       perc=WorseThan(percentage,awardtype,'OFFLINE')
     end
-        if perc then percentage = perc; reason = QDKP2LOG_NODKP_OFFLINE; end
-    end
-    if not inzone then
+    if perc then percentage = perc; reason = QDKP2LOG_NODKP_OFFLINE; end
+  end
+  if not inzone then
     local perc
     if not QDKP2_GIVEOUTZONE then
       perc = 0
     else
       perc=WorseThan(percentage,awardtype,'ZONE')
     end
-        if perc then percentage=perc; reason=QDKP2LOG_NODKP_ZONE; end
-    end
-    if not QDKP2_minRank(name) then
+    if perc then percentage=perc; reason=QDKP2LOG_NODKP_ZONE; end
+  end
+  if not QDKP2_minRank(name) then
     local perc
-    if awardtype == "zerosum" and not QDKP2_UNDKPABLE_ZEROSUM then
-      perc = 0
-    elseif awardtype ==s "raidaward" and not QDKP2_UNDKPABLE_RAIDBOSS then
+    if (awardtype == "zerosum" and not QDKP2_UNDKPABLE_ZEROSUM)
+      or (awardtype == "raidaward" and not QDKP2_UNDKPABLE_RAIDBOSS)
+      or (awardtype == "timer" and not QDKP2_UNDKPABLE_TIME)
+      or (awardtype == "ironman" and not QDKP2_UNDKPABLE_IRONMAN) then
       perc = 0
     else
       perc=WorseThan(percentage,awardtype,'RANK')
     end
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_RANK; end
-    end
-    --if QDKP2_IsAlt(name) then
-    --	local perc=WorseThan(percentage,awardtype,'ALT')
-    --  if perc then percentage=perc; reason=QDKP2LOG_NODKP_ALT; end
-    --end
-    if QDKP2_IsStandby(name) then
-      local perc=WorseThan(percentage,awardtype,'STANDBY')
-      if perc then percentage=perc; reason=QDKP2LOG_NODKP_STANDBY; end
+  end
+  --if QDKP2_IsAlt(name) then
+  --	local perc=WorseThan(percentage,awardtype,'ALT')
+  --  if perc then percentage=perc; reason=QDKP2LOG_NODKP_ALT; end
+  --end
+  if QDKP2_IsStandby(name) then
+    local perc=WorseThan(percentage,awardtype,'STANDBY')
+    if perc then percentage=perc; reason=QDKP2LOG_NODKP_STANDBY; end
   end
   --if QDKP2_IsExternal(name) then
     --	perc=WorseThan(percentage,awardtype,'EXTERNAL')
     --  if perc then percentage=perc; reason=QDKP2LOG_NODKP_EXTERNAL; end
   --end
-    if (net>=QDKP2_MAXIMUM_NET and award>0) or (net<=QDKP2_MINIMUM_NET and award<0) then
-        reason=QDKP2LOG_NODKP_LIMIT
-        percentage=0
-    end
-    if percentage~=0 then eligible=true; end
-    if percentage == 100 then percentage=nil; end
-    return eligible,percentage,reason
+  if (net>=QDKP2_MAXIMUM_NET and award>0) or (net<=QDKP2_MINIMUM_NET and award<0) then
+      reason=QDKP2LOG_NODKP_LIMIT
+      percentage=0
+  end
+  if percentage~=0 then eligible=true; end
+  if percentage == 100 then percentage=nil; end
+  return eligible,percentage,reason
 end
