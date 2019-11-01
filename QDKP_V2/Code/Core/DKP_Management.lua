@@ -203,7 +203,7 @@ local function HoursTick()
 
         QDKP2_AddTotals(name, nil, nil, toAdd, QDKP2_LOC_TimerTick, nil, nil, true)
         QDKP2_ProcessedMain(name)
-
+        --local eligible,percentage,NoReason=QDKP2_GetEligibility(name,AwardType,amount,online,inzone)
         QDKP2timerBase[name]=CurRaidTime + toAdd
         local NowHours = math.floor(QDKP2timerBase[name]+0.01)
         if NowHours ~= OrigHours then  --use this to detect if i've hit an integer (eg 2.9 + 0.2 = 3.1)
@@ -653,8 +653,8 @@ function QDKP2_GetEligibility(name,awardtype,award,online,inzone)
     if not QDKP2_minRank(name) then
     local perc
     if awardtype == "zerosum" and not QDKP2_UNDKPABLE_ZEROSUM then
-        perc = 0
-    elseif awardtype == "raidaward" and not QDKP2_UNDKPABLE_RAIDBOSS then
+      perc = 0
+    elseif awardtype ==s "raidaward" and not QDKP2_UNDKPABLE_RAIDBOSS then
       perc = 0
     else
       perc=WorseThan(percentage,awardtype,'RANK')
