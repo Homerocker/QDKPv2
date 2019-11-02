@@ -195,7 +195,8 @@ local function HoursTick()
     local InZone = zone == QDKP2_RaidLeaderZone or zone=="Offline"
 
     if inguild and not removed and not QDKP2_IsMainAlreadyProcessed(name) then
-      if (online or QDKP2_GIVEOFFLINE) and (InZone or QDKP2_GIVEOUTZONE) then
+      local eligible,percentage,reasonNo=QDKP2_GetEligibility(name, "timer", QDKP2timerBase.BONUS, online, inzone)
+      if eligible then
         QDKP2_Debug(3,"Timer","Gets the time")
 
         local CurRaidTime=QDKP2timerBase[name] or 0
@@ -207,29 +208,18 @@ local function HoursTick()
         local NowHours = math.floor(QDKP2timerBase[name]+0.01)
         if NowHours ~= OrigHours then  --use this to detect if i've hit an integer (eg 2.9 + 0.2 = 3.1)
           QDKP2_Debug(3,"Timer","It's the hour for "..tostring(name))
-
-          local eligible,percentage,reasonNo=QDKP2_GetEligibility(name, "timer", QDKP2timerBase.BONUS, online, inzone)
-          if eligible then
-            --QDKP2_AddTotals(name, QDKP2timerBase.BONUS, nil, nil, QDKP2_LOC_IntegerTime)
-            QDKP2log_Entry(name, QDKP2_LOC_IntegerTime, QDKP2LOG_MODIFY,  {0, nil, nil,percentage})
-            local Log=QDKP2log_GetLastLog(QDKP2_GetMain(name))
-            --name, Log,SID,newGained,newSpent,newHours,newCoeff,newReason,Activate, NoIncreaseVersion
-            QDKP2log_SetEntry(QDKP2_GetMain(name),Log,SID, QDKP2timerBase.BONUS, nil,        nil,          nil,                nil,             nil,               true)
-            SomeoneAwarded = true
-          elseif reasonNo then
-            QDKP2log_Entry(name, QDKP2_LOC_IntegerTime, QDKP2LOG_NODKP,  {QDKP2timerBase.BONUS, nil, nil},nil,QDKP2log_PacketFlags(nil,nil,nil,nil,reasonNo))
-          end
+          --QDKP2_AddTotals(name, QDKP2timerBase.BONUS, nil, nil, QDKP2_LOC_IntegerTime)
+          QDKP2log_Entry(name, QDKP2_LOC_IntegerTime, QDKP2LOG_MODIFY,  {0, nil, nil,percentage})
+          local Log=QDKP2log_GetLastLog(QDKP2_GetMain(name))
+          --name, Log,SID,newGained,newSpent,newHours,newCoeff,newReason,Activate, NoIncreaseVersion
+          QDKP2log_SetEntry(QDKP2_GetMain(name),Log,SID, QDKP2timerBase.BONUS, nil,        nil,          nil,                nil,             nil,               true)
+          SomeoneAwarded = true
         end
       elseif QDKP2_IsMainAlreadyProcessed(name) then
         local a=1  --passa al prossimo
       elseif not QDKP2_AltsStillToCome(name, nameBase, i) then
-        local reasonNo
-        if not (online or QDKP2_GIVEOFFLINE) then
-          reasonNo=QDKP2LOG_NODKP_OFFLINE
-        elseif not (InZone or QDKP2_GIVEOUTZONE) then
-          reasonNo=QDKP2LOG_NODKP_ZONE
-        end
         if reasonNo then
+          QDKP2log_Entry(name, QDKP2_LOC_IntegerTime, QDKP2LOG_NODKP,  {QDKP2timerBase.BONUS, nil, nil},nil,QDKP2log_PacketFlags(nil,nil,nil,nil,reasonNo))
           QDKP2log_Entry(name, nil, QDKP2LOG_NODKP,  {nil, nil, toAdd},nil,QDKP2log_PacketFlags(nil,nil,nil,nil,reasonNo))
           if QDKP2_AnnounceFailHo and QDKP2online[name] then
             local msg=QDKP2log_GetLastLogText(name)
@@ -626,21 +616,11 @@ function QDKP2_GetEligibility(name,awardtype,award,online,inzone)
   local reason, eligible
   local net=QDKP2_GetNet(name)
   if not online then
-    local perc
-    if not QDKP2_GIVEOFFLINE then
-      perc = 0
-    else
-      perc=WorseThan(percentage,awardtype,'OFFLINE')
-    end
+    local perc=WorseThan(percentage,awardtype,'OFFLINE')
     if perc then percentage = perc; reason = QDKP2LOG_NODKP_OFFLINE; end
   end
   if not inzone then
-    local perc
-    if not QDKP2_GIVEOUTZONE then
-      perc = 0
-    else
-      perc=WorseThan(percentage,awardtype,'ZONE')
-    end
+    local perc=WorseThan(percentage,awardtype,'ZONE')
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_ZONE; end
   end
   if not QDKP2_minRank(name) then
@@ -656,7 +636,7 @@ function QDKP2_GetEligibility(name,awardtype,award,online,inzone)
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_RANK; end
   end
   if QDKP2_IsAlt(name) then
-  	local perc = WorseThan(percentage,awardtype,'ALT')
+    local perc = WorseThan(percentage,awardtype,'ALT')
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_ALT; end
   end
   if QDKP2_IsStandby(name) then

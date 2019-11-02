@@ -26,6 +26,18 @@ the Free Software Foundation, either version 3 of the License, or
 
 
 Release Log:
+v2.6.7.5 (11/2/2019)
+- removed QDKP2_GIVEOFFLINE and QDKP2_GIVEOUTZONE options
+- fixed WorseThan() to parse both percentage string and boolean values
+
+v2.6.7.4
+
+v2.6.7.3
+
+v2.6.7.2
+
+v2.6.7.1
+
 V2.6.7 (10/3/2010)
 - Added log exporting. Only table output like HTML and plaintext is supported, will add support to webdkp and such in the next release or so.
 - Changed the Deformat lib implementation

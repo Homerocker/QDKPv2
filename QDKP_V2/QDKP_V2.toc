@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: Quick DKP V2 - Core
 ## Author: molodoy3561@gmail.com
-## Version: 2.6.7.3
+## Version: 2.6.7.5
 ## Notes: Complete system for in-game DKP managment
 ## OptionalDeps: AtlasLoot, DeadlyBossMods
 ## DefaultState: Enabled
