@@ -36,7 +36,7 @@
 ---------------------- GENERAL GLOBALS ------------------
 
 QDKP2_VERSION      = GetAddOnMetadata("QDKP_V2", "Version")
-QDKP2_DBREQ        = 20551
+QDKP2_DBREQ        = 20552
 QDKP2_BETA         = false
 QDKP2_DEBUG	       = 0
 ------------------------------COLOR GLOBALS------------------------
