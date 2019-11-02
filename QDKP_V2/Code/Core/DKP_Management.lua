@@ -202,7 +202,9 @@ local function HoursTick()
         local CurRaidTime=QDKP2timerBase[name] or 0
         local OrigHours = math.floor(CurRaidTime + 0.01)
 
-        QDKP2_AddTotals(name, nil, nil, toAdd, QDKP2_LOC_TimerTick, nil, nil, true)
+        if QDKP2_StoreHours then
+          QDKP2_AddTotals(name, nil, nil, toAdd, QDKP2_LOC_TimerTick, nil, nil, true)
+        end
         QDKP2_ProcessedMain(name)
         QDKP2timerBase[name]=CurRaidTime + toAdd
         local NowHours = math.floor(QDKP2timerBase[name]+0.01)
