@@ -624,15 +624,7 @@ function QDKP2_GetEligibility(name,awardtype,award,online,inzone)
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_ZONE; end
   end
   if not QDKP2_minRank(name) then
-    local perc
-    if (awardtype == "zerosum" and not QDKP2_UNDKPABLE_ZEROSUM)
-      or (awardtype == "raidaward" and not QDKP2_UNDKPABLE_RAIDBOSS)
-      or (awardtype == "timer" and not QDKP2_UNDKPABLE_TIME)
-      or (awardtype == "ironman" and not QDKP2_UNDKPABLE_IRONMAN) then
-      perc = 0
-    else
-      perc=WorseThan(percentage,awardtype,'RANK')
-    end
+    local perc = WorseThan(percentage,awardtype,'RANK')
     if perc then percentage=perc; reason=QDKP2LOG_NODKP_RANK; end
   end
   if QDKP2_IsAlt(name) then
