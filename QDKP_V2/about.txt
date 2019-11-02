@@ -27,7 +27,7 @@ the Free Software Foundation, either version 3 of the License, or
 
 Release Log:
 v2.6.7.5 (11/2/2019)
-- removed QDKP2_GIVEOFFLINE and QDKP2_GIVEOUTZONE options
+- removed QDKP2_GIVEOFFLINE, QDKP2_GIVEOUTZONE and QDKP2_UNDKPABLE options
 - fixed WorseThan() to parse both percentage string and boolean values
 
 v2.6.7.4
