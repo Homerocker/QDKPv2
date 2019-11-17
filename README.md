@@ -17,3 +17,4 @@ Modified QDKPv2 2.6.7 for 3.3.5a
 - Russian localization added
 - quick modify DKP amount can be correctly set via Options.ini
 - DKP modifiers for standby players
+- correctly preload DBM/BigWigs if installed
