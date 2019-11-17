@@ -64,28 +64,32 @@ function QDKP2_BossKilled(boss)
   QDKP2_Events:Fire("DATA_UPDATED","log")
 end
 
+local function getDKPType(instDiff)
+  local instDiff = instDiff or GetInstanceDifficulty()
+  if instDiff == 1 then
+    return "DKP_10N"
+  elseif instDiff == 2 then
+    return "DKP_25N"
+  elseif instDiff == 3 then
+    return "DKP_10H"
+  elseif instDiff == 4 then
+    return "DKP_25H"
+  end
+end
+
 function QDKP2_GetBossAward(boss,zone)
   if not boss or type(boss)~='string' then
     QDKP2_Debug(1,"Core","Calling QDKP2_BossKilled with invalid boss: "..tostring(boss))
     return
   end
 
-  local DKPType, award
+  local award
   local instDiff=GetInstanceDifficulty()  --1: 10-normal, 2:25-normal, 3:10-hero, 4:25-hero
+  local DKPType = getDKPType(instDiff)
   zone=zone or GetRealZoneText()
   local zoneEng=QDKP2zoneEnglish[zone] or zone
   zone=string.lower(zone)
   zoneEng=string.lower(zoneEng)
-  
-  if instDiff == 1 then
-    DKPType = "DKP_10N"
-  elseif instDiff == 2 then
-    DKPType = "DKP_25N"
-  elseif instDiff == 3 then
-    DKPType = "DKP_10H"
-  elseif instDiff == 4 then
-    DKPType = "DKP_25H"
-  end
 
   --searching for specific boss award
   award=QDKP2_IsInBossTable(boss,instDiff)
@@ -105,21 +109,10 @@ function QDKP2_GetBossAward(boss,zone)
   end
 end
 
-
 function QDKP2_IsInBossTable(boss,instDiff)
 
   instDiff=instDiff or GetInstanceDifficulty()
-  local DKPType
-  
-  if instDiff == 1 then
-    DKPType = "DKP_10N"
-  elseif instDiff == 2 then
-    DKPType = "DKP_25N"
-  elseif instDiff == 3 then
-    DKPType = "DKP_10H"
-  elseif instDiff == 4 then
-    DKPType = "DKP_25H"
-  end
+  local DKPType = getDKPType(instDiff)
 
   boss=boss_translator[boss] or boss
   local bossEng = QDKP2bossEnglish[boss] or boss
@@ -148,3 +141,5 @@ function QDKP2_BossBonusSet(todo)
     QDKP2_Msg(QDKP2_COLOR_YELLOW.."Auto Boss Award disabled")
   end
 end
+
+
