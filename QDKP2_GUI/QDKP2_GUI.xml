@@ -397,7 +397,7 @@
 
       <Button name="QDKP2frame1_list" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUIROSTER" id="12">
          <Size>
-          <AbsDimension x="75" y="25"/>
+          <AbsDimension x="85" y="25"/>
         </Size>
         <Anchors>
           <Anchor relativePoint="TOP" point="CENTER" >
