@@ -9,7 +9,7 @@ Modified QDKPv2 2.6.7 for 3.3.5a
 - libBabble (translations) updated to latest 3.3.5 release
 - libBabble: corrected Russian localizations for GSB, BPC and BQL according to latest stable DBM for 3.3.5a
 - fixed Russian localization of Halion the Twilight Destroyer
-- fixed incorrect alt links if bugged character with empty name is in guild
+- possible fix for incorrect alt links if bugged character with empty name is in guild
 - auto distribute loot when raid member wins no-DKP roll (loot window must be open)
 - accept bids in "5k" format
 - accept bids in "10 os" format
