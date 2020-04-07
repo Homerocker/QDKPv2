@@ -298,25 +298,6 @@ function QDKP2_ParseGuildInfos()
     local SendGuildNotes
     local _,_,SN,Key = string.find(GuildNote,"%(QDKP:([%d]+),([%x]+)%)")
 
-    --Public RSA key
-    if (not Key) or #Key<28 or #Key>29 or (not tonumber("0x"..Key)) then    --key stored in GuildData is invalid.
-      if CanEditGuildInfo() and QDKP2_RSA.PUB and QDKP2_RSA.MOD then
-        QDKP2_Debug(1,"Guild","Public key from guild note is absent or invalid. Restoring...")
-        SendGuildNotes=true
-      end
-    else
-      local newPubkey=tonumber("0x"..string.sub(Key,-2))
-      local newModulus=string.sub(Key,1,-3)
-      local oldModulus=string.lower(BigInt_NumToHex(QDKP2_RSA.MOD or {0}))
-      if (newModulus ~= oldModulus) or (newPubkey ~= QDKP2_RSA.PUB) then
-        QDKP2_RSA.MOD = BigInt_HexToNum(newModulus)
-        QDKP2_RSA.PUB = newPubkey
-        QDKP2_RSA.PRIV= nil
-        QDKP2_Debug(1,"Guild","Public key updated!")
-        QDKP2_Events:Fire("RSAKEY_UPDATED")
-      end
-    end
-
     --Session code index
     if (not SN) or (not tonumber(SN)) or (tonumber(SN)<0) then
       if QDKP2_SID.INDEX>1 and CanEditGuildInfo() then
@@ -462,7 +443,8 @@ function QDKP2_GetIndexList()
   return output
 end
 
--- This function stores the SID index and the Public RSA key in the guild notes.
+-- This function stores the SID index in the guild notes.
+-- TODO: unused
 function QDKP2_SetGuildNotes()
 
  --Sync not implemented yet.Exit now
@@ -472,14 +454,6 @@ function QDKP2_SetGuildNotes()
   if not QDKP2_LOG_ENABLESYNC then return; end --inhibiting guild info update for now
   if not QDKP2_OfficerMode() then QDKP2_Msg(QDKP2_LOC_NoRights,"ERROR")(); return; end
   QDKP2_Debug(2,"Guild","Uploading guild data")
-  local pubKey
-  if QDKP2_RSA.PUB and QDKP2_RSA.MOD then
-    pubKey=QDKP2_RSA_num2hex(QDKP2_RSA.PUB)
-    if #pubKey==1 then pubKey="0"..pubKey ; end
-    pubKey=string.lower(BigInt_NumToHex(QDKP2_RSA.MOD)..pubKey)
-  else
-    pubKey='0'
-  end
   local newNotes="(QDKP:"..tostring(QDKP2_SID.INDEX)..","..pubKey..")"
   local GuildNotes=GetGuildInfoText() or ""
   local s,f=string.find(GuildNotes,"\(QDKP[^%)]*)")

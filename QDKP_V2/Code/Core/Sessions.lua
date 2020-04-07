@@ -169,11 +169,6 @@ function QDKP2_GetPermissions()
   else
     CanEditNote=QDKP2_COLOR_RED.."CAN'T"..QDKP2_COLOR_CLOSE
   end
---  if QDKP2_RSA.PRIV and QDKP2_RSA.PUB and QDKP2_RSA.MOD and QDKP2_RSA_CheckPrivKey() then
---    GotKey=QDKP2_COLOR_GREEN.."HAVE"..QDKP2_COLOR_CLOSE
---  else
---    GotKey=QDKP2_COLOR_RED.."HAVEN'T"..QDKP2_COLOR_CLOSE
---  end
   if CanEditGuildInfo() then
     CanEditGuildNotes=QDKP2_COLOR_GREEN.."CAN"..QDKP2_COLOR_CLOSE
   else

@@ -21,7 +21,6 @@ Code\Lib\LibBabble-Zone-3.0.lua
 Code\Lib\LibBabble-Inventory-3.0.lua
 Code\Lib\AceConsole-3.0.lua
 Code\Lib\Deformat-2.0.lua
-Code\Lib\LibRSA-1.0.lua
 
 Code\DefaultOptions.lua
 Code\Core\Costants.lua
@@ -40,7 +39,6 @@ Code\Core\Check.lua
 Code\Core\Backup.lua
 Code\Core\Misc.lua
 Code\Core\Bidman.lua
-Code\Core\Crypto.lua
 
 Local\enGB.lua
 Local\frFR.lua

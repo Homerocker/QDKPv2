@@ -17,7 +17,6 @@
     GameTooltip:AddLine("DKP officer rights:")
     GameTooltip:AddLine(M1)     --officer notes
     GameTooltip:AddLine(M2)     --guild notes
-    --GameTooltip:AddLine(M3)   --The RSA key is not used for now.
     GameTooltip:AddLine("CLICK: Show/Hide QDKP",.8,.8,.8,1)
     GameTooltip:AddLine("SHIFT+CLICK: Drag this button",.8,.8,.8,1)
     GameTooltip:Show()
