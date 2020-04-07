@@ -13,7 +13,6 @@
 --  You should first set the instances default, then alter the boss particular table.
 -- PLEASE NOTE: To detect a boss' kill that is not in the QDKP2_Bosses table, you must have the addons
 -- Deadly Boss Mod OR BigWigs.
---  Sorry, no hard mode detection at this time.
 -- CaSe InSeNsItIvE
 
 QDKP2_Instances = {
@@ -210,9 +209,9 @@ QDKP2_NotLogLoots = {
 -- ALL keywords are CaSe InSeNsItIvE
 
 QDKP2_BidM_Keywords={
-{keywords="need,greed"},			  --basic keywords to be used in a loot council guild (no bids).
-{keywords="$n,bid $n,need $n"},			--$n stands for any valid numeric value. this will catch bids.
-{keywords="half", value="$net/2"}, 		--The "value" keyword is used to tell QDKP how to calculate the "Value" field.
+--{keywords="need,greed"},			  --basic keywords to be used in a loot council guild (no bids).
+{keywords="$n,bid $n,need $n,os $n,$n os,$n ос,ос $n"},			--$n stands for any valid numeric value. this will catch bids.
+--{keywords="half", value="$net/2"}, 		--The "value" keyword is used to tell QDKP how to calculate the "Value" field.
 {keywords="all,max,all in",value="$net"}, 	--this is just the complementary of the previous keyword.
 {keywords="min,minimum",value="$minbid"}, 	--this places the minimum bid. if your guild doesn't have a minimum bid, simply remove it
 
@@ -257,14 +256,14 @@ QDKP2_BidM_Keywords={
 
 }
 
-QDKP2_BidM_GetFromWhisper    = true 	-- If true, QDKP will look for bids placed by whispers
+QDKP2_BidM_GetFromWhisper    = false 	-- If true, QDKP will look for bids placed by whispers
 QDKP2_BidM_GetFromGroup      = true  	-- if true, QDKP will look for bids placed in the raid or party chat
 
 QDKP2_BidM_AnnounceStart     = true 	-- If true, announce the bid start to the raid channel
 QDKP2_BidM_AnnounceWinner    = true	-- if true, announce the winner to the raid channel
 QDKP2_BidM_AnnounceCancel    = true	-- If true, announce when you cancel a bid in progress to the raid channel
 
-QDKP2_BidM_CountStop        	= false	-- Do you want to trigger a countdown when you announce a winner?
+QDKP2_BidM_CountStop        	= true	-- Do you want to trigger a countdown when you announce a winner?
 QDKP2_BidM_CatchRoll        	= true	-- if true, QDKP will catch rolls.
 QDKP2_BidM_CountAmount     	= 3		-- The countdown length. QDKP will tick with 2 seconds delay.
 QDKP2_BidM_AllowMultipleBid	= true	-- can a player modify a bid? if false, it will be a one shot bid only. /roll are always one shot only.
@@ -277,8 +276,8 @@ QDKP2_BidM_OverBid         	= false	-- if true, players will be able to bid more
 QDKP2_BidM_DebugValues       	= true 	-- if true, QDKP will print a debug string if a bid fail due to bad value/dkp expression in the keywords.
 QDKP2_BidM_CanOutGuild       	= true   	-- if false, players that are not in the guild won't be able to bid for items. DKP bid is disabled anyway, since they don't have dkp.
 QDKP2_BidM_RoundValue        	= true   	-- if true, QDKP will round the "value" field to the nearest integer.
-QDKP2_BidM_AutoRoll		= true  	-- If true, QDKP will do an internal roll if someone places a bid that needs a roll value to be calculated.if false, reject the bid asking to /roll first.
-QDKP2_BidM_MinBid            	= 1		-- Enter here the minimum bid allowed in your guild.
+QDKP2_BidM_AutoRoll		= false  	-- If true, QDKP will do an internal roll if someone places a bid that needs a roll value to be calculated.if false, reject the bid asking to /roll first.
+QDKP2_BidM_MinBid            	= 5	-- Enter here the minimum bid allowed in your guild.
 QDKP2_BidM_MaxBid            	= 9999999  -- Enter here the maximum bid allowed in your guild (if any)
 
 -- These are the channels QDKP sends notifications to.
@@ -288,7 +287,7 @@ QDKP2_BidM_MaxBid            	= 9999999  -- Enter here the maximum bid allowed i
 --NOTE: Plase write channels' name in UPPERCASE
 QDKP2_BidM_ChannelStart   =  "RAID_WARNING"
 QDKP2_BidM_ChannelCanc = "GROUP"
-QDKP2_BidM_ChannelWin = "GROUP"
+QDKP2_BidM_ChannelWin = "RAID_WARNING"
 QDKP2_BidM_ChannelCount = "GROUP"
 
 ------------------------- MISC --------------------------
@@ -309,7 +308,7 @@ QDKP2_CHARGEWITHZS = false
 QDKP2_REPORT_NEW_GUILDMEMBER = false
 
 --when a player joins/leaves the raid, if "true" this will make an alert for each raidmember who isn't in the guild.
-QDKP2_ALERT_NOT_IN_GUILD = false
+QDKP2_ALERT_NOT_IN_GUILD = true
 
 --if this is set to true, you'll be promped if you want to enable the auto winner detection system each time a raid boss is killed.
 QDKP2_PROMPT_AWDS = false
@@ -319,11 +318,12 @@ QDKP2_PROMPT_AWDS = false
 --you wish to manually override the data difference, just set this to the delta time, in hours. Can be positive or
 --negative.
 --If you don't want any time correction, set it to 0.
-QDKP2_LOCALTIME_MANUALDELTA=false
+QDKP2_LOCALTIME_MANUALDELTA=0
 
 ------------------------------- GUI -------------------------------------------------------
 QDKP2_USE_CLASS_BASED_COLORS=false	--if this is set to true, player entries in the log will be colored by class like
 					--they're in WoW raid's window.
+QDKP2_LOCALIZE_MESSAGES = false		--if this is set to false, only GUI will be localized but all messages sent in English
 
 ------------------------------- LOG ----------------------------------------
 
@@ -457,13 +457,13 @@ QDKP2_LOD_MAXLEN=6
 
 -- This is the channel to announce the modifications to.
 -- Can be 'guild', 'raid', 'party','officer', 'say', 'yell', raid_warning' or 'battleground'
-QDKP2_AnnounceChannel='raid'
+QDKP2_AnnounceChannel='guild'
 
 --This is the list of the events that should be announced. Set to true the ones that you want to be announced.
-QDKP2_AnnounceAwards 	= false	-- This includes Raid Awards, Boss kill bonus AND the IronMan Award
+QDKP2_AnnounceAwards 	= true	-- This includes Raid Awards, Boss kill bonus AND the IronMan Award
 QDKP2_AnnounceIronman   = false	-- This includes the start and the stop events of the IronMan bonus, but not the award itself.
-QDKP2_AnnounceDKPChange = false	-- All player-based modifications, like loot payments or custom DKP modifications.
-QDKP2_AnnounceNegative	= false	-- This will make an announce when a player's DKP pools becomes negative
+QDKP2_AnnounceDKPChange = true	-- All player-based modifications, like loot payments or custom DKP modifications.
+QDKP2_AnnounceNegative	= true	-- This will make an announce when a player's DKP pools becomes negative
 QDKP2_AnnounceTimertick	= false	-- This will announce the timer ticks to the raid (spammy)
 
 
@@ -471,13 +471,12 @@ QDKP2_AnnounceTimertick	= false	-- This will announce the timer ticks to the rai
 -- You can also set the message that will be sent to your guild member.
 -- Watch out: This feature will create a message EVERY TIME you change a player's DKP. This includes modification of existing
 --            log entries. For your sanity, QDKP will hide all these whispers from your chat window.
-QDKP2_AnnounceWhisper	 = false
-
+QDKP2_AnnounceWhisper	 = true
 
 -- The following is used to inform players when they failed to get an award, whispering them why they lost it.
-QDKP2_AnnounceFailAw    = false -- notify a player when he fails to get a raid award / boss kill bonus?
-QDKP2_AnnounceFailHo    = false -- notify a player when he fails to get the hourly bonus?
-QDKP2_AnnounceFailIM    = false -- notify a player when he fails to get the Ironman award?
+QDKP2_AnnounceFailAw    = true -- notify a player when he fails to get a raid award / boss kill bonus?
+QDKP2_AnnounceFailHo    = true -- notify a player when he fails to get the hourly bonus?
+QDKP2_AnnounceFailIM    = true -- notify a player when he fails to get the Ironman award?
 
 
 ---------------------- WINNER DETECTION SYSTEM ------------------------------------------------
@@ -496,7 +495,7 @@ QDKP2_WinTrigger={"win","wins","won","winner","winning","sold","dkp","points","g
 QDKP2_IRONMAN_PER_REQ = 90
 
 --if true, the player needs to be in the raid when the ironman bonus was started to obtain the bonus.
-QDKP2_IRONMAN_INWHENSTARTS = true
+QDKP2_IRONMAN_INWHENSTARTS = false
 
 --if true the player needs to be in the raid when the ironman bonus is closed to obtain the bonus.
 QDKP2_IRONMAN_INWHENENDS = false
@@ -514,10 +513,10 @@ QDKP2_AWARD_ZONE_TIMER        = "100%"		-- "%" of timer award earned if the play
 QDKP2_AWARD_ZONE_ZEROSUM      = "100%"		-- "%" of zerosum awarded if the player is in a different zone
 QDKP2_AWARD_ZONE_IRONMAN      = "100%"		-- "%" of ironman bonus awarded if the player is in a different zone
 
---QDKP2_AWARD_RANK_RAIDAWARD    = false
---QDKP2_AWARD_RANK_TIMER        = false
---QDKP2_AWARD_RANK_ZEROSUM      = false
---QDKP2_AWARD_RANK_IRONMAN      = false
+QDKP2_AWARD_RANK_RAIDAWARD    = false
+QDKP2_AWARD_RANK_TIMER        = false
+QDKP2_AWARD_RANK_ZEROSUM      = false
+QDKP2_AWARD_RANK_IRONMAN      = false
 
 QDKP2_AWARD_ALT_RAIDAWARD     = true		-- Can an Alt be given the raid award?
 QDKP2_AWARD_ALT_TIMER         = true		-- Can an Alt be given the timer award?
@@ -538,11 +537,7 @@ QDKP2_AWARD_EXTERNAL_IRONMAN  = true		-- Should an External recieve the Ironman 
 --QDKP2_UNDKPABLE_RANK={"Initiate","Banished"}.
 --you can also set what they can earn or not. if true, they'll earn that award. if false they won't.
 
-QDKP2_UNDKPABLE_RANK ={ }
-QDKP2_UNDKPABLE_IRONMAN = false  --can they earn DKP from IronMan bonus?
-QDKP2_UNDKPABLE_RAIDBOSS = false --can they earn DKP from Raid bonus (this include the award on boss kill)
-QDKP2_UNDKPABLE_TIME = false     --can they earn DKP from hourly bonus?
-QDKP2_UNDKPABLE_ZEROSUM=false    --Can they earn DKP from ZeroSum Awards?
+QDKP2_UNDKPABLE_RANK = {}
 
 --the ranks in this table are not seen at all by QDKP2, just as they would not be in the guild.
 QDKP2_HIDE_RANK={"Bank","Ignore"}
@@ -550,8 +545,8 @@ QDKP2_HIDE_RANK={"Bank","Ignore"}
 --This is the minimum level a character must reach to be added to QDKP's guild roster.
 QDKP2_MINIMUM_LEVEL=1
 
---give awards/hours to offline raid members?
-QDKP2_GIVEOFFLINE = false
+--should the player who is paying an item with zerosum method take part in the share?
+QDKP_GIVEZSTOLOOTER = false
 
 
 --------------------------- UPLOAD ---------------------------------------------------------
@@ -569,7 +564,7 @@ QDKP2_SENDTRIG_ZS = true          --upload when a ZeroSum award is done
 --------------------------- WARNINGS --------------------------------------------------
 
 -- when player data is modified, alerts you if his Net DKP amount is negative
-QDKP2_CHANGE_NOTIFY_NEGATIVE = false
+QDKP2_CHANGE_NOTIFY_NEGATIVE = true
 
 -- when player data is modified, alerts you if the change made his Net DKP amount negative
 QDKP2_CHANGE_NOTIFY_WENT_NEGATIVE = true
