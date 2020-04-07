@@ -4,7 +4,7 @@
 --             ## CORE FUNCTIONS ##
 --               Initializators
 --
--- Here I have all the functions called when QDKP starts, Including Costants and variables initializators.
+-- Here I have all the functions called when QDKP starts, Including Constants and variables initializators.
 --
 -- API Documentation:
 -- QDKP2_InitData(Guild): Reset only unsaved data if called without arguments. Reset <Guild>'s data if provided, and resets all if <Guild> is "*_ALL_*". Guild is moreline "Realm-Guild"

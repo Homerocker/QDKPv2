@@ -2,7 +2,7 @@
 -- This file is a part of QDKP_V2 (see about.txt in the Addon's root folder)
 
 --             ## LOGGING SYSTEM ##
---                   Costants
+--                   Constants
 
 --Log Types
 QDKP2LOG_EVENT = 1          --generic log event

@@ -23,7 +23,6 @@ Code\Lib\AceConsole-3.0.lua
 Code\Lib\Deformat-2.0.lua
 
 Code\DefaultOptions.lua
-Code\Core\Costants.lua
 Code\Core\DKP_Editing.lua
 Code\Core\DKP_Management.lua
 Code\Core\Events.lua
@@ -44,7 +43,7 @@ Local\enGB.lua
 Local\frFR.lua
 Local\ruRU.lua
 
-Code\Logging\Costants.lua
+Code\Logging\Constants.lua
 Code\Logging\LogEntry.lua
 Code\Logging\DB.lua
 Code\Logging\Logging.lua
