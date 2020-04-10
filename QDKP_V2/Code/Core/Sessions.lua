@@ -31,14 +31,8 @@ function QDKP2_StartSession(SessionName)
     QDKP2_Msg("You are managing an open session. To start annother you first need to close this one.")
     return
   end
-  local Diff
-  local instDiff=GetInstanceDifficulty()
-  if     instDiff==1 then Diff="10"
-  elseif instDiff==2 then Diff="25"
-  elseif instDiff==3 then Diff="10H"
-  elseif instDiff==4 then Diff="25H"
-  end
-  local DefaultSessName=(GetRealZoneText() or UNKNOWN)..' ('..Diff..')'
+
+  local DefaultSessName=(GetRealZoneText() or UNKNOWN)..' ('..QDKP2_GetInstanceDifficulty()..')'
 
   if SessionName=="" then
     QDKP2_OpenInputBox(QDKP2_LOC_NewSessionQ,QDKP2_StartSession)

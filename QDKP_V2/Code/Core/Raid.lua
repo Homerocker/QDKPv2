@@ -239,6 +239,13 @@ function QDKP2_GetNumRaidMembers()
  return total
 end
 
+function QDKP2_GetInstanceDifficulty()
+  local instDiff, _, maxPlayers, isHeroic, isDynamic = select(3, GetInstanceInfo())
+  if (isDynamic and isHeroic == 1) or (maxPlayers == 5 and instDiff == 2) or instDiff == 3 or instDiff == 4 then
+    return maxPlayers .. "H"
+  end
+  return maxPlayers
+end
 
 function QDKP2_AddStandby(name)
   if not QDKP2_ManagementMode() then QDKP2_NeedManagementMode(); return; end
