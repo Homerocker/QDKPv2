@@ -244,7 +244,7 @@ function QDKP2_GetInstanceDifficulty()
   if (isDynamic and isHeroic == 1) or (maxPlayers == 5 and instDiff == 2) or instDiff == 3 or instDiff == 4 then
     return maxPlayers .. "H"
   end
-  return maxPlayers
+  return maxPlayers.."N"
 end
 
 function QDKP2_AddStandby(name)
