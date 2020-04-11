@@ -71,7 +71,7 @@ function QDKP2_GetBossAward(boss, zone)
   end
 
   local award
-  local DKPType = "DKP_"..QDKP2_GetInstanceDifficulty()
+  local DKPType = "DKP_" .. QDKP2_GetInstanceDifficulty()
   zone = zone or GetRealZoneText()
   local zoneEng = QDKP2zoneEnglish[zone] or zone
   zone = string.lower(zone)
@@ -96,7 +96,7 @@ function QDKP2_GetBossAward(boss, zone)
 end
 
 function QDKP2_IsInBossTable(boss, DKPType)
-  local DKPType = DKPType or "DKP_"..QDKP2_GetInstanceDifficulty()
+  local DKPType = DKPType or "DKP_" .. QDKP2_GetInstanceDifficulty()
   boss = boss_translator[boss] or boss
   local bossEng = QDKP2bossEnglish[boss] or boss
   boss = string.lower(boss)
