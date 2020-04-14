@@ -121,13 +121,6 @@ function QDKP2_GetTotSpentRatio(name,doNOtReset)
   return (Total / Spent)
 end
 
-
-function QDKP2_GetSyncDelta(name)
---this function returns a list in the form {x,y,z} with the deltas of QDKP2stored and QDKP2sync. if the result
---is {0,0,0} return false. While this is true, means that you have unsynced modifications.
-end
-
-
 function QDKP2_GetSessionAmounts(name)
   local G, S
   local sessions=QDKP2_IsSessionPresent()
