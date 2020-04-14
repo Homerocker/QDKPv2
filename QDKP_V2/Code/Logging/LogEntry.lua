@@ -991,25 +991,25 @@ function QDKP2log_GetStr(Log)
     undo=string.gsub(undo,'nil','')
   else undo=''
   end
-  if reason then reason=string.gsub(reason,"§","S")
+  if reason then reason=string.gsub(reason,"ï¿½","S")
   else reason=''
   end
-  local out=tostring(Log[1] or '')..'§'..
-            tostring(Log[2] or '')..'§'..
-            reason..'§'..
-            tostring(Log[4] or '')..'§'..
-            undo..'§'..
-            tostring(Log[6] or '')..'§'..
-            tostring(Log[7] or '')..'§'..
-            flags..'§'..
-            tostring(Log[9] or '')..'§'..
+  local out=tostring(Log[1] or '')..'ï¿½'..
+            tostring(Log[2] or '')..'ï¿½'..
+            reason..'ï¿½'..
+            tostring(Log[4] or '')..'ï¿½'..
+            undo..'ï¿½'..
+            tostring(Log[6] or '')..'ï¿½'..
+            tostring(Log[7] or '')..'ï¿½'..
+            flags..'ï¿½'..
+            tostring(Log[9] or '')..'ï¿½'..
             tostring(Log[10] or '')
   return out
 end
 
 function QDKP2log_GetLogFromString(str)
   local _,_,Type,TS,Act,Ver,UndoS,ModBy,ModDate,Flags,Own,Sign=string.find(
-  '([^§]*)§([^§]*)§([^§]*)§([^§]*)§([^§]*)§([^§]*)§([^§]*)§([^§]*)§([^§]*)§([^§]*)')
+  '([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)ï¿½([^ï¿½]*)')
   Type=tonumber(Type) or QDKP2LOG_INVALID
   TS=tonumber(TS)
   Ver=tonumber(Ver)
