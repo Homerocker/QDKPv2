@@ -175,7 +175,7 @@ function QDKP2_AddTotals(name, award, spent, hours, reason, noMsgIt, timestamp, 
   if type(spent) == "string" then
     spent = QDKP2_GetAmountFromText(spent, name);
   end
-  z
+
   hours = tonumber(hours)
 
   coeff = tonumber(coeff)
