@@ -83,8 +83,6 @@ function QDKP2_ReadDatabase(GuildName)
 
   GuildData.externals   = GuildData.externals or {}
 
-  GuildData.sync        = GuildData.sync or {}
-
   GuildData.ironMan     = GuildData.ironMan or {}
 
   GuildData.Alts        = GuildData.Alts or {}
@@ -124,8 +122,6 @@ function QDKP2_ReadDatabase(GuildName)
   QDKP2stored = GuildData.stored
 
   QDKP2externals = GuildData.externals
-
-  QDKP2sync = GuildData.sync
 
   QDKP2ironMan = GuildData.ironMan
 

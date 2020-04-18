@@ -148,7 +148,6 @@ function QDKP2_DownloadGuild(Revert)
       if not QDKP2note[name] then
         QDKP2_Debug(2,"Guild","New guild member detected:".. name)
         QDKP2note[name] = QDKP2stored[name] or {total,spent,hours}
-        QDKP2sync[name]={0,0,0}
         new = new + 1
         NewEntry = true
       end
