@@ -253,8 +253,6 @@ function QDKP2_DownloadGuild(Revert)
   QDKP2name = nameTemp
   QDKP2rankIndex=rankIndexTemp
 
-  QDKP2_ParseGuildInfos()
-
   QDKP2_UpdateRaid()
   QDKP2_Events:Fire("DATA_UPDATED","roster")
   if updated>0 then
@@ -284,48 +282,6 @@ function QDKP2_ReverPlayer(name)
     QDKP2_SendHiddenWhisper(mess,name)
   end
 end
-
-function QDKP2_ParseGuildInfos()
--- This section manages the guild informations. --
-
- --Sync not implemented yet.Exit now
-	if true then return; end
-
-  if not QDKP2_LOG_ENABLESYNC then return; end
-  if QDPK2_ReadGuildInfo and QDKP2_GUILD_NAME then
-    local GuildNote=GetGuildInfoText() or ''
-    local SendGuildNotes
-    local _,_,SN,Key = string.find(GuildNote,"%(QDKP:([%d]+),([%x]+)%)")
-
-    --Session code index
-    if (not SN) or (not tonumber(SN)) or (tonumber(SN)<0) then
-      if QDKP2_SID.INDEX>1 and CanEditGuildInfo() then
-        QDKP2_Debug(1,"Guild","Guild SID is absent or invalid. Restoring....")
-        SendGuildNotes=true
-      end
-    else
-      SN=tonumber(SN)
-      if SN>QDKP2_SID.INDEX then
-        QDKP2_Debug(3,"Guild","Guild SID has increased to "..tostring(SN))
-        QDKP2_SID.INDEX=SN
-      elseif SN==1 and QDKP2_SID.INDEX>1 then
-        QDKP2_Debug(1,"Guild","SID Reset detected (SID.INDEX=1). Clearing...")
-        QDKP2_SID.INDEX=1
-        QDKP2log_Init(Log)
-      elseif QDKP2_SID.INDEX>SN and CanEditGuildInfo() then
-        QDKP2_Debug(1,"Guild","Guild SID is lower than local?? restoring to "..tostring(QDKP2_SID.INDEX))
-        SendGuildNotes=true
-      elseif QDKP2_SID.INDEX>SN then
-        QDKP2_Debug(1,"Guild","Guild SID is lower than local?? Can't restore, reverting back local index.")
-        QDKP2_SID.INDEX=SN
-      end
-    end
-    if SendGuildNotes then QDKP2_SetGuildNotes(); end
-  else
-    QDKP2_Debug(2,"Guild","Avoiding GuildInfo update for now.")
-  end
-end
-
 
 
 -------------------------------------- UPLOAD FUNCTIONS ----------------
