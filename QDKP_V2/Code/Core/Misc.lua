@@ -356,8 +356,8 @@ function QDKP2_SendHiddenWhisper(lines, towho)
     lines = { lines };
   end
   if not QDKP2online[towho] then
-    towho = nil
     local main = QDKP2_GetMain(towho)
+    towho = nil
     for i = 1, QDKP2_GetNumGuildMembers() do
       local name, _, _, _, _, _, _, _, _, online = QDKP2_GetGuildRosterInfo(i)
       if QDKP2_GetMain(name) == main and online then
