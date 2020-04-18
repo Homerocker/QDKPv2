@@ -43,7 +43,6 @@ function QDKP2_StartSession(SessionName)
   SessionName = SessionName or QDKP2_LOC_NoSessName
 
   QDKP2_SID.INDEX = QDKP2_SID.INDEX + 1
-  QDKP2_SetGuildNotes()
   SID = tostring(QDKP2_SID.INDEX) .. '.' .. QDKP2_PLAYER_NAME_12
   QDKP2_SID.MANAGING = SID
 

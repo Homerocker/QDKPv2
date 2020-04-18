@@ -12,7 +12,6 @@
 -- QDKP2_RefreshGuild: Same as DownloadGuild with the Revert flag set to false.
 -- QDKP2_Revert: calls DownloadGuild with the revert flag. This will reset all local data to the guild actual infos.
 -- QDKP2_UploadAll(): updates the officier/public notes field for every modified guild member
--- QDKP2_SetGuildNotes: updates the guild notes with the given SID/Public key.
 -- QDKP2_GetNumGuildMembers(): same as GetNumGuildMembers, but counts externals as well.
 -- QDKP2_GetIndexList(): returns a list in the form i=List[name]. Useful for the following functions.
 -- QDKP2_GetGuildRosterInfo(i): same as GetGuildRosterInfo, but counts externals as well. retruns an extra flag 'inGuild'.
@@ -396,30 +395,6 @@ function QDKP2_GetIndexList()
     output[name] = i
   end
   return output
-end
-
--- This function stores the SID index in the guild notes.
--- TODO: unused
-function QDKP2_SetGuildNotes()
-
- --Sync not implemented yet.Exit now
-	if true then return; end
-
-
-  if not QDKP2_LOG_ENABLESYNC then return; end --inhibiting guild info update for now
-  if not QDKP2_OfficerMode() then QDKP2_Msg(QDKP2_LOC_NoRights,"ERROR")(); return; end
-  QDKP2_Debug(2,"Guild","Uploading guild data")
-  local newNotes="(QDKP:"..tostring(QDKP2_SID.INDEX)..","..pubKey..")"
-  local GuildNotes=GetGuildInfoText() or ""
-  local s,f=string.find(GuildNotes,"\(QDKP[^%)]*)")
-  if s then
-  QDKP2_Debug(3,"Guild","Updating existing QDKP field...")
-    GuildNotes=string.sub(GuildNotes,1,s-2)..newNotes..string.sub(GuildNotes,f+2)
-  else
-    QDKP2_Debug(3,"Guild","Creating new QDKP field...")
-    GuildNotes=string.sub(GuildNotes,255-(#newNotes+3)).."\n\n\n"..newNotes --255 is the maximum length of the guild infos.
-  end
-    SetGuildInfoText(GuildNotes)
 end
 
 -------------UTILITIES---------------------

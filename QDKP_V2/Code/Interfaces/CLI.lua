@@ -847,7 +847,6 @@ function QDKP2_resetGuild(sure)
   QDKP2_ACTIVE = false
   QDKP2_resetDKPAmounts(true)
   QDKP2_SID.INDEX = 1
-  QDKP2_SetGuildNotes()
   QDKP2_resetAll(true)
 end
 
