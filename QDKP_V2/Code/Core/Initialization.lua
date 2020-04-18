@@ -359,6 +359,6 @@ function QDKP2_ResetPlayer(name)
   QDKP2_RefreshGuild()
   GuildRoster()
 
-  QDKP2_Msg(name .. " has been rinitialized successfully")
+  QDKP2_Msg(name .. " has been initialized successfully")
 end
 
