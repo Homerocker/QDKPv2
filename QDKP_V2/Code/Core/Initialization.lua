@@ -100,8 +100,6 @@ function QDKP2_ReadDatabase(GuildName)
   GuildData.GUI.DKP_QuickModify = GuildData.GUI.DKP_QuickModify or QDKP2GUI_Default_QuickMod
   GuildData.GUI.ShowOutGuild = GuildData.GUI.ShowOutGuild or QDKP2GUI_Default_ShowOutGuild
 
-  GuildData.Crypt = GuildData.Crypt or {}
-
   GuildData.BidM = GuildData.BidM or {}
 
   QDKP2log = GuildData.log
@@ -132,8 +130,6 @@ function QDKP2_ReadDatabase(GuildName)
   QDKP2_ModifiedPlayers = GuildData.ModifiedPlayers
 
   QDKP2GUI_Vars = GuildData.GUI
-
-  QDKP2_Crypt = GuildData.Crypt
 
   QDKP2_BidM = GuildData.BidM
 
