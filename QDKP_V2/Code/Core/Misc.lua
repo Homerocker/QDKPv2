@@ -358,17 +358,33 @@ function QDKP2_SendHiddenWhisper(lines, towho)
   if not QDKP2online[towho] then
     local main = QDKP2_GetMain(towho)
     towho = nil
-    for i = 1, QDKP2_GetNumGuildMembers() do
-      local name, _, _, _, _, _, _, _, _, online = QDKP2_GetGuildRosterInfo(i)
-      if QDKP2_GetMain(name) == main and online then
+
+    -- looking for online alt in raid
+    for i = 1, QDKP2_GetNumRaidMembers() do
+      local name, _, _, _, _, _, _, online = QDKP2_GetRaidRosterInfo(i)
+      if online and QDKP2_GetMain(name) == main then
         towho = name
         break
       end
     end
+
+    if not towho then
+      -- if online alt in raid not found, continue looking in guild
+      for i = 1, QDKP2_GetNumGuildMembers() do
+        local name, _, _, _, _, _, _, _, _, online = QDKP2_GetGuildRosterInfo(i)
+        if online and QDKP2_GetMain(name) == main then
+          towho = name
+          break
+        end
+      end
+    end
+
   end
+
   if not towho then
     return
   end
+
   for i, line in pairs(lines) do
     local msg = "QDKP2> " .. line
     QDKP2suppressWhispers['>' .. towho .. msg] = true
