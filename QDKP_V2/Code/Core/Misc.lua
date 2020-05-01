@@ -370,8 +370,8 @@ function QDKP2_SendHiddenWhisper(lines, towho)
 
     if not towho then
       -- if online alt in raid not found, continue looking in guild
-      for i = 1, QDKP2_GetNumGuildMembers() do
-        local name, _, _, _, _, _, _, _, _, online = QDKP2_GetGuildRosterInfo(i)
+      for i = 1, GetNumGuildMembers() do
+        local name, _, _, _, _, _, _, _, online = GetGuildRosterInfo(i)
         if online and QDKP2_GetMain(name) == main then
           towho = name
           break
