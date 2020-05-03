@@ -355,7 +355,9 @@ function QDKP2_SendHiddenWhisper(lines, towho)
   if type(lines) == 'string' then
     lines = { lines };
   end
-  if not QDKP2online[towho] then
+  if QDKP2online[towho] then
+    towho = { towho }
+  else
     local main = QDKP2_GetMain(towho)
     towho = {}
 
@@ -396,9 +398,9 @@ function QDKP2_SendHiddenWhisper(lines, towho)
 
   for i, line in pairs(lines) do
     local msg = "QDKP2> " .. line
-    for j = 1, #towho do
-      QDKP2suppressWhispers['>' .. towho[j] .. msg] = true
-      ChatThrottleLib:SendChatMessage("NORMAL", "QDKP2", msg, "WHISPER", nil, towho[j])
+    for _, name in pairs(towho) do
+      QDKP2suppressWhispers['>' .. name .. msg] = true
+      ChatThrottleLib:SendChatMessage("NORMAL", "QDKP2", msg, "WHISPER", nil, name)
     end
   end
 end
