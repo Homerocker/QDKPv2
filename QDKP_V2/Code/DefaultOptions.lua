@@ -471,7 +471,8 @@ QDKP2_AnnounceTimertick	= false	-- This will announce the timer ticks to the rai
 -- You can also set the message that will be sent to your guild member.
 -- Watch out: This feature will create a message EVERY TIME you change a player's DKP. This includes modification of existing
 --            log entries. For your sanity, QDKP will hide all these whispers from your chat window.
-QDKP2_AnnounceWhisper	 = true
+QDKP2_AnnounceWhisper           = true
+QDKP2_AnnounceWhisperExternals  = false
 
 -- The following is used to inform players when they failed to get an award, whispering them why they lost it.
 QDKP2_AnnounceFailAw    = true -- notify a player when he fails to get a raid award / boss kill bonus?

@@ -39,7 +39,7 @@ QDKP2_VERSION = GetAddOnMetadata("QDKP_V2", "Version")
 QDKP2_DBREQ = 20553
 QDKP2_BETA = false
 QDKP2_DEBUG = 0
-------------------------------COLOR GLOBALS------------------------
+------------------------------ COLOR GLOBALS------------------------
 
 QDKP2_COLOR_RED = "|cffff0000";
 QDKP2_COLOR_YELLOW = "|cffffff00";
@@ -54,7 +54,7 @@ QDKP2_TOTAL = 1
 QDKP2_SPENT = 2
 QDKP2_HOURS = 3
 
----------------------------GLOBALS/FLAGS INIT------------------------------
+--------------------------- GLOBALS/FLAGS INIT------------------------------
 
 QDKP2_CHECK_RUN = 0
 QDKP2_CHECK_RENEW_TIMER = 0
@@ -70,7 +70,7 @@ QDKP2_HOURS = 3
 
 QDKP2_outputstyle = 4
 
----------------------------------------NOTIFY----------------------------
+--------------------------------------- NOTIFY----------------------------
 
 --notifies the raid of gains
 function QDKP2_NotifyAll()
@@ -138,11 +138,11 @@ function QDKP2_Debug(level, system, text)
   end
   level = level or 1
   if level > QDKP2_DEBUG then
-    return ;
+    return;
   end
   system = system or "General"
   if QDKP2_Debug_Filter and QDKP2_Debug_Filter[string.lower(system)] then
-    return ;
+    return;
   end
   text = text or "nil"
   DEFAULT_CHAT_FRAME:AddMessage(QDKP2_COLOR_YELLOW .. "<QDKP2-DBG> " .. system .. ": " .. QDKP2_COLOR_WHITE .. tostring(text) .. QDKP2_COLOR_CLOSE);
@@ -168,7 +168,7 @@ function QDKP2_Debug_SetFilter(System, Status)
     subsystems[string.lower(val)] = true;
   end)
   if not subsystems[System] then
-    return ;
+    return;
   end
   if not QDKP2_Debug_Filter then
     QDKP2_Debug_Filter = {};
@@ -269,7 +269,7 @@ end
 --retrun true if there is an uploaded change in the player log
 function QDKP2_IsModified(name)
   if not QDKP2_IsInGuild(name) then
-    return ;
+    return;
   end
   name = QDKP2_GetMain(name)
   if QDKP2note[name][QDKP2_TOTAL] ~= QDKP2stored[name][QDKP2_TOTAL] or QDKP2note[name][QDKP2_SPENT] ~= QDKP2stored[name][QDKP2_SPENT] or math.abs(QDKP2note[name][QDKP2_HOURS] - QDKP2stored[name][QDKP2_HOURS]) > 0.09 then
@@ -357,38 +357,49 @@ function QDKP2_SendHiddenWhisper(lines, towho)
   end
   if not QDKP2online[towho] then
     local main = QDKP2_GetMain(towho)
-    towho = nil
+    towho = {}
 
     -- looking for online alt in raid
     for i = 1, QDKP2_GetNumRaidMembers() do
       local name, _, _, _, _, _, _, online = QDKP2_GetRaidRosterInfo(i)
       if online and QDKP2_GetMain(name) == main then
-        towho = name
+        table.insert(towho, name)
         break
       end
     end
 
-    if not towho then
+    if #towho == 0 then
       -- if online alt in raid not found, continue looking in guild
       for i = 1, GetNumGuildMembers() do
         local name, _, _, _, _, _, _, _, online = GetGuildRosterInfo(i)
         if online and QDKP2_GetMain(name) == main then
-          towho = name
+          table.insert(towho, name)
           break
         end
       end
     end
 
+    if #towho == 0 and QDKP2_AnnounceWhisperExternals then
+      -- if online alt in guild not found, whispering all external alts
+      for i = GetNumGuildMembers(true) + 1, QDKP2_GetNumGuildMembers() do
+        local name, _, _, _, _, _, _, _, _, online = QDKP2_GetGuildRosterInfo(i)
+        if online and QDKP2_GetMain(name) == main then
+          table.insert(towho, name)
+        end
+      end
+    end
   end
 
-  if not towho then
+  if #towho == 0 then
     return
   end
 
   for i, line in pairs(lines) do
     local msg = "QDKP2> " .. line
-    QDKP2suppressWhispers['>' .. towho .. msg] = true
-    ChatThrottleLib:SendChatMessage("NORMAL", "QDKP2", msg, "WHISPER", nil, towho)
+    for j = 1, #towho do
+      QDKP2suppressWhispers['>' .. towho[j] .. msg] = true
+      ChatThrottleLib:SendChatMessage("NORMAL", "QDKP2", msg, "WHISPER", nil, towho[j])
+    end
   end
 end
 
@@ -405,7 +416,6 @@ end
 
 
 --------------------- STRING SERVICES ----------------------
-
 function QDKP2_FormatName(name)
   --formats the name properly.  ie airiena would become Airiena
   --Unicode compatible
@@ -423,7 +433,7 @@ function QDKP2_FormatName(name)
     --if i==#name then return string.upper(name); end
     local char = strbyte(name, i + 1)
     if not char or (char < 128 or char > 191) then
-      break ;
+      break;
     end
     i = i + 1
     till = i
@@ -465,7 +475,7 @@ end
 
 function QDKP2_SplitString(txt, delimiter)
   --returns a list of substring of txt usind delimeter to break them.
-  local result = { }
+  local result = {}
   local from = 1
   local delim_from, delim_to = string.find(txt, delimiter, from)
   while delim_from do
@@ -491,9 +501,9 @@ end
 
 
 --------------------------------
---QDKP2_GetDateTextFromTS
---Convert a plain timestamp (Seconds since the epoch) to a human redable date, applying
---the QDKP2 format and settings.
+-- QDKP2_GetDateTextFromTS
+-- Convert a plain timestamp (Seconds since the epoch) to a human redable date, applying
+-- the QDKP2 format and settings.
 function QDKP2_GetDateTextFromTS(Time)
   if not Time or type(Time) ~= 'number' then
     return "-";
@@ -520,9 +530,9 @@ end
 function QDKP2_AppendSpace(text, number)
   local temp = ""
   for i = 0, number do
-    temp = temp .. " "  --adds x number of spaces
+    temp = temp .. " " --adds x number of spaces
   end
-  text = text .. temp   --adds spaces to text
+  text = text .. temp --adds spaces to text
   return text
 end
 
@@ -593,7 +603,7 @@ function MergeLists(L1,L2)
   for i=1,#L2 do table.insert(o,L2[i]); end
   return o
 end
-]]--
+]] --
 --------------------- MATHS SERVICES -------------------------------
 
 -- Rounds a given float to the nearest integer.
@@ -621,5 +631,5 @@ function QDKP2_GetArgs(message, separator)
 
   return args;
 end
-]]--
+]] --
 
