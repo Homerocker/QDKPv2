@@ -137,9 +137,7 @@ function QDKP2_ManagementMode()
 end
 
 function QDKP2_OfficerMode()
-  --if true then return true; end
-  if not CanEditGuildInfo() or
-          (QDKP2_OfficerOrPublic == 2 and not CanEditPublicNote()) or
+  if (QDKP2_OfficerOrPublic == 2 and not CanEditPublicNote()) or
           (QDKP2_OfficerOrPublic ~= 2 and not CanEditOfficerNote()) then
     return
   end
@@ -161,15 +159,8 @@ function QDKP2_GetPermissions()
   else
     CanEditNote = QDKP2_COLOR_RED .. "CAN'T" .. QDKP2_COLOR_CLOSE
   end
-  if CanEditGuildInfo() then
-    CanEditGuildNotes = QDKP2_COLOR_GREEN .. "CAN" .. QDKP2_COLOR_CLOSE
-  else
-    CanEditGuildNotes = QDKP2_COLOR_RED .. "CAN'T" .. QDKP2_COLOR_CLOSE
-  end
   local M1 = "You " .. CanEditNote .. " edit " .. NoteName .. " notes."
-  local M2 = "You " .. CanEditGuildNotes .. " edit Guild infos."
-  --  local M3="You "..GotKey.." the Guild's private key."
-  return M1, M2 --,M3
+  return M1
 end
 
 function QDKP2_NeedManagementMode()

@@ -13,10 +13,8 @@
     else
       GameTooltip:AddLine("Read-only mode",1,1,1)
     end
-    local M1,M2,M3 = QDKP2_GetPermissions()
     GameTooltip:AddLine("DKP officer rights:")
-    GameTooltip:AddLine(M1)     --officer notes
-    GameTooltip:AddLine(M2)     --guild notes
+    GameTooltip:AddLine(QDKP2_GetPermissions())     --officer notes
     GameTooltip:AddLine("CLICK: Show/Hide QDKP",.8,.8,.8,1)
     GameTooltip:AddLine("SHIFT+CLICK: Drag this button",.8,.8,.8,1)
     GameTooltip:Show()

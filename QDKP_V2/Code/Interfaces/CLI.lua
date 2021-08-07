@@ -392,8 +392,7 @@ function QDKP2_CLI_ProcessCommand(text)
     return
 
   elseif W1 == "rights" or W1 == "checkright" or W1 == "checkrights" then
-    local M1, M2, M3 = QDKP2_GetPermissions()
-    QDKP2_Msg(M1); QDKP2_Msg(M2); --QDKP2_Msg(M3)
+    QDKP2_Msg(QDKP2_GetPermissions());
     return
 
   elseif W1 == "debug" then

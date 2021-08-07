@@ -20,3 +20,4 @@ Modified QDKPv2 2.6.7 for 3.3.5a
 - DKP modifiers for standby players
 - correctly preload DBM/BigWigs if installed
 - fixed whispers to alts
+- "Modify Guild Info" permission not required
