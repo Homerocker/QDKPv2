@@ -145,6 +145,7 @@ function QDKP2_RefreshAll()
   QDKP2GUI_Roster:Refresh(true) --forces a resort
   QDKP2GUI_Log:Refresh()
   QDKP2GUI_Toolbox:Refresh()
+  QDKP2GUI_MiniBtn_Refresh()
   --QDKP2_Refresh_ModifyPane("refresh")
 end
 
