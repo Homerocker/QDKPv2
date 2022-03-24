@@ -22,6 +22,7 @@ end
 function QDKP2GUI_OnLoad()
   QDKP2_Debug(2,"GUI","Doing OnLoad...")
   --QDKP2_RefreshAll()
+  QDKP2GUI_MiniBtn_Refresh()
   QDKP2_Frame2_Header:SetText("Roster")
   QDKP2_Frame4_Header:SetText("Set Player Amounts")
   --hook to detect shift-click on item link
