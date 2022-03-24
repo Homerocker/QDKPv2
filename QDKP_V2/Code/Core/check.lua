@@ -103,6 +103,8 @@ function QDKP2_InitiateCheck(AddTries)
   QDKP2_CHECK_RUN = 0  --plan the check
   QDKP2_CHECK_RENEW_TIMER = 0
   QDKP2_CheckInProgress = true
+  QDKP2GUI_Main:refreshIcon()
+  QDKP2GUI_MiniBtn_Refresh()
   QDKP2_CHECK_PlannedRefresh=QDKP2libs.CheckTimer:ScheduleTimer(StartPlannedRefresh, QDKP2_CHECK_REFRESH_DELAY)
   QDKP2_CHECK_Check = QDKP2libs.CheckTimer:ScheduleTimer(CheckStart, QDKP2_CHECK_REFRESH_DELAY+1)
 end

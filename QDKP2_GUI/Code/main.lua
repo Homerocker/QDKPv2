@@ -33,7 +33,9 @@ function myClass.Toggle(self)
 end
 
 function myClass:refreshIcon()
-  if QDKP2_UnuploadedChanges() then
+  if QDKP2_CheckInProgress then
+    LootLinkFramePortrait:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\Logo.tga");
+  elseif QDKP2_UnuploadedChanges() then
     LootLinkFramePortrait:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataNOK.tga");
   else
     LootLinkFramePortrait:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataOK.tga");

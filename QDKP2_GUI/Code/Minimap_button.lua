@@ -75,7 +75,9 @@ function QDKP2GUI_MiniBtn_Update(arg1, arg2)
 end
 
 function QDKP2GUI_MiniBtn_Refresh()
-  if QDKP2_UnuploadedChanges() then
+  if QDKP2_CheckInProgress then
+    QDKP2GUI_MiniBtnTop:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\LogoSmall.tga");
+  elseif QDKP2_UnuploadedChanges() then
     QDKP2GUI_MiniBtnTop:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataNOK.tga");
   else
     QDKP2GUI_MiniBtnTop:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataOK.tga");
