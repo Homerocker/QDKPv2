@@ -11,6 +11,7 @@ function QDKP2GUI_MiniBtn_LabelOn(arg1, arg2)
   end
   GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
   GameTooltip:AddLine("Quick DKP " .. tostring(QDKP2_VERSION))
+  GameTooltip:AddLine("Quick DKP GUI " .. tostring(GetAddOnMetadata("QDKP2_GUI", "Version")))
   if QDKP2_OfficerMode() then
     GameTooltip:AddLine("Officer mode", 0.3, 1, 0.3)
   else
