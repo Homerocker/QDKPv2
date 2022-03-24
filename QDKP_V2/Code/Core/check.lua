@@ -59,6 +59,8 @@ local function CheckGo()
   else
     QDKP2_Msg("Please try to upload again.", "ERROR")
   end
+  QDKP2GUI_Main:refreshIcon()
+  QDKP2GUI_MiniBtn_Refresh()
   QDKP2_Events:Fire("DATA_UPDATED","roster")
   QDKP2_Events:Fire("DATA_UPDATED","log")
 end

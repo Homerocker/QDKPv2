@@ -32,6 +32,14 @@ function myClass.Toggle(self)
   end
 end
 
+function myClass:refreshIcon()
+  if QDKP2_UnuploadedChanges() then
+    LootLinkFramePortrait:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataNOK.tga");
+  else
+    LootLinkFramePortrait:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataOK.tga");
+  end
+end
+
 function myClass.Refresh(self)
   if not self.Frame:IsVisible() then
     return ;
@@ -156,14 +164,8 @@ function myClass.Refresh(self)
   QDKP2frame1_dkpBox_perhr:SetText(QDKP2GUI_Vars.DKP_Timer)
   QDKP2frame1_dkpBox_IM:SetText(QDKP2GUI_Vars.DKP_IM)
   QDKP2_frame1_BackupDate:SetText(TimeString)
-  if QDKP2_UnuploadedChanges() then
-    LootLinkFramePortrait:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataNOK.tga");
-  else
-    LootLinkFramePortrait:SetTexture("Interface\\Addons\\QDKP2_GUI\\Arts\\DataOK.tga");
-  end
+  self:refreshIcon()
 end
-
-
 
 -------------------- EVENT MANAGER -----------------------------
 

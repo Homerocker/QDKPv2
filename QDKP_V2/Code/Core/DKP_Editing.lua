@@ -291,6 +291,9 @@ function QDKP2_AddTotals(name, award, spent, hours, reason, noMsgIt, timestamp, 
     return ;
   end
 
+  QDKP2GUI_MiniBtn_Refresh()
+  QDKP2GUI_Main:refreshIcon()
+
   if not noLogIt then
 
     if Gained == 0 then
