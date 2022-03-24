@@ -1928,7 +1928,7 @@
       </Anchors>
       <Scripts>
         <OnLoad>
-          this:SetMaxBytes(7)
+          this:SetMaxBytes(8)
         </OnLoad>
         <OnEnterPressed>
           QDKP2GUI_Toolbox:OnEnter()
