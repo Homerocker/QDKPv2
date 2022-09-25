@@ -675,7 +675,7 @@ lib:SetBaseTranslations {
 	["Thaladred the Darkener"] = "Thaladred the Darkener",
 	["Thane Korth'azz"] = "Thane Korth'azz",
 	["The Beast"] = "The Beast",
-	["Northrend Beasts"] = "The Beasts of Northrend",
+	["Northrend Beasts"] = "Northrend Beasts",
 	["The Big Bad Wolf"] = "The Big Bad Wolf",
 	["The Black Knight"] = "The Black Knight",
 	["The Black Stalker"] = "The Black Stalker",
