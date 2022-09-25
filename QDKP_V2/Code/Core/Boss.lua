@@ -21,8 +21,6 @@ boss_translator["Koralon the Flame Watcher"] = "Koralon"
 boss_translator["Toravon the Ice Watcher"] = "Toravon"
 boss_translator["Halion the Twilight Destroyer"] = "Halion"
 
-
-
 function QDKP2_BossKilled(boss)
   -- called mainly by event, triggers a boss award if <boss> is in QDKP2_Bosses table.
   -- uses libBabble-Bosses for locales.
@@ -51,7 +49,8 @@ function QDKP2_BossKilled(boss)
 
   if award then
     QDKP2log_Entry("RAID", boss, QDKP2LOG_BOSS)
-    if QDKP2_AutoBossEarn then --if the Boss Award is on
+    if QDKP2_AutoBossEarn then
+      --if the Boss Award is on
       local mess = string.gsub(QDKP2_LOC_BossKill, '$BOSS', boss)
       QDKP2_Msg(QDKP2_COLOR_BLUE .. mess)
       local reason = string.gsub(QDKP2_LOC_Kill, '$BOSS', boss)
@@ -107,12 +106,15 @@ function QDKP2_IsInBossTable(boss, DKPType)
       return BossDKP[DKPType]
     end
   end
+  QDKP2_Debug(2, "Core", tostring(boss) .. " (" .. tostring(bossEng) .. ") not found in QDKP2_Bosses")
 end
 
 function QDKP2_BossBonusSet(todo)
   if todo == "toggle" then
-    if QDKP2_AutoBossEarn then QDKP2_BossBonusSet("off")
-    else QDKP2_BossBonusSet("on")
+    if QDKP2_AutoBossEarn then
+      QDKP2_BossBonusSet("off")
+    else
+      QDKP2_BossBonusSet("on")
     end
   elseif todo == "on" then
     QDKP2_AutoBossEarn = true
