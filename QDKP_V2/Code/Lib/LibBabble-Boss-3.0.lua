@@ -5258,7 +5258,6 @@ elseif GAME_LOCALE == "ruRU" then
 	["The Skybreaker"] = "Усмиритель небес",
 	["The Tribunal of Ages"] = "Трибунал веков",
 	["The Twin Emperors"] = "Близнецы Императора",
-	["The Twin Val'kyr"] = "Валь'киры-близнецы",
 	["Val'kyr Twins"] = "Валь'киры-близнецы",
 	["The Unforgiven"] = "Непрощенный",
 	["The Windreaver"] = "Ветробой",
