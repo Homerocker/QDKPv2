@@ -4897,7 +4897,7 @@ elseif GAME_LOCALE == "ruRU" then
 	Hydrospawn = "Гидротварь",
 	["Hydross the Unstable"] = "Гидросс Нестабильный",
 	["Ice Sphere"] = "Ледяная сфера",
-	["Icecrown Gunship Battle"] = "Бой на кораблях",
+	["Icecrown Gunship Battle"] = "Боевой корабль",
 	Icehowl = "Ледяной Рев",
 	Ichoron = "Гнойрон",
 	Ick = "Ик",
