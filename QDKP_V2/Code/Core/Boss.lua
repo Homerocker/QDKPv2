@@ -24,9 +24,9 @@ boss_translator["Halion the Twilight Destroyer"] = "Halion"
 function QDKP2_BossKilled(boss)
   -- called mainly by event, triggers a boss award if <boss> is in QDKP2_Bosses table.
   -- uses libBabble-Bosses for locales.
-  QDKP2_Debug(3, "Core", boss .. " has died")
+  QDKP2_Debug(2, "Core", boss .. " has died")
   if not QDKP2_ManagementMode() then
-    QDKP2_Debug(3, "Core", "Quitting Boss award because you aren't in management mode")
+    QDKP2_Debug(2, "Core", "Quitting Boss award because you aren't in management mode")
     return
   end
   if not boss or type(boss) ~= 'string' then
@@ -46,6 +46,7 @@ function QDKP2_BossKilled(boss)
   end
 
   local award = QDKP2_GetBossAward(boss)
+  QDKP2_Debug(2, "Core", boss .. " award is "..tostring(award).." DKP")
 
   if award then
     QDKP2log_Entry("RAID", boss, QDKP2LOG_BOSS)
