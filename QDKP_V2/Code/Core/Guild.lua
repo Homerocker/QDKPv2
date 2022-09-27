@@ -240,7 +240,7 @@ function QDKP2_DownloadGuild(Revert)
       if QDKP2altsRestore[name] then
         Main = QDKP2altsRestore[name];
       end
-      --QDKP2_Debug(2, "Guild", name .. " is an Alt of " .. Main)
+      QDKP2_Debug(3, "Guild", name .. " is an Alt of " .. Main)
       table.insert(nameTemp, name)
       QDKP2alts[name] = Main
       QDKP2rank[name] = rank
