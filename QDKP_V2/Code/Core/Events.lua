@@ -234,7 +234,7 @@ function QDKP2_ChatMsgHandler(...)
   if not arg1 or not arg2 then QDKP2_OriginalChatMsgHandler(...); return; end
   if event=="CHAT_MSG_WHISPER_INFORM" and QDKP2suppressWhispers['>'..arg2..arg1] then
     QDKP2suppressWhispers['>'..arg2..arg1]=nil
-    QDKP2_Debug(2,"Core", "OD answer intercepted!")
+    QDKP2_Debug(3,"Core", "OD answer intercepted!")
 		return
   elseif event=="CHAT_MSG_WHISPER"  and QDKP2suppressWhispers['<'..arg2..arg1] then
     QDKP2suppressWhispers['<'..arg2..arg1]=nil

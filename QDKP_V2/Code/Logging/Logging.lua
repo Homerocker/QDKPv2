@@ -85,7 +85,7 @@ function QDKP2log_ConfirmEntries(name,successup)
   end
   local BackupsList=QDKP2log_getBackupList(name)
   if successup then
-    QDKP2_Debug(2,"Logging","Confirming "..tostring(#BackupsList).." changed log entries in "..name.."'s log")
+    QDKP2_Debug(3,"Logging","Confirming "..tostring(#BackupsList).." changed log entries in "..name.."'s log")
   else
     QDKP2_Debug(2,"Logging","Reverting "..tostring(#BackupsList).." changed log entries in "..name.."'s log")
   end

@@ -56,7 +56,7 @@
 
 function QDKP2log_Entry(name, action, Type, undo, timestamp, flags, outsideSession)
 
-  QDKP2_Debug(2, "Logging", "QDKP2log_Entry called. N:" .. tostring(name) .. " ACT:" .. tostring(action) .. " T:" .. tostring(Type) .. " U:" .. tostring(undo) .. " Tm:" .. tostring(timestamp))
+  QDKP2_Debug(3, "Logging", "QDKP2log_Entry called. N:" .. tostring(name) .. " ACT:" .. tostring(action) .. " T:" .. tostring(Type) .. " U:" .. tostring(undo) .. " Tm:" .. tostring(timestamp))
 
   if not QDKP2_OfficerMode() and not (Type == QDKP2LOG_EXTERNAL) then
     QDKP2_Debug(1, "Logging", "Trying to create a log entry, but you aren't in officer mode!")
