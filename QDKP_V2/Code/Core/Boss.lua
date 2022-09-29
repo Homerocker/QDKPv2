@@ -20,7 +20,11 @@ boss_translator["Emalon the Storm Watcher"] = "Emalon"
 boss_translator["Koralon the Flame Watcher"] = "Koralon"
 boss_translator["Toravon the Ice Watcher"] = "Toravon"
 boss_translator["Halion the Twilight Destroyer"] = "Halion"
-boss_translator["Бой на кораблях"] = "Боевой корабль"
+boss_translator["Бой на кораблях"] = "Icecrown Gunship Battle"
+boss_translator["Валь'киры-близнецы"] = "Val'kyr Twins"
+boss_translator["Чудовища Нордскола"] = "Northrend Beasts"
+boss_translator["Королева Лана'тель"] = "Blood-Queen Lana'thel"
+boss_translator["Кровавый Совет"] = "Blood Prince Council"
 
 function QDKP2_BossKilled(boss)
   -- called mainly by event, triggers a boss award if <boss> is in QDKP2_Bosses table.
