@@ -400,7 +400,7 @@ function QDKP2_SendHiddenWhisper(lines, towho)
     local msg = "QDKP2> " .. line
     for _, name in pairs(towho) do
       QDKP2suppressWhispers['>' .. name .. msg] = true
-      ChatThrottleLib:SendChatMessage("NORMAL", "QDKP2", msg, "WHISPER", nil, name)
+      ChatThrottleLib:SendChatMessage("BULK", "QDKP2", msg, "WHISPER", nil, name)
     end
   end
 end
