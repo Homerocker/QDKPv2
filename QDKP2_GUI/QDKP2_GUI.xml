@@ -1753,7 +1753,7 @@
       <Anchor relativePoint="LEFT" point="LEFT" relativeTo="QDKP2_frame2_title_class"/>
       <Anchor relativePoint="RIGHT" point="RIGHT" relativeTo="QDKP2_frame2_title_class"/>
       </Anchors>
-      <Scripts><OnClick>QDKP2GUI_Roster:SortBy(QDKP2_LOC_GUICLASS)</OnClick></Scripts>
+      <Scripts><OnClick>QDKP2GUI_Roster:SortBy("Class")</OnClick></Scripts>
     </Button>
     <Button name="$parent_SortBtn_net" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_Net">
        <Size><AbsDimension x="53" y="25"/></Size>
