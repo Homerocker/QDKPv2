@@ -1,7 +1,7 @@
 ## Interface: 30300
 ## Title: Quick DKP V2 - GUI
 ## Author: rb@belloli.net
-## Version: 2.6.7.13
+## Version: 2.6.7.14
 ## Notes: Graphical Unit Interface for QDKP V2. Needs the core addon.
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
