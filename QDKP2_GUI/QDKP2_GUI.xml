@@ -2801,7 +2801,7 @@
           </OnClick>
         </Scripts>
       </Button>
-      <Button name="$parent_Cancel" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUI_CANCEL">
+      <Button name="$parent_Cancel" inherits="UIPanelButtonTemplate" text="QDKP2_LOC_GUICANCEL">
         <Size>
           <AbsDimension x="80" y="20"/>
         </Size>
